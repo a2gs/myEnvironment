@@ -59,5 +59,7 @@ getHWInfo()
 	fi
 }
 
+ulimit -c unlimited
+
 #PATH=$PATH:$HOME/.local/bin
 #export PATH
