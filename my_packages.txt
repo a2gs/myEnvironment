@@ -130,8 +130,8 @@ youtube-dl
 zip
 libssl-dev
 libssl-doc
-ibsqlite3-dev
-ibsqlite3-0
+libsqlite3-dev
+libsqlite3-0
 libboost-all-dev
 libc-bin
 libc-dev-bin
