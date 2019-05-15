@@ -62,6 +62,7 @@ gzip
 hdparm
 htop
 ipython3
+kcachegrind
 kdeconnect
 kleopatra
 lshw
@@ -133,13 +134,15 @@ libssl-doc
 libsqlite3-dev
 libsqlite3-0
 libboost-all-dev
+libboost-doc
 libc-bin
 libc-dev-bin
 libgpgme-dev
 libgpg-error-dev
 libstdc++
 libmagic-dev
-libncurses
+libncurses5
+libncurses5-dev
 libpcre3-dev
 libssh-dev
 libssh-doc
