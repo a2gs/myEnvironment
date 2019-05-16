@@ -103,6 +103,7 @@ psmisc
 radare2
 rar
 readline-common
+scdaemon
 screen
 screen-resolution-extra
 sed
