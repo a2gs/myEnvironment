@@ -116,6 +116,7 @@ ssh-import-id
 sshfs
 ssl-cert
 tmux
+ufw
 unrar
 unzip
 valgrind
