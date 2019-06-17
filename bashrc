@@ -62,5 +62,11 @@ getHWInfo()
 
 ulimit -c unlimited
 
+if [ -e ~/tmp/TMP ]; then
+	rm -rf ~/tmp/TMP/* &
+else
+	mkdir -p ~/tmp/TMP
+fi
+
 #PATH=$PATH:$HOME/.local/bin
 #export PATH
