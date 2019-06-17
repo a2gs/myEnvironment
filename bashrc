@@ -63,7 +63,7 @@ getHWInfo()
 ulimit -c unlimited
 
 if [ -e ~/tmp/TMP ]; then
-	rm -rf ~/tmp/TMP/* &
+	(rm -rf ~/tmp/TMP/* &) 2>/dev/null
 else
 	mkdir -p ~/tmp/TMP
 fi
