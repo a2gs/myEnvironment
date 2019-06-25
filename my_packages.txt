@@ -129,6 +129,10 @@ vim-runtime
 vim-scripts
 vim-tiny
 weechat
+weechat-curses
+weechat-plugins
+weechat-scripts
+weechat-doc
 wget
 yakuake
 youtube-dl
