@@ -163,4 +163,3 @@ checkinstall
 libpq5
 libpq-dev
 libpqtypes-dev
-postgresql-doc
