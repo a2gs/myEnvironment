@@ -93,6 +93,7 @@ netcat-openbsd
 ngrep
 nmap
 okteta
+openocd
 openssh-client
 openssh-server
 openssh-sftp-server
