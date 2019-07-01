@@ -17,6 +17,7 @@ syntax on
 color torte
 set nowrap
 set number
+set paste
 set showcmd
 set laststatus=2
 set noexpandtab  
