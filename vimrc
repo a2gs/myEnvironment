@@ -19,7 +19,9 @@ set nowrap
 set number
 set showcmd
 set laststatus=2
+set noexpandtab  
 set tabstop=3
+set shiftwidth=3
 set autoindent
 set cindent
 set cino=)3;>3;<3
