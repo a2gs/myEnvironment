@@ -3,10 +3,12 @@ apt-utils
 autoconf
 automake
 autotools-dev
+avr-libc
 bash-completion
 bc
 binutils
 binutils-doc
+binutils-avr
 build-essential
 bzip2
 cgdb
@@ -33,6 +35,7 @@ findutils
 g++
 g++-multilib
 gcc
+gcc-avr
 gcc-doc
 gcc-multilib
 gdb
