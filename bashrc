@@ -17,6 +17,8 @@ setxkbmap -model abnt2 -layout br
 set -o vi
 export EDITOR=vim
 
+export MINICOM='-con'
+
 alias ll='ls -laF'
 alias lt='ls -laFtr'
 alias la='ls -A'
