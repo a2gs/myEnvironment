@@ -5,3 +5,4 @@ My cfgs ...<br><br>
 .bashrc<br>
 .vimrc<br>
 .bcrc<br>
+.gdbrc<br>
