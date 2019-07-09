@@ -15,8 +15,9 @@ export LANG=en_us_8859_1
 setxkbmap -model abnt2 -layout br
 
 set -o vi
-export EDITOR=vim
 
+export EDITOR=vim
+export BC_ENV_ARGS=~/.bcrc
 export MINICOM='-con'
 
 alias ll='ls -laF'
