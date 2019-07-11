@@ -63,6 +63,20 @@ getHWInfo()
 	fi
 }
 
+scanForThreats()
+{
+	if [ $(id -u) -ne 0 ]; then
+		echo "You are not root!"
+	else
+		sudo freshclam
+		sudo rkhunter --update
+
+		sudo clamscan -r -i ./
+		sudo rkhunter -c
+		sudo chkrootkit
+	fi
+}
+
 ulimit -c unlimited
 
 if [ -e ~/tmp/TMP ]; then
