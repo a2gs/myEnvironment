@@ -75,6 +75,7 @@ litecli
 lshw
 lsof
 ltrace
+lynis
 lynx
 lynx-common
 m4
