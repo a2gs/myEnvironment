@@ -77,10 +77,12 @@ scanForThreats()
 
 		sudo freshclam
 		sudo rkhunter --update
+		sudo lynis update info
 
 		sudo clamscan -r -i ./
 		sudo rkhunter -c
 		sudo chkrootkit
+		lynis audit system
 	fi
 }
 
