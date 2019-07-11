@@ -15,6 +15,7 @@ cgdb
 chkrootkit
 clamav
 clamav-daemon
+clamdscan
 cmake
 cmake-curses-gui
 cmake-data
