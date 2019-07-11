@@ -14,6 +14,7 @@ bzip2
 cgdb
 chkrootkit
 clamav
+clamav-daemon
 cmake
 cmake-curses-gui
 cmake-data
