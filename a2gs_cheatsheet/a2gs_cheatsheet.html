@@ -4,6 +4,8 @@
 	<title>A2GS CheatSheet</title>
 
 	<style>
+		white-space: pre;
+
 		table {
 			border-collapse: collapse;
 			width: 100%;
@@ -33,24 +35,36 @@
 		<td><a href="#VIm">VIm</td>
 		<td><a href="#Docker">Docker</td>
 		<td><a href="#Tmux">Tmux</td>
-		<td><a href="#111">...</td>
-		<td><a href="#222">...</td>
+		<td><a href="#GRUB">GRUB</td>
+		<td><a href="#RAMFS">RAM FS</td>
 	</tr>
 </table>
 
+<br>
+
 <hr>
+<!-- ------------------------------------------------------------------------------------------------------------- -->
 <center><h1 id="DPKG"><u>DPKG</u></h1></center>
 
 
+<br>
+
 <hr>
+<!-- ------------------------------------------------------------------------------------------------------------- -->
 <center><h1 id="SystemD"><u>SystemD</u></h1></center>
 
 
+<br>
+
 <hr>
+<!-- ------------------------------------------------------------------------------------------------------------- -->
 <center><h1 id="SSHSSHKeys"><u>SSH / SSH Keys</u></h1></center>
 
 
+<br>
+
 <hr>
+<!-- ------------------------------------------------------------------------------------------------------------- -->
 <center><h1 id="PGPGPG"><u>PGP / GPG</u></h1></center>
 
 <ul><li><h3>Symmetric</h3></li></ul><br>
@@ -74,21 +88,176 @@ Decryption:<br>
 <hr>
 <center><h1 id="VIm"><u>VIm</u></h1></center>
 
+<br>
 
 <hr>
+<!-- ------------------------------------------------------------------------------------------------------------- -->
 <center><h1 id="Docker"><u>Docker</u></h1></center>
 
+<ul><li><h3>Build</h3></li></ul><br>
+
+Build an image from the Dockerfile in the current directory and tag the image:<br>
+<i>docker build -t <b>myapp:1.0</b> .</i><br>
+
+<br>
+
+List all images that are locally stored with the Docker engine:<br>
+<i>docker images</i><br>
+
+<br>
+
+Delete an image from the local image store:<br>
+<i>docker rmi <b>alpine:3.4</b></i><br>
+
+<br>
+
+<ul><li><h3>Ship</h3></li></ul><br>
+
+Pull an image from a registry:<br>
+<i>docker pull <b>alpine:3.4</b></i><br>
+
+<br>
+
+Retag a local image with a new image name and tag:<br>
+<i>docker tag alpine:3.4 <b>myrepo/myalpine:3.4</b></i><br>
+
+<br>
+
+Log in to a registry (the Docker Hub by default):<br>
+<i>docker login <b>my.registry.com:8000</b></i><br>
+
+<br>
+
+Push an image to a registry:<br>
+<i>docker push <b>myrepo/myalpine:3.4</b></i><br>
+
+<br>
+
+<ul><li><h3>Run</h3></li></ul><br>
+
+<i>docker run</i><br>
+
+&emsp;<i>--rm</i>&emsp;&emsp;&emsp;&emsp;remove container automatically after it exits<br>
+&emsp;<i>-it</i>&emsp;&emsp;&emsp;&emsp;connect the container to terminal<br>
+&emsp;<i>--name <b>web</b></i>&emsp;&emsp;&emsp;&emsp;name the container<br>
+&emsp;<i>-p<b>5000:80</b></i>&emsp;&emsp;&emsp;&emsp;expose port 5000 externally and map to port 80<br>
+&emsp;<i>-v </b>~/dev:/code</b></i>&emsp;&emsp;&emsp;&emsp;create a host mapped volume inside the container<br>
+&emsp;<i><b>alpine:3.4</b></i>&emsp;&emsp;&emsp;&emsp;the image from which the container is instantiated<br>
+&emsp;<i><b>/bin/sh</b></i>&emsp;&emsp;&emsp;&emsp;the command to run inside the container<br>
+
+<br>
+
+Stop a running container through SIGTERM:<br>
+<i>docker stop <b>web</b></i><br>
+
+<br>
+
+Stop a running container through SIGKILL:<br>
+<i>docker kill <b>web</b></i><br>
+
+<br>
+
+Create an overlay network and specify a subnet:<br>
+<i>docker network create --subnet <b>10.1.0.0/24</b> --gateway <b>10.1.0.1</b> -d <b>overlay mynet</b></i><br>
+
+<br>
+
+List the networks:<br>
+<i>docker network ls</i><br>
+
+<br>
+
+List the running containers:<br>
+<i>docker ps</i><br>
+
+<br>
+
+Delete all running and stopped containers docker:<br>
+<i>rm -f $(docker ps -aq)</i><br>
+
+<br>
+
+Create a new bash process inside the container and connectit to the terminal:<br>
+<i>docker exec -it <b>web bash</b></i><br>
+
+<br>
+
+Print the last 100 lines of a container’s logs<br>
+<i>docker logs --tail 100 <b>web</b></i><br>
+
+<br>
+
+<ul><li><h3>Orchestrate</h3></li></ul><br>
+
+Initialize swarm mode and listen on a specific interface:<br>
+<i>docker swarm init --advertise-addr <b>10.1.0.2</b></i><br>
+
+<br>
+
+Join an existing swarm as a manager node:<br>
+<i>docker swarm join --token <b><manager-token> 10.1.0.2:2377</b></i><br>
+
+<br>
+
+Join an existing swarm as a worker node:<br>
+<i>docker swarm join --token <b><worker-token> 10.1.0.2:2377</b></i><br>
+
+<br>
+
+List the nodes participating in a swarm:<br>
+<i>docker node ls</i><br>
+
+<br>
+
+Create a service from an image exposed on a specific port and deploy 3 instances:<br>
+<i>docker service create --replicas <b>3</b> -p <b>80:80</b> --name <b>web nginx</b></i><br>
+
+<br>
+
+List the services running in a swarm:<br>
+<i>docker service ls</i><br>
+
+<br>
+
+Scale a service:<br>
+<i>docker service scale <b>web</b>=<b>5</b></i><br>
+
+<br>
+
+List the tasks of a service:<br>
+<i>docker service ps <b>web</b></i><br>
+
+<br>
 
 <hr>
+<!-- ------------------------------------------------------------------------------------------------------------- -->
 <center><h1 id="Tmux"><u>Tmux</u></h1></center>
 
 
-<hr>
-<center><h1 id="111"><u>...</u></h1></center>
-
+<br>
 
 <hr>
-<center><h1 id="222"><u>...</u></h1></center>
+<!-- ------------------------------------------------------------------------------------------------------------- -->
+<center><h1 id="GRUB"><u>GRUB</u></h1></center>
+
+<ul><li><h3>Bypass unprotected (no password)</h3></li></ul><br>
+
+Na linha do boot desejado, apertar 'e'<br>
+Adicionar no final do "linux vmlinux ...." <i><b>1 init=/bin/bash</b></i><br>
+Ativar modo de escrita no root:<br>
+<i>mount -o remount,rw /</i><br>
+
+<br>
+
+<hr>
+<!-- ------------------------------------------------------------------------------------------------------------- -->
+<center><h1 id="RAMFS"><u>RAM FS</u></h1></center>
+
+<ul><li><h3>Creating (size <i>512Mb</i>, mount point <i>/mnt/ramdisk</i>)</h3></li></ul><br>
+
+mount -t tmpfs -o size=512m tmpfs /mnt/ramdisk</i><br>
+
+<br>
 
 <hr>
 
