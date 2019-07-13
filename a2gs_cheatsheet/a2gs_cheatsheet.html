@@ -53,13 +53,64 @@
 <!-- ------------------------------------------------------------------------------------------------------------- -->
 <center><h1 id="DPKG"><u>DPKG</u></h1></center>
 
-
 <br>
 
 <hr>
 <!-- ------------------------------------------------------------------------------------------------------------- -->
 <center><h1 id="SystemD"><u>SystemD</u></h1></center>
 
+<ul><li><h3>Service Management</h3></li></ul><br>
+
+Enabling/disabling services at boot:<br>
+<i>systemctl enable <b>SERVICE</b></i><br>
+<i>systemctl disable <b>SERVICE</b></i><br>
+
+<br>
+
+Start/stop/restart services:<br>
+<i>systemctl start <b>SERVICE</b></i><br>
+<i>systemctl stop <b>SERVICE</b></i><br>
+<i>systemctl restart <b>SERVICE</b></i><br>
+
+<br>
+
+<ul><li><h3>Creating a service</h3></li></ul><br>
+
+1. Sample (script) service <b>test_service.sh</b>:<br>
+<i>DATE=`date '+%Y-%m-%d %H:%M:%S'`</i><br>
+<i>echo "Example service started at ${DATE}" | systemd-cat -p info</i><br>
+
+<i>while true</i><br>
+<i>do</i><br>
+<i>echo "Looping...";</i><br>
+<i>sleep 30;</i><br>
+<i>done</i><br>
+
+<br>
+
+2. Copy the script to <b>/usr/bin</b> and make it executable:<br>
+<i>sudo cp <b>test_service.sh</b> /usr/bin/</i><br>
+<i>sudo chmod +x /usr/bin/<b>test_service.sh</b></i><br>
+
+<br>
+
+3. Create a Unit file to define a systemd service (<b>/lib/systemd/system/myservice.service</b>):<br>
+<i>[Unit]</i><br>
+<i>Description=Example systemd service.</i><br>
+
+<i>[Service]</i><br>
+<i>Type=simple</i><br>
+<i>ExecStart=/bin/bash /usr/bin/test_service.sh</i><br>
+
+<i>[Install]</i><br>
+<i>WantedBy=multi-user.target</i><br>
+
+<br>
+
+4. Run:<br>
+<i>sudo systemctl start myservice</i><br>
+<i>sudo systemctl status myservice</i><br>
+<i>sudo systemctl enable myservice</i><br>
 
 <br>
 
