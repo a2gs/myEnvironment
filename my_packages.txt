@@ -130,6 +130,7 @@ ssh-import-id
 sshfs
 ssl-cert
 tmux
+ubuntu-restricted-extras
 ufw
 unrar
 unzip
