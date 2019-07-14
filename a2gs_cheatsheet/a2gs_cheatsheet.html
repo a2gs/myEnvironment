@@ -41,7 +41,7 @@
 	<tr>
 		<td><a href="#GIT">GIT</td>
 		<td><a href="#lsof">lsof</td>
-		<td><a href="#...">...</td>
+		<td><a href="#PostgreSQL">PostgreSQL</td>
 		<td><a href="#...">...</td>
 		<td><a href="#...">...</td>
 	</tr>
@@ -118,7 +118,13 @@ Start/stop/restart services:<br>
 <!-- ------------------------------------------------------------------------------------------------------------- -->
 <center><h1 id="SSHSSHKeys"><u>SSH / SSH Keys</u></h1></center>
 
+<ul><li><h3>Creating Asymmetric Pub/Priv keys</h3></li></ul><br>
+<i>ssh-keygen -o -a 200 -t ed25519 -f ~/.ssh/id_ed25519 -C "andre.scota@gmail.com"</i>
+<i>ssh-keygen -t rsa -f ~/.ssh/id_rsa -C "andre.scota@gmail.com"</i>
+
 <br>
+
+<ul><li><h3>SSH Tunneling / Forwarding</h3></li></ul><br>
 
 <hr>
 <!-- ------------------------------------------------------------------------------------------------------------- -->
@@ -1064,7 +1070,7 @@ mount -t tmpfs -o size=512m tmpfs /mnt/ramdisk</i><br>
 
 <hr>
 <!-- ------------------------------------------------------------------------------------------------------------- -->
-<center><h1 id="..."><u>...</u></h1></center>
+<center><h1 id="PostgreSQL"><u>PostgreSQL</u></h1></center>
 
 <br>
 
