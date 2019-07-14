@@ -118,7 +118,6 @@ Start/stop/restart services:<br>
 <!-- ------------------------------------------------------------------------------------------------------------- -->
 <center><h1 id="SSHSSHKeys"><u>SSH / SSH Keys</u></h1></center>
 
-
 <br>
 
 <hr>
@@ -140,11 +139,716 @@ Decryption:<br>
 <ul><li><h3>Asymmetric</h3></li></ul><br>
 
 <hr>
+<!-- ------------------------------------------------------------------------------------------------------------- -->
 <center><h1 id="GDB"><u>GDB</u></h1></center>
 
+<br>
 
 <hr>
+<!-- ------------------------------------------------------------------------------------------------------------- -->
 <center><h1 id="VIm"><u>VIm</u></h1></center>
+
+<ul><li><h3>Global</h3></li></ul><br>
+<table style="width:100%" >
+	<tr>
+		<td>:help keyword</td>
+		<td>open help for keyword</td>
+	</tr>
+	<tr>
+		<td>:o file</td>
+		<td>open file</td>
+	</tr>
+	<tr>
+		<td>:saveas file</td>
+		<td>save file as</td>
+	</tr>
+	<tr>
+		<td>:close</td>
+		<td>close current pane</td>
+	</tr>
+	<tr>
+		<td>:sh</td>
+		<td>go to terminal which started vim (type exit to go back to vim)</td>
+	</tr>
+	<tr>
+		<td>:terminal</td>
+		<td>open new terminal in horizontal split</td>
+	</tr>
+	<tr>
+		<td>.</td>
+		<td>repeat last command</td>
+	</tr>
+	<tr>
+		<td>u</td>
+		<td>undo</td>
+	</tr>
+	<tr>
+		<td>^r</td>
+		<td>redo</td>
+	</tr>
+</table>
+
+<br>
+
+<ul><li><h3>Operators that needs motions or text objects or other commands</h3></li></ul><br>
+<table style="width:100%">
+	<tr>
+		<td>v</td>
+		<td>Visually select</td>
+	</tr>
+	<tr>
+		<td>V</td>
+		<td>Visually select entire line</td>
+	</tr>
+	<tr>
+		<td>^v</td>
+		<td>Visually select block</td>
+	</tr>
+	<tr>
+		<td>y</td>
+		<td>Yank</td>
+	</tr>
+	<tr>
+		<td>d</td>
+		<td>Delete (cut)</td>
+	</tr>
+	<tr>
+		<td>c</td>
+		<td>Change</td>
+	</tr>
+	<tr>
+		<td>gu</td>
+		<td>Change to lowercase</td>
+	</tr>
+	<tr>
+		<td>gU</td>
+		<td>Change to uppercase</td>
+	</tr>
+	<tr>
+		<td>g~</td>
+		<td>Switch case</td>
+	</tr>
+</table>
+
+<br>
+
+<ul><li><h3>Motions</h3></li></ul><br>
+<table style="width:100%">
+	<tr>
+		<td>H</td>
+		<td>move cursor to top of screen</td>
+	</tr>
+	<tr>
+		<td>M</td>
+		<td>move cursor to middle of screen</td>
+	</tr>
+	<tr>
+		<td>L</td>
+		<td>move cursor to bottom of screen</td>
+	</tr>
+</table>
+
+<br>
+
+<ul><li><h3>Line Movements</h3></li></ul><br>
+<table style="width:100%">
+	<tr>
+		<td>0</td>
+		<td>jump to the start of the line</td>
+	</tr>
+	<tr>
+		<td>^ or _</td>
+		<td>jump to the first non-blank character of the line (Shift + 6)</td>
+	</tr>
+	<tr>
+		<td>$</td>
+		<td>jump to the end of the line</td>
+	</tr>
+	<tr>
+		<td>g_</td>
+		<td>jump to the last non-blank character of the line</td>
+	</tr>
+</table>
+
+<br>
+
+<ul><li><h3>Block Movements</h3></li></ul><br>
+<table style="width:100%">
+	<tr>
+		<td>%</td>
+		<td>jump to next parenthesis or bracket</td>
+	</tr>
+	<tr>
+		<td>}</td>
+		<td>jump to next paragraph (or function/block, when editing code)</td>
+	</tr>
+	<tr>
+		<td>{</td>
+		<td>jump to previous paragraph (or function/block, when editing code)</td>
+	</tr>
+	<tr>
+		<td>(</td>
+		<td>jump forward one sentence</td>
+	</tr>
+	<tr>
+		<td>)</td>
+		<td>jump backward one sentence</td>
+	</tr>
+	<tr>
+		<td>[(</td>
+		<td>jump cursor to previous available parenthesis</td>
+	</tr>
+	<tr>
+		<td>])</td>
+		<td>jump cursor to next available parenthesis</td>
+	</tr>
+	<tr>
+		<td>[{</td>
+		<td>jump cursor to previous available bracket</td>
+	</tr>
+	<tr>
+		<td>]}</td>
+		<td>jump cursor to next available bracket</td>
+	</tr>
+</table>
+
+<br>
+
+<ul><li><h3>Other Movements</h3></li></ul><br>
+<table style="width:100%">
+	<tr>
+		<td>gg</td>
+		<td>go to the first line of the document</td>
+	</tr>
+	<tr>
+		<td>G</td>
+		<td>go to the last line of the document</td>
+	</tr>
+	<tr>
+		<td>gd</td>
+		<td>go to the local declaration</td>
+	</tr>
+	<tr>
+		<td>gD</td>
+		<td>go to the global declaration</td>
+	</tr>
+	<tr>
+		<td>*</td>
+		<td>search for word under the cursor</td>
+	</tr>
+</table>
+
+<br>
+
+<ul><li><h3>Marker Movement</h3></li></ul><br>
+<table style="width:100%">
+	<tr>
+		<td>m<i>x</i></td>
+		<td>mark 'x' at the current cursor position</td>
+	</tr>
+	<tr>
+		<td>'x</td>
+		<td>jump to the beginning of the line of mark 'x'</td>
+	</tr>
+	<tr>
+		<td>`x</td>
+		<td>jump to the cursor position of mark 'x'</td>
+	</tr>
+</table>
+
+<br>
+
+<ul><li><h3>Undo</h3></li></ul><br>
+<table style="width:100%">
+	<tr>
+		<td>''</td>
+		<td>return to the line where the cursor was before the latest jump (Two single quotes)</td>
+	</tr>
+	<tr>
+		<td>``</td>
+		<td>return to the cursor position before the latest jump (undo the jump) (Two back ticks)</td>
+	</tr>
+	<tr>
+		<td>`.</td>
+		<td>jump to the cursor location of the last-changed line</td>
+	</tr>
+	<tr>
+		<td>'.</td>
+		<td>jump to the begining of the last-changed line</td>
+	</tr>
+	<tr>
+		<td>^o</td>
+		<td>undo the last jump</td>
+	</tr>
+</table>
+
+<br>
+
+<ul><li><h3>Python Mapping</h3></li></ul><br>
+<table style="width:100%">
+	<tr>
+		<td>]]</td>
+		<td>Jump forward to begin of next toplevel</td>
+	</tr>
+	<tr>
+		<td>[[</td>
+		<td>Jump backwards to begin of current toplevel (if already there, previous toplevel)</td>
+	</tr>
+	<tr>
+		<td>]m</td>
+		<td>Jump forward to begin of next method/scope</td>
+	</tr>
+	<tr>
+		<td>[m</td>
+		<td>Jump backwords to begin of previous method/scope</td>
+	</tr>
+	<tr>
+		<td>][</td>
+		<td>Jump forward to end of current toplevel</td>
+	</tr>
+	<tr>
+		<td>[]</td>
+		<td>Jump backward to end of previous of toplevel</td>
+	</tr>
+	<tr>
+		<td>]M</td>
+		<td>Jump forward to end of current method/scope</td>
+	</tr>
+	<tr>
+		<td>[M</td>
+		<td>Jump backward to end of previous method/scope</td>
+	</tr>
+</table>
+<br>
+Example:
+<pre>
+class Mapping:                              # [[[[
+    def __init__(self, iterable):
+        pass
+
+    def update(self, iterable):
+        pass
+
+    __update = update                       # []
+
+class Reverse:                              # [[ or [m[m
+    def __init__(self, data):               # [m
+        self.data = data
+        self.index = len(data)              # [M
+
+    def __iter__(self):                     # <--- cursor< span>
+        return self                         # ]M
+
+    def __next__(self):                     # ]m
+        if self.index == 0:
+            raise StopIteration
+        self.index = self.index - 1
+        return self.data[self.index]        # ][
+
+class MappingSubclass(Mapping):             # ]] or ]m]m
+
+    def update(self, keys, values):
+        pass
+</pre>
+<br>
+
+<ul><li><h3>Page Scrolls</h3></li></ul><br>
+<table style="width:100%">
+	<tr>
+		<td>^e</td>
+		<td>Scroll the window down</td>
+	</tr>
+	<tr>
+		<td>^y</td>
+		<td>Scroll the windows up</td>
+	</tr>
+	<tr>
+		<td>^f</td>
+		<td>Scroll down one page (forward scroll)</td>
+	</tr>
+	<tr>
+		<td>^b</td>
+		<td>Scroll up one page (backward scroll)</td>
+	</tr>
+	<tr>
+		<td>^d</td>
+		<td>Scroll down 1/2 page</td>
+	</tr>
+	<tr>
+		<td>^u</td>
+		<td>Scroll up 1/2 page</td>
+	</tr>
+	<tr>
+		<td>zt</td>
+		<td>Scroll to get cursor to screen top</td>
+	</tr>
+	<tr>
+		<td>zz</td>
+		<td>Scroll to get cursor to screen center</td>
+	</tr>
+	<tr>
+		<td>zb</td>
+		<td>Scroll to get cursor to screen bottom</td>
+	</tr>
+</table>
+
+<br>
+
+<ul><li><h3>Macro</h3></li></ul><br>
+<table style="width:100%">
+	<tr>
+		<td>q{register}</td>
+		<td>Start Recording</td>
+	</tr>
+	<tr>
+		<td>q</td>
+		<td>Stop recording</td>
+	</tr>
+	<tr>
+		<td>@{register}</td>
+		<td>Play recording in the register</td>
+	</tr>
+	<tr>
+		<td>@@</td>
+		<td>Play the previously played register</td>
+	</tr>
+	<tr>
+		<td>:reg</td>
+		<td>See values of every register</td>
+	</tr>
+</table>
+
+<br>
+
+<ul><li><h3>Editing</h3></li></ul><br>
+<table style="width:100%">
+	<tr>
+		<td>~</td>
+		<td>switch case of character</td>
+	</tr>
+	<tr>
+		<td>r</td>
+		<td>replace a single character</td>
+	</tr>
+	<tr>
+		<td>J</td>
+		<td>join line below to the current one</td>
+	</tr>
+	<tr>
+		<td>cc or S</td>
+		<td>change (replace) entire line</td>
+	</tr>
+	<tr>
+		<td>C</td>
+		<td>change to the end of the line (same as c$)</td>
+	</tr>
+	<tr>
+		<td>s</td>
+		<td>delete character and substitute text</td>
+	</tr>
+	<tr>
+		<td>cw</td>
+		<td>change word under cursor</td>
+	</tr>
+	<tr>
+		<td>&gt;&gt;</td>
+		<td>Shift [number] of lines to right</td>
+	</tr>
+	<tr>
+		<td>&lt;&lt;</td>
+		<td>Shift [number] of lines to left</td>
+	</tr>
+</table>
+
+<br>
+
+<ul><li><h3>Cut and paste</h3></li></ul><br>
+<table style="width:100%">
+	<tr>
+		<td>yy or Y</td>
+		<td>yank (copy) [number] of lines</td>
+	</tr>
+	<tr>
+		<td>p</td>
+		<td>put (paste) the clipboard after cursor</td>
+	</tr>
+	<tr>
+		<td>P</td>
+		<td>put (paste) before cursor</td>
+	</tr>
+	<tr>
+		<td>dd</td>
+		<td>delete (cut) [number] of lines</td>
+	</tr>
+	<tr>
+		<td>D</td>
+		<td>delete (cut) to the end of the line (same as d$)</td>
+	</tr>
+	<tr>
+		<td>x</td>
+		<td>delete (cut) character</td>
+	</tr>
+</table>
+
+<br>
+
+<ul><li><h3>Marking text (visual mode)</h3></li></ul><br>
+<table style="width:100%">
+	<tr>
+		<td>v</td>
+		<td>start visual mode, mark lines, then do a command (like y-yank)</td>
+	</tr>
+	<tr>
+		<td>V</td>
+		<td>start linewise visual mode</td>
+	</tr>
+	<tr>
+		<td>^v</td>
+		<td>start visual block mode</td>
+	</tr>
+	<tr>
+		<td>o</td>
+		<td>move to other end of marked area</td>
+	</tr>
+	<tr>
+		<td>O</td>
+		<td>move to other corner of block</td>
+	</tr>
+	<tr>
+		<td>Esc</td>
+		<td>goto normal mode</td>
+	</tr>
+</table>
+
+<br>
+
+<ul><li><h3>Search and replace</h3></li></ul><br>
+<table style="width:100%">
+	<tr>
+		<td>/pattern</td>
+		<td>search for pattern</td>
+	</tr>
+	<tr>
+		<td>/pattern\c</td>
+		<td>search backward for pattern</td>
+	</tr>
+	<tr>
+		<td>:%s/old/new/g</td>
+		<td>replace all old with new throughout file</td>
+	</tr>
+	<tr>
+		<td>:%s/old/new/gc</td>
+		<td>replace all old with new throughout file with confirmations</td>
+	</tr>
+	<tr>
+		<td>:noh</td>
+		<td>remove highlighting of search matches</td>
+	</tr>
+</table>
+
+<br>
+
+<ul><li><h3>Search in multiple files</h3></li></ul><br>
+<table style="width:100%">
+	<tr>
+		<td>:vimgrep /pattern/ {file}</td>
+		<td>search for pattern in multiple files</td>
+	</tr>
+	<tr>
+		<td>:cn</td>
+		<td>jump to the next match</td>
+	</tr>
+	<tr>
+		<td>:cp</td>
+		<td>jump to the previous match</td>
+	</tr>
+	<tr>
+		<td>:copen</td>
+		<td>open a window containing the list of matches</td>
+	</tr>
+</table>
+
+<br>
+
+<ul><li><h3>Exiting</h3></li></ul><br>
+<table style="width:100%">
+	<tr>
+		<td>:w</td>
+		<td>write (save) the file, but don't exit</td>
+	</tr>
+	<tr>
+		<td>:w !sudo tee %</td>
+		<td>write out the current file using sudo</td>
+	</tr>
+	<tr>
+		<td>:w file.log</td>
+		<td>write the text to file.log</td>
+	</tr>
+	<tr>
+		<td>:wq or :x or ZZ</td>
+		<td>write (save) and quit</td>
+	</tr>
+	<tr>
+		<td>:q</td>
+		<td>quit (fails if there are unsaved changes)</td>
+	</tr>
+	<tr>
+		<td>:q! or ZQ</td>
+		<td>quit and throw away unsaved changes</td>
+	</tr>
+</table>
+
+<br>
+
+<ul><li><h3>Working with multiple files</h3></li></ul><br>
+<table style="width:100%">
+	<tr>
+		<td>:Ex</td>
+		<td>open file explorer</td>
+	</tr>
+	<tr>
+		<td>:e file</td>
+		<td>edit a file in a new buffer</td>
+	</tr>
+	<tr>
+		<td>:bnext or :bn</td>
+		<td>go to the next buffer</td>
+	</tr>
+	<tr>
+		<td>:bprev or :bp</td>
+		<td>go to the previous buffer</td>
+	</tr>
+	<tr>
+		<td>:bd</td>
+		<td>delete a buffer (close a file)</td>
+	</tr>
+	<tr>
+		<td>:ls</td>
+		<td>list all open buffers</td>
+	</tr>
+	<tr>
+		<td>:[num]sp [file]</td>
+		<td>open a file in a new buffer and horizontal split window with height=num</td>
+	</tr>
+	<tr>
+		<td>:[num]vs [file]</td>
+		<td>open a file in a new buffer and vertically split window with width=num</td>
+	</tr>
+</table>
+
+<br>
+
+<ul><li><h3>Splitting (Window) and Movements</h3></li></ul><br>
+<table style="width:100%">
+	<tr>
+		<td>^wn</td>
+		<td>split new (empty) window</td>
+	</tr>
+	<tr>
+		<td>^ws</td>
+		<td>split window</td>
+	</tr>
+	<tr>
+		<td>^wv</td>
+		<td>split window vertically</td>
+	</tr>
+	<tr>
+		<td>^wq</td>
+		<td>quit a window</td>
+	</tr>
+	<tr>
+		<td>[N]^wx</td>
+		<td>swap position of this windows with previous (or Nth) window</td>
+	</tr>
+	<tr>
+		<td>^ww</td>
+		<td>switch windows</td>
+	</tr>
+	<tr>
+		<td>^wh</td>
+		<td>move cursor to the left window (vertical split)</td>
+	</tr>
+	<tr>
+		<td>^wl</td>
+		<td>move cursor to the right window (vertical split)</td>
+	</tr>
+	<tr>
+		<td>^wj</td>
+		<td>move cursor to the window below (horizontal split)</td>
+	</tr>
+	<tr>
+		<td>^wk</td>
+		<td>move cursor to the window above (horizontal split)</td>
+	</tr>
+</table>
+
+<br>
+
+<ul><li><h3>Change window size</h3></li></ul><br>
+<table style="width:100%">
+	<tr>
+		<td>^w  +|-</td>
+		<td>increase/decrease height [number] of units (don't type space)</td>
+	</tr>
+	<tr>
+		<td>^w  >|<</td>
+		<td>increase/decrease width [number] of units (don't type space)</td>
+	</tr>
+	<tr>
+		<td>[num]^w_</td>
+		<td>set height to number of units (max hight if zero)</td>
+	</tr>
+	<tr>
+		<td>[num]^w|</td>
+		<td>set width to number of unites (max width if zero)</td>
+	</tr>
+	<tr>
+		<td>^w=</td>
+		<td>equalize width and height of all windows</td>
+	</tr>
+</table>
+
+<br>
+
+<ul><li><h3>Tabs</h3></li></ul><br>
+<table style="width:100%">
+	<tr>
+		<td>:tabnew or :tabnew file</td>
+		<td>open a file in a new tab</td>
+	</tr>
+	<tr>
+		<td>^wT</td>
+		<td>move the current split window into its own tab</td>
+	</tr>
+	<tr>
+		<td>gt or :tabnext or :tabn</td>
+		<td>move to the next tab</td>
+	</tr>
+	<tr>
+		<td>gT or :tabprev or :tabp</td>
+		<td>move to the previous tab</td>
+	</tr>
+	<tr>
+		<td>gt</td>
+		<td>move to tab</td>
+	</tr>
+	<tr>
+		<td>:tabmove</td>
+		<td>move current tab to the th position (indexed from 0)</td>
+	</tr>
+	<tr>
+		<td>:tabclose or :tabc</td>
+		<td>close the current tab and all its windows</td>
+	</tr>
+	<tr>
+		<td>:tabonly or :tabo</td>
+		<td>close all tabs except for the current one</td>
+	</tr>
+	<tr>
+		<td>:tabdo command</td>
+		<td>run the command on all tabs (e.g. :tabdo q - closes all opened tabs)</td>
+	</tr>
+</table>
 
 <br>
 
