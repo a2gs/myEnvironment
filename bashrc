@@ -37,7 +37,7 @@ alias myGlobalIPAddress3='wget -qO - icanhazip.com'
 alias myGlobalIPAddress4='curl ifconfig.me'
 alias myGlobalIPAddress5='curl ifconfig.co'
 alias myGlobalIPAddress6='curl icanhazip.com'
-alias shred='shred -fuz'
+alias shredfull='shred -fuz'
 
 getHWInfo()
 {
