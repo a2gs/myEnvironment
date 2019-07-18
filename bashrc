@@ -38,7 +38,11 @@ alias myGlobalIPAddress4='curl ifconfig.me'
 alias myGlobalIPAddress5='curl ifconfig.co'
 alias myGlobalIPAddress6='curl icanhazip.com'
 alias shredfull='shred -fuz'
-alias listFilesBySize='find . -type f -printf "%s %p\n" | sort -rn'
+
+listFilesBySize()
+{
+	find $1 -type f -printf "%s %p\n" | sort -rn
+}
 
 getHWInfo()
 {
