@@ -10,6 +10,7 @@ export LC_MEASUREMENT="pt_BR.UTF-8"
 export LC_IDENTIFICATION="pt_BR.UTF-8"
 export LC_NUMERIC="pt_BR.UTF-8"
 export LC_PAPER="pt_BR.UTF-8"
+export LC_MESSAGES="en_US.UTF-8"
 export LANG=en_us_8859_1
 
 setxkbmap -model abnt2 -layout br
