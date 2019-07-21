@@ -12,7 +12,7 @@ export LC_NUMERIC="pt_BR.UTF-8"
 export LC_PAPER="pt_BR.UTF-8"
 export LC_COLLATE="pt_BR.UTF-8"
 export LC_MESSAGES="en_US.UTF-8"
-export LANG=en_US.UTF-8
+export LANG="en_US.UTF-8"
 
 setxkbmap -model abnt2 -layout br
 
