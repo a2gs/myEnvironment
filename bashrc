@@ -46,6 +46,14 @@ listFilesBySize()
 	find $1 -type f -printf "%s %p\n" | sort -rn
 }
 
+litenning()
+{
+	echo '===[ lsof ]==================================='
+	sudo lsof -i -P -n | grep LISTEN
+	echo '===[ netstat ]================================'
+	sudo netstat -tulpn | grep LISTEN
+}
+
 getHWInfo()
 {
 	if [ $(id -u) -ne 0 ]; then
