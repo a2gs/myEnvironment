@@ -52,8 +52,8 @@ litenning()
 	sudo lsof -i -P -n | grep LISTEN
 	echo '===[ netstat ]================================'
 	sudo netstat -tulpn | grep LISTEN
-	echo '===[ nmap ]==================================='
-	sudo nmap -A -T4 `hostname`
+	echo '===[ nmap ('`hostname -I`')]==================================='
+	sudo nmap -A -T4 `hostname -I`
 }
 
 getHWInfo()
