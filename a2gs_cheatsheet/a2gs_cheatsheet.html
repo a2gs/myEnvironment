@@ -198,6 +198,10 @@ Decryption:<br>
 		<td>^r</td>
 		<td>redo</td>
 	</tr>
+	<tr>
+		<td>:r! command</td>
+		<td>execute command and insert output after (next line) the current cursor position</td>
+	</tr>
 </table>
 
 <br>
@@ -543,6 +547,10 @@ class MappingSubclass(Mapping):             # ]] or ]m]m
 		<td>replace a single character</td>
 	</tr>
 	<tr>
+		<td>R</td>
+		<td>overwrite at the current cursor position</td>
+	</tr>
+	<tr>
 		<td>J</td>
 		<td>join line below to the current one</td>
 	</tr>
@@ -625,10 +633,6 @@ class MappingSubclass(Mapping):             # ]] or ]m]m
 	<tr>
 		<td>O</td>
 		<td>move to other corner of block</td>
-	</tr>
-	<tr>
-		<td>Esc</td>
-		<td>goto normal mode</td>
 	</tr>
 </table>
 
