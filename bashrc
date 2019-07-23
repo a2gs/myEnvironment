@@ -40,6 +40,7 @@ alias myGlobalIPAddress4='curl ifconfig.me'
 alias myGlobalIPAddress5='curl ifconfig.co'
 alias myGlobalIPAddress6='curl icanhazip.com'
 alias shredfull='shred -fuz'
+alias connections='lsof -iTCP -sTCP:ESTABLISHED'
 
 listFilesBySize()
 {
