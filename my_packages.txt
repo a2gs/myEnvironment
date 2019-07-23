@@ -72,6 +72,8 @@ kcachegrind
 kdeconnect
 kleopatra
 linux-tools-common
+linux-tools-generic
+linux-cloud-tools-generic
 litecli
 lshw
 lsof
