@@ -132,6 +132,7 @@ ssh
 ssh-import-id
 sshfs
 ssl-cert
+sysstat
 tmux
 ubuntu-restricted-extras
 ufw
