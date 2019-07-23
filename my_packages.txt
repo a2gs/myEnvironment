@@ -71,6 +71,7 @@ ipython3
 kcachegrind
 kdeconnect
 kleopatra
+linux-tools-common
 litecli
 lshw
 lsof
