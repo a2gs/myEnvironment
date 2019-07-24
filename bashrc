@@ -42,12 +42,12 @@ alias myGlobalIPAddress6='curl icanhazip.com'
 alias shredfull='shred -fuz'
 alias connections='lsof -iTCP -sTCP:ESTABLISHED'
 
-listFilesBySize()
+function listFilesBySize()
 {
 	find $1 -type f -printf "%s %p\n" | sort -rn
 }
 
-litenning()
+function litenning()
 {
 	echo '===[ lsof ]==================================='
 	sudo lsof -i -P -n | grep LISTEN
@@ -57,7 +57,7 @@ litenning()
 	sudo nmap -A -T4 `hostname -I`
 }
 
-getHWInfo()
+function getHWInfo()
 {
 	if [ $(id -u) -ne 0 ]; then
 		echo "You are not root!"
@@ -81,7 +81,7 @@ getHWInfo()
 	fi
 }
 
-scanForThreats()
+function scanForThreats()
 {
 	if [ $(id -u) -ne 0 ]; then
 		echo "You are not root!"
