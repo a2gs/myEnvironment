@@ -98,7 +98,7 @@ scanForThreats()
 		sudo lynis update info
 
 		sudo clamscan -r -i ./
-		sudo rkhunter -c
+		sudo rkhunter -c --sk
 		sudo chkrootkit
 		lynis audit system
 	fi
