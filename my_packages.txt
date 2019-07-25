@@ -41,6 +41,7 @@ gcc
 gcc-avr
 gcc-doc
 gcc-multilib
+gcc-arm-linux-gnueabi
 gdb
 gettext
 gettext-base
@@ -181,3 +182,5 @@ checkinstall
 libpq5
 libpq-dev
 libpqtypes-dev
+libsgutils2-dev
+libusb-dev
