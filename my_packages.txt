@@ -148,6 +148,7 @@ vim-doc
 vim-runtime
 vim-scripts
 vim-tiny
+virtualenv
 weechat
 weechat-curses
 weechat-plugins
