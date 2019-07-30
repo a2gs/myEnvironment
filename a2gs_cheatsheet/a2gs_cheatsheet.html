@@ -43,7 +43,7 @@
 		<td><a href="#lsof">lsof</a></td>
 		<td><a href="#PostgreSQL">PostgreSQL</a></td>
 		<td><a href="#RegEx">RegEx</a></td>
-		<td><a href="#...">...</a></td>
+		<td><a href="#nc">nc</a></td>
 	</tr>
 </table>
 
@@ -1103,8 +1103,19 @@ mount -t tmpfs -o size=512m tmpfs /mnt/ramdisk</i><br>
 <hr>
 
 <!-- ------------------------------------------------------------------------------------------------------------- -->
-<center><h1 id="..."><u>...</u></h1></center>
+<center><h1 id="nc"><u>nc</u></h1></center>
 
+<ul><li><h3>Simple HTTP server</h3></li></ul><br>
+<i>while true; do cat index.html | nc -N -l 8000; done</i><br><br>
+<b>index.html</b> file:<br>
+<i>
+HTTP/1.1 200 OK<br>
+Content-Type: text/html; charset=UTF-8<br>
+Server: netcat<br>
+<br>
+&lt;!doctype html&gt;<br>
+&lt;html&gt;&lt;body&gt;netcat server&lt;/body&gt;&lt;/html&gt;<br>
+</i>
 <br>
 
 <hr>
