@@ -46,7 +46,7 @@
 		<td><a href="#nc">nc</a></td>
 	</tr>
 	<tr>
-		<td><a href="#...">...</a></td>
+		<td><a href="#ipifconfig">ip / ifconfig</a></td>
 		<td><a href="#...">...</a></td>
 		<td><a href="#...">...</a></td>
 		<td><a href="#...">...</a></td>
@@ -1130,12 +1130,45 @@ Server: netcat<br>
 &lt;!doctype html&gt;<br>
 &lt;html&gt;&lt;body&gt;netcat server&lt;/body&gt;&lt;/html&gt;<br>
 </i>
+
 <br>
 
 <hr>
 
 <!-- ------------------------------------------------------------------------------------------------------------- -->
-<center><h1 id="..."><u>...</u></h1></center>
+<center><h1 id="ipifconfig"><u>ip / ifconfig</u></h1></center>
+<ul><li><h3>Debian</h3></li></ul><br>
+/etc/network/interfaces<br>
+auto eth0<br>
+iface eth0 inet static<br>
+address 192.168.50.2<br>
+netmask 255.255.255.0<br>
+gateway 192.168.50.1<br>
+<br>
+sudo /etc/init.d/networking restart<br>
+<br>
+<ul><li><h3>Assign a IP Address to Specific Interface</h3></li></ul><br>
+sudo ip addr add 192.168.50.5 dev eth1<br>
+<br>
+<ul><li><h3>Check an IP Address</h3></li></ul><br>
+sudo ip addr show<br>
+<br>
+<ul><li><h3>Remove an IP Address</h3></li></ul>
+sudo ip addr del 192.168.50.5/24 dev eth1<br>
+<br>
+<ul><li><h3>Enable/Disable Network Interface</h3></li></ul><br>
+sudo ip link set eth1 up<br>
+sudo ip link set eth1 down<br>
+<br>
+<ul><li><h3>Check Route Table</h3></li></ul><br>
+sudo ip route show<br>
+<br>
+<ul><li><h3>Add/Remove Static Route</h3></li></ul><br>
+sudo ip route add 10.10.20.0/24 via 192.168.50.100 dev eth0<br>
+sudo ip route del 10.10.20.0/24<br>
+<br>
+<ul><li><h3>Add Default Gateway</h3></li></ul><br>
+sudo ip route add default via 192.168.50.100<br>
 
 <br>
 
