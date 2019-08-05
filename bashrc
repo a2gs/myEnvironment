@@ -42,7 +42,7 @@ alias myGlobalIPAddress5='curl ifconfig.co'
 alias myGlobalIPAddress6='curl icanhazip.com'
 alias shredfull='shred -fuz'
 alias connections='lsof -iTCP -sTCP:ESTABLISHED'
-alias dmesg='dmesg; cat /proc/uptime | cut -d " " -f 1'
+alias dmesg='dmesg; cut -d " " -f 1 /proc/uptime'
 
 function listFilesBySize()
 {
