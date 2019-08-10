@@ -47,7 +47,7 @@
 	</tr>
 	<tr>
 		<td><a href="#ipifconfig">ip / ifconfig</a></td>
-		<td><a href="#...">...</a></td>
+		<td><a href="#django">Django</a></td>
 		<td><a href="#...">...</a></td>
 		<td><a href="#...">...</a></td>
 		<td><a href="#...">...</a></td>
@@ -1175,7 +1175,37 @@ sudo ip route add default via 192.168.50.100<br>
 <hr>
 
 <!-- ------------------------------------------------------------------------------------------------------------- -->
-<center><h1 id="..."><u>...</u></h1></center>
+<center><h1 id="django"><u>Django (python3)</u></h1></center>
+
+<ul><li><h3>Starting a new project</h3></li></ul><br>
+1) Install virtualenv:<br>
+<i>sudo pip3 install virtualenv</i><br>
+<br>
+2) Make django development environment:<br>
+<i>mkdir server</i><br>
+<i>cd server</i><br>
+<i>virtualenv venv</i><br>
+<br>
+3) Activate Virtual Environment:<br>
+<i>source venv/bin/activate</i><br>
+<br>
+4) Install django in Virtual Environment:<br>
+<i>pip3 install django</i><br>
+<br>
+(django-admin --version)<br>
+<br>
+5) Quit Virutal Environment:<br>
+<i>deactivate</i><br>
+<br>
+Ps: Listing installed python packages:<br>
+<i>cd server</i><br>
+<i>source venv/bin/activate</i><br>
+<i>pip3 freeze > requirements.text</i><br>
+<br>
+To reinstall:<br>
+<i>cd server</i><br>
+<i>source venv/bin/activate</i><br>
+<i>pip3 install -r requirements.text</i><br>
 
 <br>
 
