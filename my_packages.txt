@@ -72,6 +72,7 @@ ipython3
 kcachegrind
 kdeconnect
 kleopatra
+kompare
 linux-tools-common
 linux-tools-generic
 linux-cloud-tools-generic
