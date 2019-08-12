@@ -1064,7 +1064,6 @@ mount -t tmpfs -o size=512m tmpfs /mnt/ramdisk</i><br>
 <!-- ------------------------------------------------------------------------------------------------------------- -->
 <center><h1 id="GIT"><u>GIT</u></h1></center>
 
-
 <ul><li><h3>Creating repository / Adding and removing files</h3></li></ul><br>
 <i>git init</i><br>
 <i>git add <file></i><br>
@@ -1104,6 +1103,54 @@ mount -t tmpfs -o size=512m tmpfs /mnt/ramdisk</i><br>
 <hr>
 <!-- ------------------------------------------------------------------------------------------------------------- -->
 <center><h1 id="PostgreSQL"><u>PostgreSQL</u></h1></center>
+
+<ul><li><h3>Debian instalation</h3></li></ul><br>
+(ref: https://wiki.postgresql.org/wiki/Apt#Quickstart)<br>
+<br>
+<i>sudo apt-get install curl ca-certificates</i><br>
+<i>curl https://www.postgresql.org/media/keys/ACCC4CF8.asc | sudo apt-key add -</i><br>
+<i>sudo sh -c 'echo "deb http://apt.postgresql.org/pub/repos/apt/ $(lsb_release -cs)-pgdg main" > /etc/apt/sources.list.d/pgdg.list'</i><br>
+<i>sudo apt-get update</i><br>
+<i>sudo apt-get install postgresql</i><br>
+/* <i>sudo apt-get install pgadmin4</i> */<br>
+<br>
+<ul><li><h3>Getting Started</h3></li></ul><br>
+(ref: https://pgdash.io/blog/postgres-11-getting-started.html)<br>
+<br>
+1.1)<br>
+/etc/postgresql/11/main/pg_hba.conf<br>
+This file is used to control how PostgreSQL users are authenticated<br>
+(https://www.postgresql.org/docs/11/auth-pg-hba-conf.html)<br>
+<br>
+For item 1.3 add this line:<br>
+<i>host   <b>userdb</b>   <b>userapp</b>   0.0.0.0/0   md5</i><br>
+<br>
+1.2)<br>
+/etc/postgresql/11/main/postgresql.conf<br>
+Remove comment '#' from line and change 'localhost' to '*':<br>
+#listen_addresses = 'localhost'<br>
+<i>listen_addresses = '*'</i><br>
+<br>
+<i>sudo systemctl restart postgresql</i><br>
+<br>
+$ sudo netstat -tnlp | grep 5432<br>
+<i>tcp        0      0 127.0.0.1:5432          0.0.0.0:*               LISTEN      8408/postgres</i><br>
+<br>
+1.3) Creating frist user (userapp) and self database (userdb):<br>
+$ <i>sudo -u postgres psql</i><br>
+psql (11.0 (Ubuntu 11.0-1.pgdg18.04+2))<br>
+Type "help" for help.<br>
+<br>
+postgres=# <i>create user <b>userapp</b> password '<b>userpassword</b>';</i><br>
+CREATE ROLE<br>
+postgres=# <i>create database <b>userdb</b> owner <b>userapp</b>;</i><br>
+CREATE DATABASE<br>
+postgres=#<br>
+<br>
+(or, after 'sudo su postgres', run commands 'createuser --interactive' and 'createdb userdb')<br>
+<br>
+Testing:<br>
+$ <i>psql -h 127.0.0.1 -d <b>userdb</b> -U <b>userapp</b></i><br>
 
 <br>
 
