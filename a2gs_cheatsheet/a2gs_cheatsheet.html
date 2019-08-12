@@ -76,15 +76,15 @@
 <ul><li><h3>Service Management</h3></li></ul><br>
 
 Enabling/disabling services at boot:<br>
-<i>systemctl enable <b>SERVICE</b></i><br>
-<i>systemctl disable <b>SERVICE</b></i><br>
+$ <i>systemctl enable <b>SERVICE</b></i><br>
+$ <i>systemctl disable <b>SERVICE</b></i><br>
 
 <br>
 
 Start/stop/restart services:<br>
-<i>systemctl start <b>SERVICE</b></i><br>
-<i>systemctl stop <b>SERVICE</b></i><br>
-<i>systemctl restart <b>SERVICE</b></i><br>
+$ <i>systemctl start <b>SERVICE</b></i><br>
+$ <i>systemctl stop <b>SERVICE</b></i><br>
+$ <i>systemctl restart <b>SERVICE</b></i><br>
 
 <br>
 
@@ -103,8 +103,8 @@ Start/stop/restart services:<br>
 <br>
 
 2. Copy the script to <b>/usr/bin</b> and make it executable:<br>
-<i>sudo cp <b>test_service.sh</b> /usr/bin/</i><br>
-<i>sudo chmod +x /usr/bin/<b>test_service.sh</b></i><br>
+$ <i>sudo cp <b>test_service.sh</b> /usr/bin/</i><br>
+$ <i>sudo chmod +x /usr/bin/<b>test_service.sh</b></i><br>
 
 <br>
 
@@ -122,9 +122,9 @@ Start/stop/restart services:<br>
 <br>
 
 4. Run:<br>
-<i>sudo systemctl start myservice</i><br>
-<i>sudo systemctl status myservice</i><br>
-<i>sudo systemctl enable myservice</i><br>
+$ <i>sudo systemctl start myservice</i><br>
+$ <i>sudo systemctl status myservice</i><br>
+$ <i>sudo systemctl enable myservice</i><br>
 
 <br>
 
@@ -133,14 +133,14 @@ Start/stop/restart services:<br>
 <center><h1 id="SSHSSHKeys"><u>SSH / SSH Keys</u></h1></center>
 
 <ul><li><h3>Creating Asymmetric Pub/Priv keys</h3></li></ul><br>
-<i>ssh-keygen -o -a 200 -t ed25519 -f ~/.ssh/id_ed25519 -C "andre.scota@gmail.com"</i>
-<i>ssh-keygen -t rsa -b 4096 -f ~/.ssh/id_rsa -C "andre.scota@gmail.com"</i>
+$ <i>ssh-keygen -o -a 200 -t <b>ed25519</b> -f <b>~/.ssh/id_ed25519</b> -C "<b>andre.scota@gmail.com</b>"</i>
+$ <i>ssh-keygen -t <b>rsa</b> -b <b>4096</b> -f <b>~/.ssh/id_rsa</b> -C "<b>andre.scota@gmail.com</b>"</i>
 
 <br>
 
 <ul><li><h3>Adding key to agent</h3></li></ul><br>
-<i>ssh-add ~/.ssh/id_rsa</i>
-<i>ssh-add ~/.ssh/id_ed25519</i>
+$ <i>ssh-add <b>~/.ssh/id_rsa</b></i>
+$ <i>ssh-add <b>~/.ssh/id_ed25519</b></i>
 
 <br>
 
@@ -153,12 +153,12 @@ Start/stop/restart services:<br>
 <ul><li><h3>Symmetric</h3></li></ul><br>
 
 Encryption (--symmetric or -c):<br>
-<i>gpg -o file.txt.gpg --symmetric --cipher-algo AES256 file.txt</i><br>
+$ <i>gpg -o <b>file.txt.gpg</b> --symmetric --cipher-algo <b>AES256 file.txt</b></i><br>
 
 <br>
 
 Decryption:<br>
-<i>gpg -o file.txt -d file.txt.gpg</i><br>
+$ <i>gpg -o <b>file.txt</b> -d <b>file.txt.gpg</b></i><br>
 
 <br>
 
@@ -889,45 +889,45 @@ class MappingSubclass(Mapping):             # ]] or ]m]m
 <ul><li><h3>Build</h3></li></ul><br>
 
 Build an image from the Dockerfile in the current directory and tag the image:<br>
-<i>docker build -t <b>myapp:1.0</b> .</i><br>
+$ <i>docker build -t <b>myapp:1.0</b> .</i><br>
 
 <br>
 
 List all images that are locally stored with the Docker engine:<br>
-<i>docker images</i><br>
+$ <i>docker images</i><br>
 
 <br>
 
 Delete an image from the local image store:<br>
-<i>docker rmi <b>alpine:3.4</b></i><br>
+$ <i>docker rmi <b>alpine:3.4</b></i><br>
 
 <br>
 
 <ul><li><h3>Ship</h3></li></ul><br>
 
 Pull an image from a registry:<br>
-<i>docker pull <b>alpine:3.4</b></i><br>
+$ <i>docker pull <b>alpine:3.4</b></i><br>
 
 <br>
 
 Retag a local image with a new image name and tag:<br>
-<i>docker tag alpine:3.4 <b>myrepo/myalpine:3.4</b></i><br>
+$ <i>docker tag alpine:3.4 <b>myrepo/myalpine:3.4</b></i><br>
 
 <br>
 
 Log in to a registry (the Docker Hub by default):<br>
-<i>docker login <b>my.registry.com:8000</b></i><br>
+$ <i>docker login <b>my.registry.com:8000</b></i><br>
 
 <br>
 
 Push an image to a registry:<br>
-<i>docker push <b>myrepo/myalpine:3.4</b></i><br>
+$ <i>docker push <b>myrepo/myalpine:3.4</b></i><br>
 
 <br>
 
 <ul><li><h3>Run</h3></li></ul><br>
 
-<i>docker run</i><br>
+$ <i>docker run</i><br>
 
 &emsp;<i>--rm</i>&emsp;&emsp;&emsp;&emsp;remove container automatically after it exits<br>
 &emsp;<i>-it</i>&emsp;&emsp;&emsp;&emsp;connect the container to terminal<br>
@@ -940,84 +940,84 @@ Push an image to a registry:<br>
 <br>
 
 Stop a running container through SIGTERM:<br>
-<i>docker stop <b>web</b></i><br>
+$ <i>docker stop <b>web</b></i><br>
 
 <br>
 
 Stop a running container through SIGKILL:<br>
-<i>docker kill <b>web</b></i><br>
+$ <i>docker kill <b>web</b></i><br>
 
 <br>
 
 Create an overlay network and specify a subnet:<br>
-<i>docker network create --subnet <b>10.1.0.0/24</b> --gateway <b>10.1.0.1</b> -d <b>overlay mynet</b></i><br>
+$ <i>docker network create --subnet <b>10.1.0.0/24</b> --gateway <b>10.1.0.1</b> -d <b>overlay mynet</b></i><br>
 
 <br>
 
 List the networks:<br>
-<i>docker network ls</i><br>
+$ <i>docker network ls</i><br>
 
 <br>
 
 List the running containers:<br>
-<i>docker ps</i><br>
+$ <i>docker ps</i><br>
 
 <br>
 
 Delete all running and stopped containers docker:<br>
-<i>rm -f $(docker ps -aq)</i><br>
+$ <i>rm -f $(docker ps -aq)</i><br>
 
 <br>
 
 Create a new bash process inside the container and connectit to the terminal:<br>
-<i>docker exec -it <b>web bash</b></i><br>
+$ <i>docker exec -it <b>web bash</b></i><br>
 
 <br>
 
 Print the last 100 lines of a container’s logs<br>
-<i>docker logs --tail 100 <b>web</b></i><br>
+$ <i>docker logs --tail 100 <b>web</b></i><br>
 
 <br>
 
 <ul><li><h3>Orchestrate</h3></li></ul><br>
 
 Initialize swarm mode and listen on a specific interface:<br>
-<i>docker swarm init --advertise-addr <b>10.1.0.2</b></i><br>
+$ <i>docker swarm init --advertise-addr <b>10.1.0.2</b></i><br>
 
 <br>
 
 Join an existing swarm as a manager node:<br>
-<i>docker swarm join --token <b><manager-token> 10.1.0.2:2377</b></i><br>
+$ <i>docker swarm join --token <b><manager-token> 10.1.0.2:2377</b></i><br>
 
 <br>
 
 Join an existing swarm as a worker node:<br>
-<i>docker swarm join --token <b><worker-token> 10.1.0.2:2377</b></i><br>
+$ <i>docker swarm join --token <b><worker-token> 10.1.0.2:2377</b></i><br>
 
 <br>
 
 List the nodes participating in a swarm:<br>
-<i>docker node ls</i><br>
+$ <i>docker node ls</i><br>
 
 <br>
 
 Create a service from an image exposed on a specific port and deploy 3 instances:<br>
-<i>docker service create --replicas <b>3</b> -p <b>80:80</b> --name <b>web nginx</b></i><br>
+$ <i>docker service create --replicas <b>3</b> -p <b>80:80</b> --name <b>web nginx</b></i><br>
 
 <br>
 
 List the services running in a swarm:<br>
-<i>docker service ls</i><br>
+$ <i>docker service ls</i><br>
 
 <br>
 
 Scale a service:<br>
-<i>docker service scale <b>web</b>=<b>5</b></i><br>
+$ <i>docker service scale <b>web</b>=<b>5</b></i><br>
 
 <br>
 
 List the tasks of a service:<br>
-<i>docker service ps <b>web</b></i><br>
+$ <i>docker service ps <b>web</b></i><br>
 
 <br>
 
@@ -1056,7 +1056,7 @@ Ativar modo de escrita no root:<br>
 
 <ul><li><h3>Creating (size <i>512Mb</i>, mount point <i>/mnt/ramdisk</i>)</h3></li></ul><br>
 
-mount -t tmpfs -o size=512m tmpfs /mnt/ramdisk</i><br>
+$ <i>mount -t tmpfs -o size=512m tmpfs /mnt/ramdisk</i><br>
 
 <br>
 
@@ -1065,29 +1065,29 @@ mount -t tmpfs -o size=512m tmpfs /mnt/ramdisk</i><br>
 <center><h1 id="GIT"><u>GIT</u></h1></center>
 
 <ul><li><h3>Creating repository / Adding and removing files</h3></li></ul><br>
-<i>git init</i><br>
-<i>git add <file></i><br>
-<i>git rm <file></i><br>
+$ <i>git init</i><br>
+$ <i>git add <b>file1 file2 ... filen</b><file></i><br>
+$ <i>git rm <file></i><br>
 
 <br>
 
 <ul><li><h3>Clonning</h3></li></ul><br>
-<i>git clone <b>user@serv:/path/to/rep</b></i><br>
+$ <i>git clone <b>user@serv:/path/to/rep</b></i><br>
 
 <br>
 
 <ul><li><h3>Commiting (head)</h3></li></ul><br>
-<i>git commit -m <b>"comment"</b></i><br>
+$ <i>git commit -m <b>"comment"</b></i><br>
 
 <br>
 
 <ul><li><h3>Pushing changes to repository</h3></li></ul><br>
-<i>git push origin master</i><br>
+$ <i>git push origin master</i><br>
 
 <br>
 
 <ul><li><h3>Updating local repository</h3></li></ul><br>
-<i>git pull origin master</i><br>
+$ <i>git pull origin master</i><br>
 
 <br>
 
@@ -1096,7 +1096,7 @@ mount -t tmpfs -o size=512m tmpfs /mnt/ramdisk</i><br>
 <center><h1 id="lsof"><u>lsof</u></h1></center>
 
 <ul><li><h3>List process of a given port</h3></li></ul><br>
-<i>lsof -i :<b>PORT</b></i><br>
+$ <i>lsof -i :<b>PORT</b></i><br>
 
 <br>
 
@@ -1107,12 +1107,12 @@ mount -t tmpfs -o size=512m tmpfs /mnt/ramdisk</i><br>
 <ul><li><h3>Debian instalation</h3></li></ul><br>
 (ref: <a href="https://wiki.postgresql.org/wiki/Apt#Quickstart)">https://wiki.postgresql.org/wiki/Apt#Quickstart</a>)<br>
 <br>
-<i>sudo apt-get install curl ca-certificates</i><br>
-<i>curl https://www.postgresql.org/media/keys/ACCC4CF8.asc | sudo apt-key add -</i><br>
-<i>sudo sh -c 'echo "deb http://apt.postgresql.org/pub/repos/apt/ $(lsb_release -cs)-pgdg main" > /etc/apt/sources.list.d/pgdg.list'</i><br>
-<i>sudo apt-get update</i><br>
-<i>sudo apt-get install postgresql</i><br>
-/* <i>sudo apt-get install pgadmin4</i> */<br>
+$ <i>sudo apt-get install curl ca-certificates</i><br>
+$ <i>curl https://www.postgresql.org/media/keys/ACCC4CF8.asc | sudo apt-key add -</i><br>
+$ <i>sudo sh -c 'echo "deb http://apt.postgresql.org/pub/repos/apt/ $(lsb_release -cs)-pgdg main" > /etc/apt/sources.list.d/pgdg.list'</i><br>
+$ <i>sudo apt-get update</i><br>
+$ <i>sudo apt-get install postgresql</i><br>
+/* $<i>sudo apt-get install pgadmin4</i> */<br>
 <br>
 <ul><li><h3>Getting Started</h3></li></ul><br>
 (ref: <a href="https://pgdash.io/blog/postgres-11-getting-started.html">https://pgdash.io/blog/postgres-11-getting-started.html</a>)<br>
@@ -1167,7 +1167,7 @@ $ <i>psql -h 127.0.0.1 -d <b>userdb</b> -U <b>userapp</b></i><br>
 <center><h1 id="nc"><u>nc</u></h1></center>
 
 <ul><li><h3>Simple HTTP server</h3></li></ul><br>
-<i>while true; do cat index.html | nc -N -l 8000; done</i><br><br>
+$ <i>while true; do cat index.html | nc -N -l 8000; done</i><br><br>
 <b>index.html</b> file:<br>
 <i>
 HTTP/1.1 200 OK<br>
@@ -1192,30 +1192,30 @@ Server: netcat<br>
 <i>netmask <b>255.255.255.0</b></i><br>
 <i>gateway <b>192.168.50.1</b></i><br>
 <br>
-<i>sudo /etc/init.d/networking restart</i><br>
+$ <i>sudo /etc/init.d/networking restart</i><br>
 <br>
 <ul><li><h3>Assign a IP Address to Specific Interface</h3></li></ul><br>
-<i>sudo ip addr add <b>192.168.50.5</b> dev </b>eth1</b></i><br>
+$ <i>sudo ip addr add <b>192.168.50.5</b> dev </b>eth1</b></i><br>
 <br>
 <ul><li><h3>Check an IP Address</h3></li></ul><br>
-<i>sudo ip addr show</i><br>
+$ <i>sudo ip addr show</i><br>
 <br>
 <ul><li><h3>Remove an IP Address</h3></li></ul>
-<i>sudo ip addr del <b>192.168.50.5/24</b> dev <b>eth1</b></i><br>
+$ <i>sudo ip addr del <b>192.168.50.5/24</b> dev <b>eth1</b></i><br>
 <br>
 <ul><li><h3>Enable/Disable Network Interface</h3></li></ul><br>
-<i>sudo ip link set <b>eth1</b> up</i><br>
-<i>sudo ip link set <b>eth1</b> down</i><br>
+$ <i>sudo ip link set <b>eth1</b> up</i><br>
+$ <i>sudo ip link set <b>eth1</b> down</i><br>
 <br>
 <ul><li><h3>Check Route Table</h3></li></ul><br>
-<i>sudo ip route show</i><br>
+$ <i>sudo ip route show</i><br>
 <br>
 <ul><li><h3>Add/Remove Static Route</h3></li></ul><br>
-<i>sudo ip route add <b>10.10.20.0/24</b> via <b>192.168.50.100</b> dev <b>eth0</b></i><br>
-<i>sudo ip route del <b>10.10.20.0/24</b></i><br>
+$ <i>sudo ip route add <b>10.10.20.0/24</b> via <b>192.168.50.100</b> dev <b>eth0</b></i><br>
+$ <i>sudo ip route del <b>10.10.20.0/24</b></i><br>
 <br>
 <ul><li><h3>Add Default Gateway</h3></li></ul><br>
-<i>sudo ip route add default via <b>192.168.50.100</b></i><br>
+$ <i>sudo ip route add default via <b>192.168.50.100</b></i><br>
 
 <br>
 
@@ -1226,33 +1226,33 @@ Server: netcat<br>
 
 <ul><li><h3>Starting a new project</h3></li></ul><br>
 1) Install virtualenv:<br>
-<i>sudo pip3 install virtualenv</i><br>
+$ <i>sudo pip3 install virtualenv</i><br>
 <br>
 2) Make django development environment:<br>
-<i>mkdir <b>server</b></i><br>
-<i>cd <b>server</b></i><br>
-<i>virtualenv venv</i><br>
+$ <i>mkdir <b>server</b></i><br>
+$ <i>cd <b>server</b></i><br>
+$ <i>virtualenv venv</i><br>
 <br>
 3) Activate Virtual Environment:<br>
-<i>source venv/bin/activate</i><br>
+$ <i>source venv/bin/activate</i><br>
 <br>
 4) Install django in Virtual Environment:<br>
-<i>pip3 install django</i><br>
+$ <i>pip3 install django</i><br>
 <br>
 (django-admin --version)<br>
 <br>
 5) Quit Virutal Environment:<br>
-<i>deactivate</i><br>
+$ <i>deactivate</i><br>
 <br>
 Ps: Listing installed python packages:<br>
-<i>cd server</i><br>
-<i>source venv/bin/activate</i><br>
-<i>pip3 freeze > requirements.text</i><br>
+$ <i>cd server</i><br>
+$ <i>source venv/bin/activate</i><br>
+$ <i>pip3 freeze > requirements.text</i><br>
 <br>
 To reinstall:<br>
-<i>cd server</i><br>
-<i>source venv/bin/activate</i><br>
-<i>pip3 install -r requirements.text</i><br>
+$ <i>cd server</i><br>
+$ <i>source venv/bin/activate</i><br>
+$ <i>pip3 install -r requirements.text</i><br>
 
 <br>
 
