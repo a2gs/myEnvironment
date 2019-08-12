@@ -1105,7 +1105,7 @@ mount -t tmpfs -o size=512m tmpfs /mnt/ramdisk</i><br>
 <center><h1 id="PostgreSQL"><u>PostgreSQL</u></h1></center>
 
 <ul><li><h3>Debian instalation</h3></li></ul><br>
-(ref: https://wiki.postgresql.org/wiki/Apt#Quickstart)<br>
+(ref: <a href="https://wiki.postgresql.org/wiki/Apt#Quickstart)">https://wiki.postgresql.org/wiki/Apt#Quickstart</a>)<br>
 <br>
 <i>sudo apt-get install curl ca-certificates</i><br>
 <i>curl https://www.postgresql.org/media/keys/ACCC4CF8.asc | sudo apt-key add -</i><br>
@@ -1115,7 +1115,7 @@ mount -t tmpfs -o size=512m tmpfs /mnt/ramdisk</i><br>
 /* <i>sudo apt-get install pgadmin4</i> */<br>
 <br>
 <ul><li><h3>Getting Started</h3></li></ul><br>
-(ref: https://pgdash.io/blog/postgres-11-getting-started.html)<br>
+(ref: <a href="https://pgdash.io/blog/postgres-11-getting-started.html">https://pgdash.io/blog/postgres-11-getting-started.html</a>)<br>
 <br>
 1.1)<br>
 /etc/postgresql/11/main/pg_hba.conf<br>
@@ -1147,7 +1147,7 @@ postgres=# <i>create database <b>userdb</b> owner <b>userapp</b>;</i><br>
 CREATE DATABASE<br>
 postgres=#<br>
 <br>
-(or, after 'sudo su postgres', run commands 'createuser --interactive' and 'createdb userdb')<br>
+(or, after '<i>sudo su postgres</i>', run commands '<i>createuser --interactive</i>' and '<i>createdb userdb</i>')<br>
 <br>
 Testing:<br>
 $ <i>psql -h 127.0.0.1 -d <b>userdb</b> -U <b>userapp</b></i><br>
@@ -1185,37 +1185,37 @@ Server: netcat<br>
 <!-- ------------------------------------------------------------------------------------------------------------- -->
 <center><h1 id="ipifconfig"><u>ip / ifconfig</u></h1></center>
 <ul><li><h3>Debian</h3></li></ul><br>
-/etc/network/interfaces<br>
-auto eth0<br>
-iface eth0 inet static<br>
-address 192.168.50.2<br>
-netmask 255.255.255.0<br>
-gateway 192.168.50.1<br>
+<i>/etc/network/interfaces</i><br>
+<i>auto eth0</i><br>
+<i>iface <b>eth0</b> inet <b>static</b></i><br>
+<i>address <b>192.168.50.2</b></i><br>
+<i>netmask <b>255.255.255.0</b></i><br>
+<i>gateway <b>192.168.50.1</b></i><br>
 <br>
-sudo /etc/init.d/networking restart<br>
+<i>sudo /etc/init.d/networking restart</i><br>
 <br>
 <ul><li><h3>Assign a IP Address to Specific Interface</h3></li></ul><br>
-sudo ip addr add 192.168.50.5 dev eth1<br>
+<i>sudo ip addr add <b>192.168.50.5</b> dev </b>eth1</b></i><br>
 <br>
 <ul><li><h3>Check an IP Address</h3></li></ul><br>
-sudo ip addr show<br>
+<i>sudo ip addr show</i><br>
 <br>
 <ul><li><h3>Remove an IP Address</h3></li></ul>
-sudo ip addr del 192.168.50.5/24 dev eth1<br>
+<i>sudo ip addr del <b>192.168.50.5/24</b> dev <b>eth1</b></i><br>
 <br>
 <ul><li><h3>Enable/Disable Network Interface</h3></li></ul><br>
-sudo ip link set eth1 up<br>
-sudo ip link set eth1 down<br>
+<i>sudo ip link set <b>eth1</b> up</i><br>
+<i>sudo ip link set <b>eth1</b> down</i><br>
 <br>
 <ul><li><h3>Check Route Table</h3></li></ul><br>
-sudo ip route show<br>
+<i>sudo ip route show</i><br>
 <br>
 <ul><li><h3>Add/Remove Static Route</h3></li></ul><br>
-sudo ip route add 10.10.20.0/24 via 192.168.50.100 dev eth0<br>
-sudo ip route del 10.10.20.0/24<br>
+<i>sudo ip route add <b>10.10.20.0/24</b> via <b>192.168.50.100</b> dev <b>eth0</b></i><br>
+<i>sudo ip route del <b>10.10.20.0/24</b></i><br>
 <br>
 <ul><li><h3>Add Default Gateway</h3></li></ul><br>
-sudo ip route add default via 192.168.50.100<br>
+<i>sudo ip route add default via <b>192.168.50.100</b></i><br>
 
 <br>
 
@@ -1229,8 +1229,8 @@ sudo ip route add default via 192.168.50.100<br>
 <i>sudo pip3 install virtualenv</i><br>
 <br>
 2) Make django development environment:<br>
-<i>mkdir server</i><br>
-<i>cd server</i><br>
+<i>mkdir <b>server</b></i><br>
+<i>cd <b>server</b></i><br>
 <i>virtualenv venv</i><br>
 <br>
 3) Activate Virtual Environment:<br>
