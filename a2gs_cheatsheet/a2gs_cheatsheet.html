@@ -1042,12 +1042,22 @@ n           Change to the next window.<br>
 <center><h1 id="GRUB"><u>GRUB</u></h1></center>
 
 <ul><li><h3>Bypass unprotected (no password)</h3></li></ul><br>
-
 Na linha do boot desejado, apertar 'e'<br>
 Adicionar no final do "linux vmlinux ...." <i><b>1 init=/bin/bash</b></i><br>
 Ativar modo de escrita no root:<br>
-<i>mount -o remount,rw /</i><br>
+$ <i>mount -o remount,rw /</i><br>
 
+<ul><li><h3>Remove init menu screen</h3></li></ul><br>
+Into <i>/etc/default/grub</i>, add:<br>
+<i>GRUB_HIDDEN_TIMEOUT=0</i>
+<i>GRUB_HIDDEN_TIMEOUT_QUIET=true</i>
+<i>GRUB_DISABLE_OS_PROBER=true</i>
+<br>
+and change:<br>
+<i>GRUB_TIMEOUT=0</i>
+<br>
+then run:<br>
+$ <i>sudo update-grub</i><br>
 <br>
 
 <hr>
