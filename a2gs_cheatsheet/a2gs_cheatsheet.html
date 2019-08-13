@@ -1120,7 +1120,7 @@ $ <i>sudo apt-get install postgresql</i><br>
 1.1)<br>
 /etc/postgresql/11/main/pg_hba.conf<br>
 This file is used to control how PostgreSQL users are authenticated<br>
-(https://www.postgresql.org/docs/11/auth-pg-hba-conf.html)<br>
+(<a href="https://www.postgresql.org/docs/11/auth-pg-hba-conf.html">https://www.postgresql.org/docs/11/auth-pg-hba-conf.html</a>)<br>
 <br>
 For item 1.3 add this line:<br>
 <i>host   <b>userdb</b>   <b>userapp</b>   0.0.0.0/0   md5</i><br>
@@ -1145,7 +1145,6 @@ postgres=# <i>create user <b>userapp</b> password '<b>userpassword</b>';</i><br>
 CREATE ROLE<br>
 postgres=# <i>create database <b>userdb</b> owner <b>userapp</b>;</i><br>
 CREATE DATABASE<br>
-postgres=#<br>
 <br>
 (or, after '<i>sudo su postgres</i>', run commands '<i>createuser --interactive</i>' and '<i>createdb userdb</i>')<br>
 <br>
