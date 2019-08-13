@@ -6,3 +6,4 @@ My cfgs ...<br><br>
 .vimrc<br>
 .bcrc<br>
 .gdbrc<br>
+.pystartup<br>
