@@ -22,6 +22,8 @@ export EDITOR=vim
 export BC_ENV_ARGS=~/.bcrc
 export MINICOM='-con'
 
+export PYTHONSTARTUP="$HOME/.pystartup"
+
 alias ll='ls -laF'
 alias lt='ls -laFtr'
 alias la='ls -A'
