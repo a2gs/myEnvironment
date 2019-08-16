@@ -46,6 +46,9 @@ alias shredfull='shred -fuz'
 alias connections='lsof -iTCP -sTCP:ESTABLISHED'
 alias dmesg='dmesg; cut -d " " -f 1 /proc/uptime'
 
+alias actenv='source venv/bin/activate'
+alias deaenv='deactivate'
+
 function listFilesBySize()
 {
 	find $1 -type f -printf "%s %p\n" | sort -rn
