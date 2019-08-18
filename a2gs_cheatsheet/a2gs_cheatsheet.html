@@ -1046,18 +1046,25 @@ Na linha do boot desejado, apertar 'e'<br>
 Adicionar no final do "linux vmlinux ...." <i><b>1 init=/bin/bash</b></i><br>
 Ativar modo de escrita no root:<br>
 $ <i>mount -o remount,rw /</i><br>
+
 <br>
+
 <ul><li><h3>Remove init menu screen</h3></li></ul><br>
 Into <i>/etc/default/grub</i>, add:<br>
 <i>GRUB_HIDDEN_TIMEOUT=0<br></i>
 <i>GRUB_HIDDEN_TIMEOUT_QUIET=true<br></i>
 <i>GRUB_DISABLE_OS_PROBER=true<br></i>
+
 <br>
+
 and change:<br>
 <i>GRUB_TIMEOUT=0</i>
+
 <br>
+
 then run:<br>
 $ <i>sudo update-grub</i><br>
+
 <br>
 
 <hr>
@@ -1116,48 +1123,70 @@ $ <i>lsof -i :<b>PORT</b></i><br>
 
 <ul><li><h3>Debian instalation</h3></li></ul><br>
 (ref: <a href="https://wiki.postgresql.org/wiki/Apt#Quickstart)">https://wiki.postgresql.org/wiki/Apt#Quickstart</a>)<br>
+
 <br>
+
 $ <i>sudo apt-get install curl ca-certificates</i><br>
 $ <i>curl https://www.postgresql.org/media/keys/ACCC4CF8.asc | sudo apt-key add -</i><br>
 $ <i>sudo sh -c 'echo "deb http://apt.postgresql.org/pub/repos/apt/ $(lsb_release -cs)-pgdg main" > /etc/apt/sources.list.d/pgdg.list'</i><br>
 $ <i>sudo apt-get update</i><br>
 $ <i>sudo apt-get install postgresql</i><br>
 /* $<i>sudo apt-get install pgadmin4</i> */<br>
+
 <br>
+
 <ul><li><h3>Getting Started</h3></li></ul><br>
 (ref: <a href="https://pgdash.io/blog/postgres-11-getting-started.html">https://pgdash.io/blog/postgres-11-getting-started.html</a>)<br>
+
 <br>
+
 1.1)<br>
 /etc/postgresql/11/main/pg_hba.conf<br>
 This file is used to control how PostgreSQL users are authenticated<br>
 (<a href="https://www.postgresql.org/docs/11/auth-pg-hba-conf.html">https://www.postgresql.org/docs/11/auth-pg-hba-conf.html</a>)<br>
+
 <br>
+
 For item 1.3 add this line:<br>
 <i>host   <b>userdb</b>   <b>userapp</b>   0.0.0.0/0   md5</i><br>
+
 <br>
+
 1.2)<br>
 /etc/postgresql/11/main/postgresql.conf<br>
 Remove comment '#' from line and change 'localhost' to '*':<br>
 #listen_addresses = 'localhost'<br>
 <i>listen_addresses = '*'</i><br>
+
 <br>
+
 <i>sudo systemctl restart postgresql</i><br>
+
 <br>
+
 $ sudo netstat -tnlp | grep 5432<br>
 <i>tcp        0      0 127.0.0.1:5432          0.0.0.0:*               LISTEN      8408/postgres</i><br>
+
 <br>
+
 1.3) Creating frist user (userapp) and self database (userdb):<br>
 $ <i>sudo -u postgres psql</i><br>
 psql (11.0 (Ubuntu 11.0-1.pgdg18.04+2))<br>
 Type "help" for help.<br>
+
 <br>
+
 postgres=# <i>create user <b>userapp</b> password '<b>userpassword</b>';</i><br>
 CREATE ROLE<br>
 postgres=# <i>create database <b>userdb</b> owner <b>userapp</b>;</i><br>
 CREATE DATABASE<br>
+
 <br>
+
 (or, after '<i>sudo su postgres</i>', run commands '<i>createuser --interactive</i>' and '<i>createdb userdb</i>')<br>
+
 <br>
+
 Testing:<br>
 $ <i>psql -h 127.0.0.1 -d <b>userdb</b> -U <b>userapp</b></i><br>
 
@@ -1176,7 +1205,7 @@ $ <i>psql -h 127.0.0.1 -d <b>userdb</b> -U <b>userapp</b></i><br>
 <center><h1 id="nc"><u>nc</u></h1></center>
 
 <ul><li><h3>Simple HTTP server</h3></li></ul><br>
-$ <i>while true; do cat index.html | nc -N -l 8000; done</i><br><br>
+$ <i>while true; do cat index.html | nc -N -l <b>8000</b>; done</i><br><br>
 <b>index.html</b> file:<br>
 <i>
 HTTP/1.1 200 OK<br>
@@ -1186,6 +1215,40 @@ Server: netcat<br>
 &lt;!doctype html&gt;<br>
 &lt;html&gt;&lt;body&gt;netcat server&lt;/body&gt;&lt;/html&gt;<br>
 </i>
+
+<br>
+
+<ul><li><h3>Scan ports</h3></li></ul><br>
+$ <i>nc -v -w 2 z 192.168.56.1 22</i> #scan a single port<br>
+$ <i>nc -v -w 2 z 192.168.56.1 22 80</i> #scan multiple ports<br>
+$ <i>nc -v -w 2 z 192.168.56.1 20-25</i> #scan range of ports<br>
+
+<br>
+
+<ul><li><h3>Transfer Files Between Linux Servers</h3></li></ul><br>
+
+Server (<i>pv</i> isnt mandatory):<br>
+$ <i>tar -zcf - <b>debian-10.0.0-amd64-xfce-CD-1.iso</b>  | pv | nc -l -p <b>3000</b> -q 5</i><br><br>
+Client (<i>pv</i> isnt mandatory):<br>
+$ <i>nc <b>192.168.0.100 3000</b> | pv | tar -zxf -</i><br>
+
+<br>
+
+<ul><li><h3>Getting HTTP response for GET</h3></li></ul><br>
+
+$ <i>printf "GET / HTTP/1.0\r\n\r\n" | nc <b>www.google.com 80</b></i><br>
+
+<br>
+
+<ul><li><h3>Create a Stream Sockets</h3></li></ul><br>
+
+$ <i>nc -lU <b>/var/tmp/mysocket</b> &amp;</i><br>
+
+<br>
+
+<ul><li><h3>Remote shell</h3></li></ul><br>
+
+$ <i>nc -L -p <b>3001</b> -d -e <b>/bin/bash</b></i> #or <b>cmd.exe</b><br>
 
 <br>
 
@@ -1200,29 +1263,45 @@ Server: netcat<br>
 <i>address <b>192.168.50.2</b></i><br>
 <i>netmask <b>255.255.255.0</b></i><br>
 <i>gateway <b>192.168.50.1</b></i><br>
+
 <br>
+
 $ <i>sudo /etc/init.d/networking restart</i><br>
+
 <br>
+
 <ul><li><h3>Assign a IP Address to Specific Interface</h3></li></ul><br>
 $ <i>sudo ip addr add <b>192.168.50.5</b> dev </b>eth1</b></i><br>
+
 <br>
+
 <ul><li><h3>Check an IP Address</h3></li></ul><br>
 $ <i>sudo ip addr show</i><br>
+
 <br>
+
 <ul><li><h3>Remove an IP Address</h3></li></ul>
 $ <i>sudo ip addr del <b>192.168.50.5/24</b> dev <b>eth1</b></i><br>
+
 <br>
+
 <ul><li><h3>Enable/Disable Network Interface</h3></li></ul><br>
 $ <i>sudo ip link set <b>eth1</b> up</i><br>
 $ <i>sudo ip link set <b>eth1</b> down</i><br>
+
 <br>
+
 <ul><li><h3>Check Route Table</h3></li></ul><br>
 $ <i>sudo ip route show</i><br>
+
 <br>
+
 <ul><li><h3>Add/Remove Static Route</h3></li></ul><br>
 $ <i>sudo ip route add <b>10.10.20.0/24</b> via <b>192.168.50.100</b> dev <b>eth0</b></i><br>
 $ <i>sudo ip route del <b>10.10.20.0/24</b></i><br>
+
 <br>
+
 <ul><li><h3>Add Default Gateway</h3></li></ul><br>
 $ <i>sudo ip route add default via <b>192.168.50.100</b></i><br>
 
@@ -1236,28 +1315,42 @@ $ <i>sudo ip route add default via <b>192.168.50.100</b></i><br>
 <ul><li><h3>Starting a new project</h3></li></ul><br>
 1) Install virtualenv:<br>
 $ <i>sudo pip3 install virtualenv</i><br>
+
 <br>
+
 2) Make django development environment:<br>
 $ <i>mkdir <b>server</b></i><br>
 $ <i>cd <b>server</b></i><br>
 $ <i>virtualenv venv</i><br>
+
 <br>
+
 3) Activate Virtual Environment:<br>
 $ <i>source venv/bin/activate</i><br>
+
 <br>
+
 4) Install django in Virtual Environment:<br>
 $ <i>pip3 install django</i><br>
+
 <br>
+
 (django-admin --version)<br>
+
 <br>
+
 5) Quit Virutal Environment:<br>
 $ <i>deactivate</i><br>
+
 <br>
+
 Ps: Listing installed python packages:<br>
 $ <i>cd server</i><br>
 $ <i>source venv/bin/activate</i><br>
 $ <i>pip3 freeze > requirements.text</i><br>
+
 <br>
+
 To reinstall:<br>
 $ <i>cd server</i><br>
 $ <i>source venv/bin/activate</i><br>
