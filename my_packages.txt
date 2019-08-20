@@ -158,6 +158,7 @@ weechat-plugins
 weechat-scripts
 weechat-doc
 wget
+wireshark
 yakuake
 youtube-dl
 zip
