@@ -36,7 +36,7 @@
 		<td><a href="#Docker">Docker</a></td>
 		<td><a href="#Tmux">Tmux</a></td>
 		<td><a href="#GRUB">GRUB</a></td>
-		<td><a href="#RAMFS">RAM FS</a></td>
+		<td><a href="#FSTRICKS">FileSystem tricks</a></td>
 	</tr>
 	<tr>
 		<td><a href="#GIT">GIT</a></td>
@@ -1069,11 +1069,24 @@ $ <i>sudo update-grub</i><br>
 
 <hr>
 <!-- ------------------------------------------------------------------------------------------------------------- -->
-<center><h1 id="RAMFS"><u>RAM FS</u></h1></center>
+<center><h1 id="FSTRICKS"><u>FileSystem tricks</u></h1></center>
 
-<ul><li><h3>Creating (size <i>512Mb</i>, mount point <i>/mnt/ramdisk</i>)</h3></li></ul><br>
+<ul><li><h3>RAM Filesystem: Creating (size <i>512Mb</i>, mount point <i>/mnt/ramdisk</i>)</h3></li></ul><br>
 
 $ <i>mount -t tmpfs -o size=512m tmpfs /mnt/ramdisk</i><br>
+
+<br>
+
+<ul><li><h3>Virtual HardDisk Volume (1GB sample) Using a File</h3></li></ul><br>
+$ <i>sudo dd if=/dev/zero of=<b>/image_full_path/image_file.img</b> bs=<b>1M</b> count=<b>1200</b></i><br>
+$ <i>sudo mkfs -t <b>ext4 /image_full_path/image_file.img</b></i><br>
+($ <i>mkdir <b>/path_mount_point/mount_point</b></i>)<br>
+$ <i>sudo mount -t auto -o loop <b>/image_full_path/image_file.img /path_mount_point/mount_point</b></i><br>
+
+<br>
+
+To mount it at system boot, insert into <b>/etc/fstab</b>:<br>
+/image_full_path/image_file.img /path_mount_point/mount_point/ ext4 defaults 0 0<br>
 
 <br>
 
