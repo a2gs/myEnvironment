@@ -144,6 +144,7 @@ ubuntu-restricted-extras
 ufw
 unrar
 unzip
+usbtop
 valgrind
 valkyrie
 vim
