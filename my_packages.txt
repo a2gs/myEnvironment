@@ -192,3 +192,7 @@ libpq-dev
 libpqtypes-dev
 libsgutils2-dev
 libusb-dev
+libboost-dev
+libpcap-dev
+libboost-thread-dev
+libboost-system-dev
