@@ -52,8 +52,12 @@ alias deaenv='deactivate'
 
 function createpy()
 {
-	echo -e '#!/usr/bin/env python3\n# -*- coding: utf-8 -*-' >> $1
-	chmod u+x $1                                                   
+	if [ -n "$1" ]; then
+		echo -e '#!/usr/bin/env python3\n# -*- coding: utf-8 -*-\n\n' >> $1
+		chmod u+x $1
+	else
+		echo -e 'Usage:\n\tcreatepy python_src_to_create.py'
+	fi
 }
 
 function listFilesBySize()
