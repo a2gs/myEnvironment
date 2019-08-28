@@ -63,7 +63,7 @@ function createPy()
 function createSh()
 {
 	if [ -n "$1" ]; then
-		echo -e '#!/usr/bin/env bash\n\n' >> $1.sh
+		echo -e '#!/usr/bin/env bash\n\n# Script exit if a command fails:\n#set -e\n\n# Script exit if a referenced variable is not declared:\n#set -u\n\n# If one command in a pipeline fails, its exit code will be returned as the result of the whole pipeline:\n#set -o pipefail\n\n# Activate tracing:\n#set -x\n\n' >> $1.sh
 		chmod u+x $1.sh
 	else
 		echo -e 'Usage:\n\tcreateSh shellscript_to_create.sh'
