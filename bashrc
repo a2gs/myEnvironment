@@ -50,6 +50,12 @@ alias dmesg='dmesg; cut -d " " -f 1 /proc/uptime'
 alias actenv='source venv/bin/activate'
 alias deaenv='deactivate'
 
+function createpy()
+{
+	echo -e '#!/usr/bin/env python3\n# -*- coding: utf-8 -*-' >> $1
+	chmod u+x $1                                                   
+}
+
 function listFilesBySize()
 {
 	find $1 -type f -printf "%s %p\n" | sort -rn
