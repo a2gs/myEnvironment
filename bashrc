@@ -63,7 +63,7 @@ function createPy()
 function createSh()
 {
 	if [ -n "$1" ]; then
-		echo -e '#!/bin/bash\n\n' >> $1.sh
+		echo -e '#!/usr/bin/env bash\n\n' >> $1.sh
 		chmod u+x $1.sh
 	else
 		echo -e 'Usage:\n\tcreateSh shellscript_to_create.sh'
