@@ -50,13 +50,23 @@ alias dmesg='dmesg; cut -d " " -f 1 /proc/uptime'
 alias actenv='source venv/bin/activate'
 alias deaenv='deactivate'
 
-function createpy()
+function createPy()
 {
 	if [ -n "$1" ]; then
-		echo -e '#!/usr/bin/env python3\n# -*- coding: utf-8 -*-\n\n' >> $1
-		chmod u+x $1
+		echo -e '#!/usr/bin/env python3\n# -*- coding: utf-8 -*-\n\n' >> $1.py
+		chmod u+x $1.py
 	else
-		echo -e 'Usage:\n\tcreatepy python_src_to_create.py'
+		echo -e 'Usage:\n\tcreatePy python_src_to_create.py'
+	fi
+}
+
+function createSh()
+{
+	if [ -n "$1" ]; then
+		echo -e '#!/bin/bash\n\n' >> $1.sh
+		chmod u+x $1.sh
+	else
+		echo -e 'Usage:\n\tcreateSh shellscript_to_create.sh'
 	fi
 }
 
