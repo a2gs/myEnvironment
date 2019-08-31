@@ -1217,6 +1217,18 @@ $ <i>psql -h 127.0.0.1 -d <b>userdb</b> -U <b>userapp</b></i><br>
 
 <br>
 
+<ul><li><h3>mkdir/touch multi files</h3></li></ul><br>
+<i>mkdir /path/to/create/{<b>directory1</b>,<b>directory2</b>,<b>directory3</b>,<b>directory4</b>}</i><br>
+<i>touch /path/to/create/{<b>file1</b>,<b>file2</b>,<b>file3</b>,<b>file4</b>}</i><br>
+
+<br>
+
+<ul><li><h3>Remove/move all files (and directories) except specified</h3></li></ul><br>
+<i>rm -rf !(<b>file1</b>,<b>directory2</b>,<b>file3</b>,<b>directory4</b>)</i><br>
+<i>mv !(<b>file1</b>,<b>directory2</b>,<b>file3</b>,<b>directory4</b>) /new/path/to/move/</i><br>
+
+<br>
+
 <hr>
 
 <!-- ------------------------------------------------------------------------------------------------------------- -->
