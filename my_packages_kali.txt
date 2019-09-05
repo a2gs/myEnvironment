@@ -1,0 +1,3 @@
+kali_linux_everything
+gpa
+tmux
