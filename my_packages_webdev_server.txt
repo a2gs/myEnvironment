@@ -449,6 +449,7 @@ libgpg-error0:amd64				install
 libgpgme-dev					install
 libgpgme11:amd64				install
 libgpm2:amd64					install
+libgmp3-dev:amd64					install
 libgsasl7					install
 libgssapi-krb5-2:amd64				install
 libgvc6						deinstall
