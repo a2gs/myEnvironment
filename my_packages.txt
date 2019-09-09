@@ -180,6 +180,7 @@ libstdc++
 libmagic-dev
 libncurses5
 libncurses5-dev
+libgmp3-dev
 libpcre3-dev
 libssh-dev
 libssh-doc
