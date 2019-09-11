@@ -46,6 +46,7 @@ alias shredfull='shred -fuz'
 alias connections1='lsof -iTCP -sTCP:ESTABLISHED'
 alias connections2='ss -tlpn'
 alias dmesg='dmesg; cut -d " " -f 1 /proc/uptime'
+alias displayoff='xset dpms force off'
 
 alias actenv='source venv/bin/activate'
 alias deaenv='deactivate'
