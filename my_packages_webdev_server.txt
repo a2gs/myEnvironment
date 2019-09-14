@@ -51,6 +51,8 @@ cppcheck					install
 cron						install
 cscope						install
 curl						install
+cython3						install
+cython-doc						install
 dash						install
 dbus						install
 dbus-x11					install
