@@ -29,6 +29,8 @@ cppcheck-gui
 cpufrequtils
 cscope
 curl
+cython3
+cython-doc
 dialog
 diffutils
 dmidecode
