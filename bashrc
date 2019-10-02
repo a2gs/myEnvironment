@@ -86,6 +86,19 @@ function litenning()
 	sudo nmap -A -T4 `hostname -I`
 }
 
+function shredall(){
+	SAVEIFS=$IFS
+	IFS=$(echo -en "\n\b")
+
+	for AAA in `find . -type f`
+	do
+		echo "Bye $AAA"
+		shred -fuz "$AAA"
+	done
+
+	IFS=$SAVEIFS
+}
+
 function getHWInfo()
 {
 	if [ $(id -u) -ne 0 ]; then
