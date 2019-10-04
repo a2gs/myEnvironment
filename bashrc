@@ -71,6 +71,62 @@ function createSh()
 	fi
 }
 
+function createC()
+{
+	if [ -n "$1" ]; then
+		echo -e '# C flags:' >> makefile
+		echo -e 'CFLAGS_OPTIMIZATION = -g' >> makefile
+		echo -e '#CFLAGS_OPTIMIZATION = -O3' >> makefile
+		echo -e 'CFLAGS_VERSION = -std=c11' >> makefile
+		echo -e 'CFLAGS_WARNINGS = -Wall -Wextra -Wno-unused-parameter -Wno-unused-but-set-parameter' >> makefile
+		echo -e 'CFLAGS_DEFINES = -D_XOPEN_SOURCE=700 -D_POSIX_C_SOURCE=200809L -D_POSIX_SOURCE=1 -D_DEFAULT_SOURCE=1 -D_GNU_SOURCE=1' >> makefile
+		echo -e 'CFLAGS = $(CFLAGS_OPTIMIZATION) $(CFLAGS_VERSION) $(CFLAGS_WARNINGS) $(CFLAGS_DEFINES)' >> makefile
+		echo -e '' >> makefile
+		echo -e '# System shell utilities' >> makefile
+		echo -e 'CC = gcc' >> makefile
+		echo -e 'RM = rm -fr' >> makefile
+		echo -e 'CP = cp' >> makefile
+		echo -e 'AR = ar' >> makefile
+		echo -e 'RANLIB = ranlib' >> makefile
+		echo -e 'CPPCHECK = cppcheck' >> makefile
+		echo -e '' >> makefile
+		echo -e 'INCLUDEPATH = -I./' >> makefile
+		echo -e 'LIBS = ' >> makefile
+		echo -e 'LIBPATH = -L./' >> makefile
+		echo -e '' >> makefile
+		echo -e 'all: clean exectag' >> makefile
+		echo -e '' >> makefile
+		echo -e 'exectag:' >> makefile
+		echo -e '\t@echo' >> makefile
+		echo -e '\t@echo "=== Compiling =============="' >> makefile
+		echo -e '\t$(CC) -o '$1 $1'.c $(CFLAGS) $(INCLUDEPATH) $(LIBPATH) $(LIBS)' >> makefile
+		echo -e '' >> makefile
+		echo -e 'clean:' >> makefile
+		echo -e '\t@echo' >> makefile
+		echo -e '\t@echo "=== clean_data =============="' >> makefile
+		echo -e '\t-$(RM) '$1' core' >> makefile
+
+		echo -e '#include <stdio.h>' >> "$1".c
+		echo -e '#include <stdlib.h>' >> "$1".c
+		echo -e '#include <unistd.h>' >> "$1".c
+		echo -e '#include <string.h>' >> "$1".c
+		echo -e '#include <errno.h>' >> "$1".c
+		echo -e '#include <signal.h>' >> "$1".c
+		echo -e '#include <time.h>' >> "$1".c
+		echo -e '#include <sys/types.h>' >> "$1".c
+		echo -e '#include <sys/stat.h>' >> "$1".c
+		echo -e '' >> "$1".c
+		echo -e 'int main(int argc, char *argv[])' >> "$1".c
+		echo -e '{' >> "$1".c
+		echo -e '' >> "$1".c
+		echo -e '' >> "$1".c
+		echo -e '\treturn(0);' >> "$1".c
+		echo -e '}' >> "$1".c
+	else
+		echo -e 'Usage:\n\tcreateC c_source_to_create'
+	fi
+}
+
 function listFilesBySize()
 {
 	find $1 -type f -printf "%s %p\n" | sort -rn
