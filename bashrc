@@ -63,7 +63,7 @@ alias deaenv='deactivate'
 function createPy()
 {
 	if [ -n "$1" ]; then
-		echo -e '#!/usr/bin/env python3\n# -*- coding: utf-8 -*-\n\n' >> "$1".py
+		echo -e "#!/usr/bin/env python3\n# -*- coding: utf-8 -*-\n\n# Andre Augusto Giannotti Scota (https://sites.google.com/view/a2gs/)\n\nimport sys, os\n\ndef main(argv):\n\tpass\n\nif __name__ == '__main__':\n\tmain(sys.argv)\n\tsys.exit(0)" >> "$1".py
 		chmod u+x "$1".py
 	else
 		echo -e 'Usage:\n\tcreatePy python_src_to_create.py'
