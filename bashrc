@@ -34,6 +34,7 @@ alias vi='vim -p'
 alias top='htop -d1'
 alias hexdump='hexdump -Cv'
 alias dmesg='dmesg; cut -d " " -f 1 /proc/uptime'
+alias topMemUsage='ps -eo pid,ppid,cmd,%mem,%cpu --sort=-%mem | head -20'
 alias displayoff='xset dpms force off'
 
 alias rmd='rm -rf'
