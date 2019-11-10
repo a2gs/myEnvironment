@@ -197,11 +197,11 @@ function scanForThreats()
 		echo "You are not root!"
 	else
 
-# Set /etc/rkhunter.conf
-#PKGMGR=DPKG
-#UPDATE_MIRRORS=0 to UPDATE_MIRRORS=1
-#MIRRORS_MODE=1 to MIRRORS_MODE=0
-#WEB_CMD="/bin/false" to WEB_CMD=""
+		# Set /etc/rkhunter.conf
+		#PKGMGR=DPKG
+		#UPDATE_MIRRORS=0 to UPDATE_MIRRORS=1
+		#MIRRORS_MODE=1 to MIRRORS_MODE=0
+		#WEB_CMD="/bin/false" to WEB_CMD=""
 
 		sudo freshclam
 		sudo rkhunter --update
