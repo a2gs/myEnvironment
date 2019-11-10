@@ -84,6 +84,7 @@ function createSh()
 function createC()
 {
 	if [ -n "$1" ]; then
+		echo -e '# Andre Augusto Giannotti Scota (https://sites.google.com/view/a2gs/)' >> makefile
 		echo -e '# C flags:' >> makefile
 		echo -e 'CFLAGS_OPTIMIZATION = -g' >> makefile
 		echo -e '#CFLAGS_OPTIMIZATION = -O3' >> makefile
@@ -116,6 +117,7 @@ function createC()
 		echo -e '\t@echo "=== clean_data =============="' >> makefile
 		echo -e '\t-$(RM) '$1' core' >> makefile
 
+		echo -e '/* Andre Augusto Giannotti Scota (https://sites.google.com/view/a2gs/) */' >> "$1".c
 		echo -e '#include <stdio.h>' >> "$1".c
 		echo -e '#include <stdlib.h>' >> "$1".c
 		echo -e '#include <unistd.h>' >> "$1".c
