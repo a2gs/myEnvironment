@@ -2,6 +2,7 @@ kali_linux_everything
 gpa
 tmux
 npm
+tor
 
 # SS7
 grass-core libosmo-sigtran-dev libosmo-sigtran-doc libosmo-sigtran0 libosmomtp0 libqgisgrass7-3.4.13 libss7-2.0 libss7-dev osmo-stp rtl-433 rtl-433-doc rtl-sdr rtlsdr-scanner gnuradio gr-gsm libosmo-abis-dev libosmo-netif-dev libosmo-sccp-dev libosmoabis6 libosmocodec0 libosmocoding0 libosmocore-utils libosmogsm-doc libosmogsm10 libosmonetif6 libosmosccp0 libosmotrau2 libosmoxua0
