@@ -142,6 +142,21 @@ function createC()
 	fi
 }
 
+function thermal(){
+	for (( III=0; III<`ll -d /sys/devices/platform/coretemp.? | wc -l`; III++ ))
+	do
+		echo "---[THERMAL ZONE $III]--------------------------------------"
+		cat /sys/class/thermal/thermal_zone"$III"/temp
+		echo
+		for (( JJJ=1; JJJ<=`ll /sys/devices/platform/coretemp.0/hwmon/hwmon0/temp?_label | wc -l`; JJJ++ ))
+		do
+			cat /sys/devices/platform/coretemp."$III"/hwmon/hwmon0/temp"$JJJ"_label
+			cat /sys/devices/platform/coretemp."$III"/hwmon/hwmon0/temp"$JJJ"_input
+			echo
+		done
+	done
+}
+
 function listFilesBySize()
 {
 	find $1 -type f -printf "%s %p\n" | sort -rn
