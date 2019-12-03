@@ -7,3 +7,4 @@ My cfgs ...<br><br>
 .bcrc<br>
 .gdbrc<br>
 .pystartup<br>
+.hexdiff<br>
