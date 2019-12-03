@@ -39,6 +39,7 @@ exuberant-ctags
 findutils
 g++
 g++-multilib
+gawk
 gcc
 gcc-avr
 gcc-doc
