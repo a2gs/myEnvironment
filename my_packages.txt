@@ -70,6 +70,7 @@ gpgsm
 gpgv
 gzip
 hdparm
+hexdiff
 htop
 ipython3
 kcachegrind
