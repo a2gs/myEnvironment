@@ -178,6 +178,8 @@ libboost-all-dev
 libboost-doc
 libc-bin
 libc-dev-bin
+libgmp-dev
+libgmp3-dev
 libgpgme-dev
 libgpg-error-dev
 libstdc++
