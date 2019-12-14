@@ -24,6 +24,10 @@ export MINICOM='-con'
 
 export PYTHONSTARTUP="$HOME/.pystartup"
 
+export PS1="--- [\u@\h \t \D{%d/%m/%Y}] ---------------------\n\w \$"
+export PS2="block $PS2"
+export PS4="sh debug> "
+
 alias ll='ls -laF'
 alias lt='ls -laFtr'
 alias la='ls -A'
