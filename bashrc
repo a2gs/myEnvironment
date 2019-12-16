@@ -42,6 +42,7 @@ alias topMemUsage='ps -eo pid,ppid,cmd,%mem,%cpu --sort=-%mem | head -20'
 alias displayoff='xset dpms force off'
 alias bc='bc -lq'
 alias diffc='diff -BZEwby -W $COLUMNS --strip-trailing-cr --color'
+alias ip='ip -c'
 
 alias rmd='rm -rf'
 alias shredfull='shred -fuz'
