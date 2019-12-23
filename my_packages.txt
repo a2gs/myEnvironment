@@ -130,6 +130,10 @@ radare2
 rar
 readline-common
 rkhunter
+rustc
+rust-doc
+rust-gdb
+rust-lldb
 scdaemon
 screen
 screen-resolution-extra
