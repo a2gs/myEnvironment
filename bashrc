@@ -150,7 +150,6 @@ function createC()
 function createCPP()
 {
 	if [ -n "$1" ]; then
-
 		echo -e '# Andre Augusto Giannotti Scota (https://sites.google.com/view/a2gs/)' >> makefile
 		echo -e '# CPP flags:' >> makefile
 		echo -e 'CPP = g++' >> makefile
