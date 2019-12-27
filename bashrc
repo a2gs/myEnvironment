@@ -147,6 +147,58 @@ function createC()
 	fi
 }
 
+function createCPP()
+{
+	if [ -n "$1" ]; then
+
+		echo -e '# Andre Augusto Giannotti Scota (https://sites.google.com/view/a2gs/)' >> makefile
+		echo -e '# CPP flags:' >> makefile
+		echo -e 'CPP = g++' >> makefile
+		echo -e '#CPPFLAGS_VERSION = -std=c++11' >> makefile
+		echo -e 'CPPFLAGS_VERSION = -std=c++14' >> makefile
+		echo -e '#CPPFLAGS_VERSION = -std=c++17' >> makefile
+		echo -e 'CPPFLAGS = -g -Wall $(CPPFLAGS_VERSION) -D_XOPEN_SOURCE=700' >> makefile
+		echo -e '' >> makefile
+		echo -e 'INCLUDEPATH = ' >> makefile 
+		echo -e 'LIBPATH = ' >> makefile
+		echo -e 'LIBS = ' >> makefile
+		echo -e '' >> makefile
+		echo -e 'all: clean exectag' >> makefile
+		echo -e '' >> makefile
+		echo -e 'exectag:' >> makefile
+		echo -e '\t@echo' >> makefile
+		echo -e '\t@echo "=== Compiling =============="' >> makefile
+		echo -e '\t$(CPP) -o '$1 $1'.cpp $(CPPFLAGS) $(INCLUDEPATH) $(LIBPATH) $(LIBS)' >> makefile
+		echo -e '' >> makefile
+		echo -e 'clean:' >> makefile
+		echo -e '\t@echo' >> makefile
+		echo -e '\t@echo "=== clean_data =============="' >> makefile
+		echo -e '\t-$(RM) '$1' core' >> makefile
+
+		echo -e '/* Andre Augusto Giannotti Scota (https://sites.google.com/view/a2gs/) */' >> "$1".cpp
+		echo -e '#include <iostream>' >> "$1".cpp
+		echo -e '#include <iomanip>' >> "$1".cpp
+		echo -e '#include <vector>' >> "$1".cpp
+		echo -e '#include <list>' >> "$1".cpp
+		echo -e '#include <map>' >> "$1".cpp
+		echo -e '#include <iterator>' >> "$1".cpp
+		echo -e '' >> "$1".cpp
+		echo -e '#include <sstream>' >> "$1".cpp
+		echo -e '#include <fstream>' >> "$1".cpp
+		echo -e '#include <streambuf>' >> "$1".cpp
+		echo -e '' >> "$1".cpp
+		echo -e 'using namespace std;' >> "$1".cpp
+		echo -e '' >> "$1".cpp
+		echo -e 'int main(int argc, char *argv[])' >> "$1".cpp
+		echo -e '{' >> "$1".cpp
+		echo -e '' >> "$1".cpp
+		echo -e '	return(0);' >> "$1".cpp
+		echo -e '}' >> "$1".cpp
+	else
+		echo -e 'Usage:\n\tcreateCPP cpp_source_to_create'
+	fi
+}
+
 function thermal(){
 	for (( III=0; III<`ll -d /sys/devices/platform/coretemp.? | wc -l`; III++ ))
 	do
