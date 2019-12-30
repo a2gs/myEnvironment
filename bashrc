@@ -68,6 +68,7 @@ alias df='df -ahT'
 #alias python3='ipython3'
 alias actenv='source venv/bin/activate'
 alias deaenv='deactivate'
+alias venvUpdate='pip3 install -U $(pip freeze | cut -d '=' -f 1)'
 
 function createPy()
 {
