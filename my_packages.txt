@@ -35,6 +35,7 @@ dialog
 diffutils
 dmidecode
 dnsutils
+exif
 exuberant-ctags
 findutils
 g++
