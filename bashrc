@@ -78,7 +78,7 @@ function cryptAES256()
 	if [ -n "$1" ]; then
 		gpg -o "$1".gpg --symmetric --cipher-algo AES256 "$1"
 	else
-		echo -e "Usage:\n\t$0 file_to_encrypt"
+		echo -e "Usage:\n\t${FUNCNAME[0]} file_to_encrypt"
 	fi
 }
 
@@ -87,7 +87,7 @@ function decryptAES256()
 	if [ -n "$1" ]; then
 		gpg -o "$1"_out -d "$1"
 	else
-		echo -e "Usage:\n\t$0 file_to_dencrypt"
+		echo -e "Usage:\n\t${FUNCNAME[0]} file_to_dencrypt"
 	fi
 }
 
@@ -97,7 +97,7 @@ function createPy()
 		echo -e "#!/usr/bin/env python3\n# -*- coding: utf-8 -*-\n\n# Andre Augusto Giannotti Scota (https://sites.google.com/view/a2gs/)\n\nimport sys, os\n\ndef main(argv):\n\tpass\n\nif __name__ == '__main__':\n\tmain(sys.argv)\n\tsys.exit(0)" >> "$1".py
 		chmod u+x "$1".py
 	else
-		echo -e "Usage:\n\t$0 python_src_to_create.py"
+		echo -e "Usage:\n\t${FUNCNAME[0]} python_src_to_create.py"
 	fi
 }
 
@@ -107,7 +107,7 @@ function createSh()
 		echo -e '#!/usr/bin/env bash\n\n# Andre Augusto Giannotti Scota (https://sites.google.com/view/a2gs/)\n\n# Script exit if a command fails:\n#set -e\n\n# Script exit if a referenced variable is not declared:\n#set -u\n\n# If one command in a pipeline fails, its exit code will be returned as the result of the whole pipeline:\n#set -o pipefail\n\n# Activate tracing:\n#set -x\n\n' >> "$1".sh
 		chmod u+x "$1".sh
 	else
-		echo -e "Usage:\n\t$0 shellscript_to_create.sh"
+		echo -e "Usage:\n\t${FUNCNAME[0]} shellscript_to_create.sh"
 	fi
 }
 
@@ -165,7 +165,7 @@ function createC()
 		echo -e '\treturn(0);' >> "$1".c
 		echo -e '}' >> "$1".c
 	else
-		echo -e "Usage:\n\t$0 c_source_to_create"
+		echo -e "Usage:\n\t${FUNCNAME[0]} c_source_to_create"
 	fi
 }
 
@@ -216,7 +216,7 @@ function createCPP()
 		echo -e '	return(0);' >> "$1".cpp
 		echo -e '}' >> "$1".cpp
 	else
-		echo -e "Usage:\n\t$0 cpp_source_to_create"
+		echo -e "Usage:\n\t${FUNCNAME[0]} cpp_source_to_create"
 	fi
 }
 
