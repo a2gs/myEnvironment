@@ -11,6 +11,7 @@ binutils-doc
 binutils-avr
 build-essential
 bzip2
+cargo
 cgdb
 chkrootkit
 clamav
