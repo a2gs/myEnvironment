@@ -8,3 +8,7 @@ My cfgs ...<br><br>
 .gdbrc<br>
 .pystartup<br>
 .hexdiff<br>
+<br>
+<br>
+After linux instalation, edit /etc/sysctl.conf and change:<br>
+'kernel.sysrq' to '1'<br>
