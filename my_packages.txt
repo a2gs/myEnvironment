@@ -82,7 +82,7 @@ kompare
 linux-tools-common
 linux-tools-generic
 linux-cloud-tools-generic
-litecli
+####### pip install litecli
 lshw
 lsof
 ltrace
