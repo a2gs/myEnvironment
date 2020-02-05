@@ -76,7 +76,7 @@ alias decryptPKey="gpg --decrypt"
 function cryptAES256()
 {
 	if [ -n "$1" ]; then
-		gpg -o "$1".gpg --symmetric --cipher-algo AES256 "$1"
+		gpg -o "$1".gpg --symmetric --armor --cipher-algo AES256 "$1"
 	else
 		echo -e "Usage:\n\t${FUNCNAME[0]} file_to_encrypt"
 	fi
