@@ -208,3 +208,4 @@ libboost-dev
 libpcap-dev
 libboost-thread-dev
 libboost-system-dev
+libzmq3-dev
