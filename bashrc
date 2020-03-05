@@ -68,7 +68,9 @@ alias df='df -ahT'
 alias pip='pip3'
 alias actenv='source venv/bin/activate'
 alias deaenv='deactivate'
-alias venvUpdate='pip install -U $(pip freeze | cut -d '=' -f 1)'
+alias updatePacks1='pip3 install -U $(pip3 freeze | cut -d '=' -f 1)'
+alias updatePacks2='pip3 install --upgrade -r requirements.txt'
+alias requirementsPacks='pip3 freeze > requirements.txt'
 
 alias cryptPKey="gpg --encrypt --sign --armor"
 alias decryptPKey="gpg --decrypt"
