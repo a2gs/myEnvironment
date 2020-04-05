@@ -1113,6 +1113,56 @@ $ <i>git pull origin master</i><br>
 
 <br>
 
+<ul><li><h3>Adding a server to an existing local repository</h3></li></ul><br>
+$ <i>git remote add origin <b>user@serv:/path/to/rep</b></i><br>
+
+<br>
+
+<ul><li><h3>Log</h3></li></ul><br>
+$ <i>git log --graph -p</i><br>
+$ <i>git log --oneline --abbrev-commit</i><br>
+
+<br>
+
+<ul><li><h3>Repository Undo changes</h3></li></ul><br>
+$ <i>git revert <b>hash_to_revert</b></i><br>
+
+<br>
+
+<ul><li><h3>Local Undo changes</h3></li></ul><br>
+$ <i>git reset <b>hash_to_revert</b></i><br>
+$ <i>git reset --hard <b>hash_to_revert</b></i><br>
+
+<br>
+
+<ul><li><h3>Branch</h3></li></ul><br>
+Creating one:<br>
+$ <i>git checkout -b <b>branch_name</b></i><br><br>
+
+Pointing to one (or to master):<br>
+$ <i>git checkout <b>branch_name</b></i><br>
+$ <i>git checkout <b>master</b></i><br><br>
+
+Deleting:<br>
+$ <i>git checkout -d <b>branch_name</b></i><br><br>
+
+Pushing to public repository:<br>
+$ <i>git push origin <b>branch_name</b></i><br><br>
+
+Merge (remote to local head. git add after conflit resolution). After 'git pull':<br>
+$ <i>git merge <b>remote_branch_name</b></i><br><br>
+
+Listing before branch merge:<br>
+$ <i>git diff <b>local_branch_name remote_branch_name</b></i><br><br>
+
+<br>
+
+<ul><li><h3>Fix last comment</h3></li></ul><br>
+$ <i>git commit --amend</i><br><br>
+
+<ul><li><h3>Applying Label</h3></li></ul><br>
+$ <i>git tag <b>label hash_to_apply_the_label</b></i><br>
+
 <hr>
 <!-- ------------------------------------------------------------------------------------------------------------- -->
 <center><h1 id="lsof"><u>lsof</u></h1></center>
