@@ -10,8 +10,8 @@ c.InteractiveShellApp.extensions = [
 #	'myextension'
 ]
 c.InteractiveShellApp.exec_lines = [
-#	'import numpy',
-#	'import scipy'
+	'import sys',
+	'import os'
 ]
 c.InteractiveShellApp.exec_files = [
 #	'mycode.py',
