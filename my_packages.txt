@@ -74,7 +74,7 @@ gzip
 hdparm
 hexdiff
 htop
-ipython3
+#ipython3    via pip3
 kcachegrind
 kdeconnect
 kleopatra
