@@ -1017,18 +1017,118 @@ $ <i>docker service ps <b>web</b></i><br>
 <!-- ------------------------------------------------------------------------------------------------------------- -->
 <center><h1 id="Tmux"><u>Tmux</u></h1></center>
 <br>
-CTRL+b ...<br>
-<br>
-c           Create a new window.<br>
-&amp;       Kill the current window.<br>
-<br>
-,           Rename the current window.<br>
-<br>
-0 to 9      Select windows 0 to 9.<br>
-n           Change to the next window.<br>
+<i>CTRL+b</i> + ...<br>
+
+<ul><li><h3>Panes</h3></li></ul><br>
+<table style="width:100%">
+	<tr>
+		<td><i>%</i></td>
+		<td>Create a new horizontal pane</td>
+	</tr>
+	<tr>
+		<td><i>&quot;</i></td>
+		<td>Create a new vertical pane</td>
+	</tr>
+	<tr>
+		<td><i>x</i></td>
+		<td>Kill focused pane</td>
+	</tr>
+	<tr>
+		<td>&lt;ARROW KEYS&gt;</td>
+		<td>Switch between the split panes</td>
+	</tr>
+	<tr>
+		<td>&lt;SPACE&gt;</td>
+		<td>Toggle the layout</td>
+	</tr>
+	<tr>
+		<td><i>z</i></td>
+		<td>Zoom in/out a focused pane</td>
+	</tr>
+</table>
 
 <br>
 
+<ul><li><h3>Window</h3></li></ul><br>
+<table style="width:100%">
+	<tr>
+		<td><i>c</i></td>
+		<td>Create a new window</td>
+	</tr>
+	<tr>
+		<td><i>&amp;</i></td>
+		<td>Kill the current window</td>
+	</tr>
+	<tr>
+		<td><i>,</i></td>
+		<td>Rename the current window</td>
+	</tr>
+	<tr>
+		<td><i>0</i> to <i>9</i></td>
+		<td>Select windows 0 to 9</td>
+	</tr>
+	<tr>
+		<td><i>n</i></td>
+		<td>Change to the next window</td>
+	</tr>
+	<tr>
+		<td><i>p</i></td>
+		<td>Change to the previous window</td>
+	</tr>
+</table>
+
+<br>
+
+<ul><li><h3>Session</h3></li></ul><br>
+<table style="width:100%">
+	<tr>
+		<td>$ <i>tmux new -s <b>AnyName</b></i></td>
+		<td>Create a named a session</td>
+	</tr>
+	<tr>
+		<td><i>$</i></td>
+		<td>Rename a already created a session</td>
+	</tr>
+	<tr>
+		<td><i>w</i></td>
+		<td>Visual overview of sessions and its windows and panes</td>
+	</tr>
+	<tr>
+		<td>$ <i>tmux ls</i></td>
+		<td>Will list all current sessions</td>
+	</tr>
+	<tr>
+		<td>Attach / Detach</td>
+	</tr>
+	<tr>
+		<td><i>d</i></td>
+		<td>Detach</td>
+	</tr>
+	<tr>
+		<td>$ <i>tmux attach -t <b>AnyName</b></i></td>
+		<td>Reopen session</td>
+	</tr>
+	<tr>
+		<td>$ <i>tmux kill-session -t <b>AnyName</b></i></td>
+		<td>Kill session</td>
+	</tr>
+	<tr>
+		<td>$ <i>tmux kill-session -a</i></td>
+		<td>Kill all session except the last used</td>
+	</tr>
+</table>
+
+<br>
+
+<ul><li><h3>Server</h3></li></ul><br>
+<table style="width:100%">
+	<tr>
+		<td>$ <i>tmux kill-server</i></td>
+		<td>Kill all sessions</td>
+	</tr>
+</table>
+
+<br>
 <hr>
 <!-- ------------------------------------------------------------------------------------------------------------- -->
 <center><h1 id="GRUB"><u>GRUB</u></h1></center>
