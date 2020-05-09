@@ -1045,6 +1045,38 @@ $ <i>docker service ps <b>web</b></i><br>
 		<td><i>z</i></td>
 		<td>Zoom in/out a focused pane</td>
 	</tr>
+	<tr>
+		<td><i>o</i></td>
+		<td>Swap panes</td>
+	</tr>
+	<tr>
+		<td><i>q</i></td>
+		<td>Show panes numbers (when the numbers show up type the key to goto that pane)</td>
+	</tr>
+	<tr>
+		<td><i>{</i> or <i>}</i></td>
+		<td>Move the current pane left or right</td>
+	</tr>
+	<tr>
+		<td><b><center>Resizing</center></b></td>
+	</tr>
+
+	<tr>
+		<td><i>:resize-pane -D <i>N</i></i></td>
+		<td>Resizes the current pane down by N cells (undef = 1)</td>
+	</tr>
+	<tr>
+		<td><i>:resize-pane -U <i>N</i></i></td>
+		<td>Resizes the current pane upward by N cells (undef = 1)</td>
+	</tr>
+	<tr>
+		<td><i>:resize-pane -L <i>N</i></i></td>
+		<td>Resizes the current pane left by N cells (undef = 1)</td>
+	</tr>
+	<tr>
+		<td><i>:resize-pane -R <i>N</i></i></td>
+		<td>Resizes the current pane right by N cells (undef = 1)</td>
+	</tr>
 </table>
 
 <br>
@@ -1086,6 +1118,10 @@ $ <i>docker service ps <b>web</b></i><br>
 		<td>Create a named a session</td>
 	</tr>
 	<tr>
+		<td><i>:new</i></td>
+		<td>Create a new session</td>
+	</tr>
+	<tr>
 		<td><i>$</i></td>
 		<td>Rename a already created a session</td>
 	</tr>
@@ -1098,7 +1134,7 @@ $ <i>docker service ps <b>web</b></i><br>
 		<td>Will list all current sessions</td>
 	</tr>
 	<tr>
-		<td>Attach / Detach</td>
+		<td><b><center>Attach / Detach</center></b></td>
 	</tr>
 	<tr>
 		<td><i>d</i></td>
@@ -1125,6 +1161,32 @@ $ <i>docker service ps <b>web</b></i><br>
 	<tr>
 		<td>$ <i>tmux kill-server</i></td>
 		<td>Kill all sessions</td>
+	</tr>
+</table>
+
+<br>
+
+<ul><li><h3>Misc</h3></li></ul><br>
+<table style="width:100%">
+	<tr>
+		<td><i>:set mouse on</i></td>
+		<td>Turn on mouse mode</td>
+	</tr>
+	<tr>
+		<td><i>:set-window-option -g mode-keys vi</i></td>
+		<td>Vi mode</td>
+	</tr>
+	<tr>
+		<td><i>[</i><br>Arrows to initial place<br>&lt;SPACE&gt;<br>Select text using arrows<br>&lt;ENTER&gt;<br></td>
+		<td>Copy 1</td>
+	</tr>
+	<tr>
+		<td>Select text by using mouse (mouse mode on) + &lt;ENTER&gt;</td>
+		<td>Copy 2</td>
+	</tr>
+	<tr>
+		<td><i>]</i></td>
+		<td>Paste</td>
 	</tr>
 </table>
 
