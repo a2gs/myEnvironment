@@ -14,12 +14,16 @@ endfunction
 set statusline=%{StatuslineGit()}\ %f\ %r\ %m%=%b\ %y\ %{&fileencoding?&fileencoding:&encoding}\[%{&fileformat}\]\ %l:%c\ %p%%
 
 syntax on
+syntax enable
 color torte
 set nowrap
 set number
 set paste
 set showcmd
 set laststatus=2
+set title
+set mouse=a
+set incsearch
 set noexpandtab  
 set tabstop=3
 set shiftwidth=3
@@ -35,6 +39,7 @@ set tabpagemax=100
 set fileformats=unix,dos,mac
 set shell=/bin/bash
 
+map <C-c> :below terminal<CR>
 map <F2> zfat
 map <F3> zo
 
