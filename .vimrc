@@ -11,22 +11,28 @@ function! StatuslineGit()
 	return strlen(l:branchname) > 0?'  '.l:branchname.' ':''
 endfunction
 
-set statusline=%{StatuslineGit()}\ %f\ %r\ %m%=%b\ %y\ %{&fileencoding?&fileencoding:&encoding}\[%{&fileformat}\]\ %l:%c\ %p%%
+set statusline=
+set statusline+=%{StatuslineGit()}
+set statusline+=\ %f
+set statusline+=%m
+set statusline+=%=
+set statusline+=\ %y
+set statusline+=\ %{&fileencoding}
+set statusline+=\ %{&fileformat}
+set statusline+=\ %p%%\/%L
+set statusline+=\ %l:%c
 
 syntax on
 syntax enable
 color torte
 set nowrap
 set number
-set paste
 set showcmd
 set laststatus=2
+set tabstop=3
 set title
 set mouse=a
 set incsearch
-set noexpandtab  
-set tabstop=3
-set shiftwidth=3
 set autoindent
 set cindent
 set cino=)3;>3;<3
@@ -39,7 +45,7 @@ set tabpagemax=100
 set fileformats=unix,dos,mac
 set shell=/bin/bash
 
-map <C-c> :below terminal<CR>
+"map <C-c> :below terminal<CR>
 map <F2> zfat
 map <F3> zo
 
