@@ -1,0 +1,11 @@
+[user]
+name = Andre Augusto Giannotti Scota
+username = a2gs
+email = andre.scota@gmail.com
+signingkey = 00A3DC0AB4844BF1
+[core]
+editor = vim
+[commit]
+gpgsign = true
+[merge]
+tool = vimdiff
