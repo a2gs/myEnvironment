@@ -30,6 +30,7 @@ cppcheck-gui
 cpufrequtils
 cscope
 curl
+cutter
 cython3
 cython-doc
 dialog
