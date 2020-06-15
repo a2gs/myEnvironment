@@ -133,14 +133,14 @@ $ <i>sudo systemctl enable myservice</i><br>
 <center><h1 id="SSHSSHKeys"><u>SSH / SSH Keys</u></h1></center>
 
 <ul><li><h3>Creating Asymmetric Pub/Priv keys</h3></li></ul><br>
-$ <i>ssh-keygen -o -a 200 -t <b>ed25519</b> -f <b>~/.ssh/id_ed25519</b> -C "<b>andre.scota@gmail.com</b>"</i>
-$ <i>ssh-keygen -t <b>rsa</b> -b <b>4096</b> -f <b>~/.ssh/id_rsa</b> -C "<b>andre.scota@gmail.com</b>"</i>
+$ <i>ssh-keygen -o -a 200 -t <b>ed25519</b> -f <b>~/.ssh/id_ed25519_a2gs</b> -C '<b>andre.scota@gmail.com</b>'</i><br>
+$ <i>ssh-keygen -t <b>rsa</b> -b <b>4096</b> -f <b>~/.ssh/id_rsa_a2gs</b> -C '<b>andre.scota@gmail.com</b>'</i><br>
 
 <br>
 
 <ul><li><h3>Adding key to agent</h3></li></ul><br>
-$ <i>ssh-add <b>~/.ssh/id_rsa</b></i>
-$ <i>ssh-add <b>~/.ssh/id_ed25519</b></i>
+$ <i>ssh-add <b>~/.ssh/id_rsa_a2gs</b></i><br>
+$ <i>ssh-add <b>~/.ssh/id_ed25519_a2gs</b></i><br>
 
 <br>
 
@@ -153,7 +153,7 @@ $ <i>ssh-add <b>~/.ssh/id_ed25519</b></i>
 <ul><li><h3>Symmetric</h3></li></ul><br>
 
 Encryption (--symmetric or -c):<br>
-$ <i>gpg -o <b>file.txt.gpg</b> --symmetric --cipher-algo <b>AES256 file.txt</b></i><br>
+$ <i>gpg -o <b>file_out.txt.gpg</b> --symmetric --armor --cipher-algo <b>AES256 file_in.txt</b></i><br>
 
 <br>
 
@@ -163,6 +163,67 @@ $ <i>gpg -o <b>file.txt</b> -d <b>file.txt.gpg</b></i><br>
 <br>
 
 <ul><li><h3>Asymmetric</h3></li></ul><br>
+
+(using default public and private key rings)<br>
+
+<br>
+
+Create a public/private key:<br>
+$ <i>gpg --full-generate-key</i><br>
+
+<br>
+
+Export a public key into file public.key:<br>
+$ <i>gpg --export --armor '<b>User Name</b>' > <b>public.key</b></i><br>
+
+<br>
+
+Export a private key:<br>
+$ <i>gpg --export-secret-key --armor '<b>User Name</b>' > <b>private.key</b></i><br>
+
+<br>
+
+Import a public key:<br>
+$ <i>gpg --import <b>public.key</b></i><br>
+
+<br>
+
+Delete a public key:<br>
+$ <i>gpg --delete-key '<b>User Name</b>'</i><br>
+
+<br>
+
+Delete an private key:<br>
+$ <i>gpg --delete-secret-key '<b>User Name</b>'</i><br>
+
+<br>
+
+Delete an private and public key:<br>
+$ <i>gpg --delete-secret-and-public-key '<b>User Name</b>'</i><br>
+
+<br>
+
+List the keys in your public key ring:<br>
+$ <i>gpg --list-keys</i><br>
+List fingerprints: <i>--fingerprint</i><br>
+
+<br>
+
+List the keys in your secret key ring:<br>
+$ <i>gpg --list-secret-keys</i><br>
+
+<br>
+
+Encrypt data:<br>
+$ <i>gpg --encrypt --local-user '<b>Sender User Name</b>' --recipient '<b>Receiver User Name</b>' --armor <b>file_to_encrypt.txt</b></i><br>
+Encrypt  for  user  ID name, but hide the key ID of this user's key: <i>--hidden-recipient</i><br>
+Encrypts to a key stored in the given file: <i>--recipient-file <b>public_key_file.asc</b></i><br>
+
+<br>
+
+Decrypt data:<br>
+$ <i>gpg --decrypt <b>file_to_decrypt.txt.gpg</b></i><br>
+<br>
 
 <hr>
 <!-- ------------------------------------------------------------------------------------------------------------- -->
