@@ -104,6 +104,15 @@ function decryptAES256()
 	fi
 }
 
+function passGen()
+{
+	if [ -n "$1" ]; then
+		tr -dc '[:alnum:][:graph:][:punct:]' </dev/urandom | head -c "$1" ; echo
+	else                                                                                                                                 
+		echo -e "Usage:\n\t${FUNCNAME[0]} <PASS_LENGTH>"
+	fi
+}
+
 function createPy()
 {
 	if [ -n "$1" ]; then
