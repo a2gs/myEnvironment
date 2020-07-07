@@ -2,3 +2,6 @@ ipython3
 litecli
 http-prompt
 ecdsa
+numpy
+scipy
+matplotlib
