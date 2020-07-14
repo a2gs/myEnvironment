@@ -23,6 +23,7 @@ cmake-data
 cmake-doc
 cmake-extras
 cmake-qt-gui
+cmus
 coreutils
 cpp
 cppcheck
