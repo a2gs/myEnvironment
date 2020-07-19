@@ -4,6 +4,7 @@ autoconf
 automake
 autotools-dev
 avr-libc
+avrdude
 bash-completion
 bc
 binutils
