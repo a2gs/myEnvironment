@@ -102,6 +102,7 @@ manpages-posix
 manpages-posix-dev
 mc
 minicom
+nasm
 ncurses-base
 ncurses-bin
 ncurses-doc
