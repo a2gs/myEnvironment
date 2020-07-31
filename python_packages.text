@@ -5,3 +5,4 @@ ecdsa
 numpy
 scipy
 matplotlib
+pudb
