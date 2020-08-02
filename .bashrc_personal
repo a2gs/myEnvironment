@@ -86,6 +86,8 @@ alias requirementsPacks='pip3 freeze > requirements.txt'
 alias cryptPKey="gpg --encrypt --sign --armor"
 alias decryptPKey="gpg --decrypt"
 
+export PYTHONBREAKPOINT=pudb.set_trace
+
 function cryptAES256()
 {
 	if [ -n "$1" ]; then
