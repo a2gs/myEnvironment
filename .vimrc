@@ -33,6 +33,8 @@ set tabstop=3
 set title
 set mouse=a
 set incsearch
+set wildmenu
+set confirm
 set autoindent
 set cindent
 set cino=)3;>3;<3
@@ -46,6 +48,11 @@ set fileformats=unix,dos,mac
 set shell=/bin/bash
 
 "map <C-c> :below terminal<CR>
+map qq :quit<CR>
+map ww :w<CR>
+map qa :qa<CR>
+map wa :wa<CR>
+map Q :qa!<CR>
 map <F2> zfat
 map <F3> zo
 
