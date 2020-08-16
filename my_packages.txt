@@ -12,6 +12,7 @@ binutils-doc
 binutils-avr
 build-essential
 bzip2
+ca-certificates
 cargo
 cgdb
 chkrootkit
@@ -145,6 +146,7 @@ screen
 screen-resolution-extra
 sed
 socat
+software-properties-common
 sqlite3
 sqlite3-doc
 sqlitebrowser
