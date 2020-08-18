@@ -26,7 +26,8 @@ function usageHelp
 	echo -e "$0 Usage:\n"
 	echo -e "$0\n\tNormal executation\n"
 	echo -e "$0 2>log\n\tNormal executation with log\n"
-	echo -e "$0 -D 2>log\n\tNormal executation with full log\n"
+	echo -e "$0 -d 2>log\n\tNormal executation with full log\n"
+	echo -e "$0 -s\n\tDo not delete tempfile cmd output commands (/tmp)\n"
 }
 
 DEBUG_MANTENCE=false
@@ -118,6 +119,37 @@ function deleteCmdOutputFile
 	fi
 }
 
+function dumpRoutes
+{
+	echo "ROUTE TABLE:"
+	"$IP_APP" route list
+	
+	echo -e "\nMULTICAST:"
+	"$IP_APP" maddress show
+	
+	echo -e "\nNEIGHBOUR:"
+	"$IP_APP" neigh show
+}
+
+
+function dumpNetworkFilesInfos
+{
+	echo -e "[/etc/hostname]\n"
+	cat /etc/hostname
+	echo -e "\n----------------------------------"
+	
+	echo -e "[/etc/hosts]\n"
+	cat /etc/hosts
+	echo -e "\n----------------------------------"
+	
+	echo -e "[/etc/networks]\n"
+	cat /etc/networks
+	echo -e "\n----------------------------------"
+	
+	echo -e "[/etc/network/interfaces]\n"
+	cat /etc/network/interfaces
+}
+
 function menu_network
 {
 	IP_APP=`getAppPath 'ip'`
@@ -169,8 +201,16 @@ function menu_network
 		case $menu in
 			1)
 				ipaddTempFile=`"$MKTEMP_APP" -p /tmp`
+				if [ "$?" -ne 0 ]
+				then
+					[ "$DEBUG_MANTENCE" = true ] && echo "Cannot create [$ipaddTempFile]" >&2
+					exit 1
+				fi
+
 				"$IP_APP" addr show > $ipaddTempFile
+
 				"$DIALOG_APP" --no-collapse --textbox "$ipaddTempFile" 50 100
+
 				deleteCmdOutputFile "$ipaddTempFile"
 				;;
 	
@@ -179,20 +219,14 @@ function menu_network
 				;;
 	
 			3)
-				echo -e "[/etc/hostname]\n" > $cfgFilesTempFile
-				cat /etc/hostname >> $cfgFilesTempFile
-				echo -e "\n----------------------------------" >> $cfgFilesTempFile
-	
-				echo -e "[/etc/hosts]\n" >> $cfgFilesTempFile
-				cat /etc/hosts >> $cfgFilesTempFile
-				echo -e "\n----------------------------------" >> $cfgFilesTempFile
-	
-				echo -e "[/etc/networks]\n" >> $cfgFilesTempFile
-				cat /etc/networks >> $cfgFilesTempFile
-				echo -e "\n----------------------------------" >> $cfgFilesTempFile
-	
-				echo -e "[/etc/network/interfaces]\n" >> $cfgFilesTempFile
-				cat /etc/network/interfaces >> $cfgFilesTempFile
+				cfgFilesTempFile=`"$MKTEMP_APP" -p /tmp`
+				if [ "$?" -ne 0 ]
+				then
+					[ "$DEBUG_MANTENCE" = true ] && echo "Cannot create [$cfgFilesTempFile]" >&2
+					exit 1
+				fi
+
+				dumpNetworkFilesInfos > $cfgFilesTempFile
 	
 				"$DIALOG_APP" --no-collapse --textbox "$cfgFilesTempFile" 50 100
 	
@@ -200,18 +234,17 @@ function menu_network
 				;;
 	
 			4)
-				ipneighTempFile=`"$MKTEMP_APP" -p /tmp`
-				echo "ROUTE TABLE:" > $ipneighTempFile
-				"$IP_APP" route list >> $ipneighTempFile
+				routesTempFile=`"$MKTEMP_APP" -p /tmp`
+				if [ "$?" -ne 0 ]
+				then
+					[ "$DEBUG_MANTENCE" = true ] && echo "Cannot create [$routesTempFile]" >&2
+					exit 1
+				fi
+
+				dumpRoutes > $routesTempFile
 	
-				echo -e "\nMULTICAST:" >> $ipneighTempFile
-				"$IP_APP" maddress show >> $ipneighTempFile
-	
-				echo -e "\nNEIGHBOUR:" >> $ipneighTempFile
-				"$IP_APP" neigh show >> $ipneighTempFile
-	
-				"$DIALOG_APP" --no-collapse --textbox "$ipneighTempFile" 50 100
-				deleteCmdOutputFile "$ipneighTempFile"
+				"$DIALOG_APP" --no-collapse --textbox "$routesTempFile" 50 100
+				deleteCmdOutputFile "$routesTempFile"
 				;;
 	
 			5) true
@@ -670,30 +703,16 @@ function menu_utilities
 					exit 1
 				fi
 
-
-
-
-
-
-
-				#cmdRetEcho=$("$CMDTORUN" 2&>1 1&>$runAsRootOutputTempFile)
-				cmdRetEcho="ERROR EXECUTING HERE!!"
-				echo "$cmdRetEcho" >$runAsRootOutputTempFile
-
-
-
-
-
+				$CMDTORUN > $runAsRootOutputTempFile 2>&1
 				cmdRet=$?
 
-				echo -e "CMD RETURNED SHELL CODE: [$cmdRet]" >>$runAsRootOutputTempFile
+				echo -e "\nCMD RUN AS ROOT RETURNED SHELL CODE: [$cmdRet]" >>$runAsRootOutputTempFile
 
 				"$DIALOG_APP" --no-collapse --textbox "$runAsRootOutputTempFile" 50 100
 
 				[ "$DEBUG_MANTENCE" = true ] && cat "$runAsRootOutputTempFile" >&2
 
 				deleteCmdOutputFile "$runAsRootOutputTempFile"
-
 				;;
 
 			*)
