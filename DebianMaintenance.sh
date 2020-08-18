@@ -21,6 +21,38 @@ if [ $(id -u) -ne 0 ]; then
     exit 1
 fi
 
+function usageHelp
+{
+	echo -e "$0 Usage:\n"
+	echo -e "$0\n\tNormal executation\n"
+	echo -e "$0 2>log\n\tNormal executation with log\n"
+	echo -e "$0 -D 2>log\n\tNormal executation with full log\n"
+}
+
+DEBUG_MANTENCE=false
+SAVE_CMD_OUTPUT=false
+
+#while getopts ":s:p:" o; do
+while getopts ":ds" argvopts;
+do
+	case ${argvopts} in
+#		p)
+#			s=${OPTARG}
+#			((s == 45 || s == 90)) || usage
+#			;;
+		d)
+			DEBUG_MANTENCE=true
+			;;
+		s)
+			SAVE_CMD_OUTPUT=true
+			;;
+		*)
+			usageHelp
+			exit 1
+			;;
+	esac
+done
+
 # ---------------------------------------------
 
 function getAppPath
@@ -33,11 +65,11 @@ function getAppPath
 	retWhich=$(which "$1")
 	if [ "$?" -ne 0 ]
 	then
-		[ "$DEBUG_MANTENCE" -eq 1 ] && echo "Application [$1] is mandatory!." >&2
+		[ "$DEBUG_MANTENCE" = true ] && echo "Application [$1] is mandatory!." >&2
 		return 1
 	fi
 
-	[ "$DEBUG_MANTENCE" -eq 1 ] && echo "Application [$1] found as [$retWhich]" >&2
+	[ "$DEBUG_MANTENCE" = true ] && echo "Application [$1] found as [$retWhich]" >&2
 
 	echo "$retWhich"
 	return 0
@@ -57,42 +89,30 @@ function deleteFile
 			--title "ERROR" \
 			--no-collapse   \
 			--msgbox "Application rm doesnot exist!" 10 50
-		[ "$DEBUG_MANTENCE" -eq 1 ] && echo "Application rm doesnot exist!" >&2
+		[ "$DEBUG_MANTENCE" = true ] && echo "Application rm doesnot exist!" >&2
 		exit 1
 	fi
 
 	if [ ! -f "$1" ] || [ -z "$1" ] || [ ! -n "$1" ]
 	then
-		[ "$DEBUG_MANTENCE" -eq 1 ] && echo "RM erro [$1] didnt delete." >&2
+		[ "$DEBUG_MANTENCE" = true ] && echo "RM erro [$1] didnt delete." >&2
 		exit 1
 	fi
 
 	"$RM_APP" -rf "$1"
 	if [ "$?" -ne 0 ]
 	then
-		[ "$DEBUG_MANTENCE" -eq 1 ] && echo "RM erro [$1] couldnt delete." >&2
+		[ "$DEBUG_MANTENCE" = true ] && echo "RM erro [$1] couldnt delete." >&2
 		exit 1
 	fi
 
-	[ "$DEBUG_MANTENCE" -eq 1 ] && echo "RM ok [$1] deleted." >&2
+	[ "$DEBUG_MANTENCE" = true ] && echo "RM ok [$1] deleted." >&2
 	return 0
 }
 
-DEBUG_MANTENCE=0
-
-if [ $# -eq 1 ]
-then
-	if [ "$1" = "-DEBUG" ]
-	then
-		DEBUG_MANTENCE=1
-	fi
-fi
-
-SAVE_CMD_OUTPUT=0 # TODO: pass by argv
-
 function deleteCmdOutputFile
 {
-	if [ "$SAVE_CMD_OUTPUT" -eq 0 ]
+	if [ "$SAVE_CMD_OUTPUT" = false ]
 	then
 		deleteFile "$1"
 	fi
@@ -107,7 +127,7 @@ function menu_network
 			--title "ERROR" \
 			--no-collapse   \
 			--msgbox "Application ip doesnot exist!" 10 50
-		[ "$DEBUG_MANTENCE" -eq 1 ] && echo "Application ip doesnot exist!" >&2
+		[ "$DEBUG_MANTENCE" = true ] && echo "Application ip doesnot exist!" >&2
 		exit 1
 	fi
 
@@ -117,7 +137,7 @@ function menu_network
 		menuNetTempFile=`"$MKTEMP_APP" -p /tmp`
 		if [ "$?" -ne 0 ]
 		then
-			[ "$DEBUG_MANTENCE" -eq 1 ] && echo "Cannot create [$menuNetTempFile]" >&2
+			[ "$DEBUG_MANTENCE" = true ] && echo "Cannot create [$menuNetTempFile]" >&2
 			exit 1
 		fi
 
@@ -225,14 +245,14 @@ function menu_hd
 			--title "ERROR" \
 			--no-collapse   \
 			--msgbox "Application lsblk doesnot exist!" 10 50
-		[ "$DEBUG_MANTENCE" -eq 1 ] && echo "Application lsblk doesnot exist!" >&2
+		[ "$DEBUG_MANTENCE" = true ] && echo "Application lsblk doesnot exist!" >&2
 		exit 1
 	fi
 
 	menuHDTempFile=`"$MKTEMP_APP" -p /tmp`
 	if [ "$?" -ne 0 ]
 	then
-		[ "$DEBUG_MANTENCE" -eq 1 ] && echo "Cannot create [$menuHDTempFile]" >&2
+		[ "$DEBUG_MANTENCE" = true ] && echo "Cannot create [$menuHDTempFile]" >&2
 		exit 1
 	fi
 
@@ -264,7 +284,7 @@ function menu_sekurity
 		menuSekTempFile=`"$MKTEMP_APP" -p /tmp`
 		if [ "$?" -ne 0 ]
 		then
-			[ "$DEBUG_MANTENCE" -eq 1 ] && echo "Cannot create [$menuSekTempFile]" >&2
+			[ "$DEBUG_MANTENCE" = true ] && echo "Cannot create [$menuSekTempFile]" >&2
 			exit 1
 		fi
 
@@ -301,7 +321,7 @@ function menu_sekurity
 						--title "ERROR" \
 						--no-collapse   \
 						--msgbox "Application freshclam doesnot exist!" 10 50
-					[ "$DEBUG_MANTENCE" -eq 1 ] && echo "Application freshclam doesnot exist!" >&2
+					[ "$DEBUG_MANTENCE" = true ] && echo "Application freshclam doesnot exist!" >&2
 					continue
 				fi
 
@@ -312,7 +332,7 @@ function menu_sekurity
 						--title "ERROR" \
 						--no-collapse   \
 						--msgbox "Application clamscan doesnot exist!" 10 50
-					[ "$DEBUG_MANTENCE" -eq 1 ] && echo "Application clamscan doesnot exist!" >&2
+					[ "$DEBUG_MANTENCE" = true ] && echo "Application clamscan doesnot exist!" >&2
 					continue
 				fi
 
@@ -330,7 +350,7 @@ function menu_sekurity
 						--title "ERROR" \
 						--no-collapse   \
 						--msgbox "Application rkhunter doesnot exist!" 10 50
-					[ "$DEBUG_MANTENCE" -eq 1 ] && echo "Application rkhunter doesnot exist!" >&2
+					[ "$DEBUG_MANTENCE" = true ] && echo "Application rkhunter doesnot exist!" >&2
 					continue
 				fi
 
@@ -348,7 +368,7 @@ function menu_sekurity
 						--title "ERROR" \
 						--no-collapse   \
 						--msgbox "Application lynis doesnot exist!" 10 50
-					[ "$DEBUG_MANTENCE" -eq 1 ] && echo "Application lynis doesnot exist!" >&2
+					[ "$DEBUG_MANTENCE" = true ] && echo "Application lynis doesnot exist!" >&2
 					continue
 				fi
 
@@ -366,7 +386,7 @@ function menu_sekurity
 						--title "ERROR" \
 						--no-collapse   \
 						--msgbox "Application chkrootkit doesnot exist!" 10 50
-					[ "$DEBUG_MANTENCE" -eq 1 ] && echo "Application chkrootkit doesnot exist!" >&2
+					[ "$DEBUG_MANTENCE" = true ] && echo "Application chkrootkit doesnot exist!" >&2
 					break
 				fi
 
@@ -391,7 +411,7 @@ function menu_packages
 			--title "ERROR" \
 			--no-collapse   \
 			--msgbox "Application apt doesnot exist!" 10 50
-		[ "$DEBUG_MANTENCE" -eq 1 ] && echo "Application apt lsblk doesnot exist!" >&2
+		[ "$DEBUG_MANTENCE" = true ] && echo "Application apt lsblk doesnot exist!" >&2
 		break
 	fi
 
@@ -400,7 +420,7 @@ function menu_packages
 		menuPackTempFile=`"$MKTEMP_APP" -p /tmp`
 		if [ "$?" -ne 0 ]
 		then
-			[ "$DEBUG_MANTENCE" -eq 1 ] && echo "Cannot create [$menuPackTempFile]" >&2
+			[ "$DEBUG_MANTENCE" = true ] && echo "Cannot create [$menuPackTempFile]" >&2
 			exit 1
 		fi
 
@@ -503,11 +523,11 @@ function menu_utilities
 		menuUtilTempFile=`"$MKTEMP_APP" -p /tmp`
 		if [ "$?" -ne 0 ]
 		then
-			[ "$DEBUG_MANTENCE" -eq 1 ] && echo "Cannot create [$menuUtilTempFile]" >&2
+			[ "$DEBUG_MANTENCE" = true ] && echo "Cannot create [$menuUtilTempFile]" >&2
 			exit 1
 		fi
 
-		"$DIALOG_APP"                                     \
+		"$DIALOG_APP"                                    \
 			--clear                                       \
 			--title "Utilities"                           \
 			--backtitle "Debian-like mantence: Utilities" \
@@ -517,7 +537,8 @@ function menu_utilities
 			1 'top'                                       \
 			2 'mc'                                        \
 			3 'dmesg'                                     \
-			4 'iptraf'                                    \
+			4 'iptraf-ng'                                 \
+			9 'Run cmd as root...'                        \
 			2>$menuUtilTempFile
 			
 		dialogRet=$?
@@ -534,18 +555,50 @@ function menu_utilities
 
 		case $menu in
 			1)
-				top
+				HTOP_APP=`getAppPath 'htop'`
+				if [ "$?" -eq 1 ]
+				then
+
+					# at least 'top'?
+					TOP_APP=`getAppPath 'top'`
+					if [ "$?" -eq 1 ]
+					then
+
+						"$DIALOG_APP"             \
+							--title "ERROR" \
+							--no-collapse   \
+							--msgbox "Application htop or top doesnot exist!" 10 50
+						[ "$DEBUG_MANTENCE" = true ] && echo "Application htop or top doesnot exist!" >&2
+						exit 1
+					fi
+
+					"$(TOP_APP)"
+
+				else
+					"$HTOP_APP"
+				fi
 				;;
 	
 			2)
-				mc
+				MC_APP=`getAppPath 'mc'`
+				if [ "$?" -eq 1 ]
+				then
+					"$DIALOG_APP"             \
+						--title "ERROR" \
+						--no-collapse   \
+						--msgbox "Application mc doesnot exist!" 10 50
+					[ "$DEBUG_MANTENCE" = true ] && echo "Application mc doesnot exist!" >&2
+					exit 1
+				fi
+
+				"$MC_APP"
 				;;
 
 			3)
 				dmesgOutputTempFile=`"$MKTEMP_APP" -p /tmp`
 				if [ ! -f "$dmesgOutputTempFile" ]
 				then
-					[ "$DEBUG_MANTENCE" -eq 1 ] && echo "$dmesgOutputTempFile error." >&2
+					[ "$DEBUG_MANTENCE" = true ] && echo "$dmesgOutputTempFile error." >&2
 					exit 1
 				fi
 
@@ -556,7 +609,7 @@ function menu_utilities
 						--title "ERROR" \
 						--no-collapse   \
 						--msgbox "Application dmesg doesnot exist!" 10 50
-					[ "$DEBUG_MANTENCE" -eq 1 ] && echo "Application dmesg doesnot exist!" >&2
+					[ "$DEBUG_MANTENCE" = true ] && echo "Application dmesg doesnot exist!" >&2
 					deleteCmdOutputFile "$dmesgOutputTempFile"
 					exit 1
 				fi
@@ -564,7 +617,7 @@ function menu_utilities
 				"$DMESG_APP" -P > $dmesgOutputTempFile
 				if [ "$?" -ne "0" ]
 				then
-					[ "$DEBUG_MANTENCE" -eq 1 ] && echo "dmesg return error." >&2
+					[ "$DEBUG_MANTENCE" = true ] && echo "dmesg return error." >&2
 					deleteCmdOutputFile "$dmesgOutputTempFile"
 					exit 1
 				fi
@@ -575,7 +628,72 @@ function menu_utilities
 				;;
 
 			4)
-				iptraf
+				IPTRAF_APP=`getAppPath 'iptraf-ng'`
+				if [ "$?" -eq 1 ]
+				then
+					"$DIALOG_APP"      \
+						--title "ERROR" \
+						--no-collapse   \
+						--msgbox "Application iptraf-ng doesnot exist!" 10 50
+					[ "$DEBUG_MANTENCE" = true ] && echo "Application mc doesnot exist!" >&2
+					exit 1
+				fi
+
+				"$IPTRAF_APP"
+				;;
+
+			9) # i dont give a fuck what are you going to do with it
+
+				runAsRootTempFile=`"$MKTEMP_APP" -p /tmp`
+				if [ "$?" -ne 0 ]
+				then
+					[ "$DEBUG_MANTENCE" = true ] && echo "Cannot create [$runAsRootTempFile]" >&2
+					exit 1
+				fi
+				"$DIALOG_APP" \
+					--clear                            \
+					--no-collapse                      \
+					--title "RUN AS ROOT!"             \
+					--backtitle "Run as Root"          \
+					--backtitle "Debian-like mantence" \
+					--inputbox "Run as root..." 8 40 2>$runAsRootTempFile
+
+				CMDTORUN=`cat "$runAsRootTempFile"`
+				deleteFile "$runAsRootTempFile"
+
+				[ "$DEBUG_MANTENCE" = true ] && echo "RUNNING AS ROOT: [$CMDTORUN]" >&2
+
+				runAsRootOutputTempFile=`"$MKTEMP_APP" -p /tmp`
+				if [ "$?" -ne 0 ]
+				then
+					[ "$DEBUG_MANTENCE" = true ] && echo "Cannot create [$runAsRootOutputTempFile]" >&2
+					exit 1
+				fi
+
+
+
+
+
+
+
+				#cmdRetEcho=$("$CMDTORUN" 2&>1 1&>$runAsRootOutputTempFile)
+				cmdRetEcho="ERROR EXECUTING HERE!!"
+				echo "$cmdRetEcho" >$runAsRootOutputTempFile
+
+
+
+
+
+				cmdRet=$?
+
+				echo -e "CMD RETURNED SHELL CODE: [$cmdRet]" >>$runAsRootOutputTempFile
+
+				"$DIALOG_APP" --no-collapse --textbox "$runAsRootOutputTempFile" 50 100
+
+				[ "$DEBUG_MANTENCE" = true ] && cat "$runAsRootOutputTempFile" >&2
+
+				deleteCmdOutputFile "$runAsRootOutputTempFile"
+
 				;;
 
 			*)
@@ -595,7 +713,7 @@ then
 		--title "ERROR" \
 		--no-collapse   \
 		--msgbox "Application mktemp doesnot exist!" 10 50
-	[ "$DEBUG_MANTENCE" -eq 1 ] && echo "Application mktemp doesnot exist!" >&2
+	[ "$DEBUG_MANTENCE" = true ] && echo "Application mktemp doesnot exist!" >&2
 	exit 1
 fi
 
@@ -611,7 +729,7 @@ do
 	menuTempFile=`"$MKTEMP_APP" -p /tmp`
 	if [ "$?" -ne 0 ]
 	then
-		[ "$DEBUG_MANTENCE" -eq 1 ] && echo "Cannot create [$menuTempFile]" >&2
+		[ "$DEBUG_MANTENCE" = true ] && echo "Cannot create [$menuTempFile]" >&2
 		exit 1
 	fi
 
@@ -631,9 +749,6 @@ do
 		7 'Sekurity'                       \
 		9 'System info'                    \
 		u 'Utilities'                      \
-#		t 'top'                            \
-#		m 'mc'                             \
-#		d 'dmesg'                          \
 		2>$menuTempFile
 
 	dialogRet=$?
@@ -681,7 +796,7 @@ do
 			menuGetInfoTemFile=`"$MKTEMP_APP" -p /tmp`
 			if [ "$?" -ne 0 ]
 			then
-				[ "$DEBUG_MANTENCE" -eq 1 ] && echo "Cannot create [$menuGetInfoTemFile]" >&2
+				[ "$DEBUG_MANTENCE" = true ] && echo "Cannot create [$menuGetInfoTemFile]" >&2
 				exit 1
 			fi
 
@@ -729,7 +844,7 @@ do
 #			dmesgOutputTempFile=`"$MKTEMP_APP" -p /tmp`
 #			if [ ! -f "$dmesgOutputTempFile" ]
 #			then
-#				[ "$DEBUG_MANTENCE" -eq 1 ] && echo "$dmesgOutputTempFile error." >&2
+#				[ "$DEBUG_MANTENCE" = true ] && echo "$dmesgOutputTempFile error." >&2
 #				exit 1
 #			fi
 
@@ -740,7 +855,7 @@ do
 #					--title "ERROR" \
 #					--no-collapse   \
 #					--msgbox "Application dmesg doesnot exist!" 10 50
-#				[ "$DEBUG_MANTENCE" -eq 1 ] && echo "Application dmesg doesnot exist!" >&2
+#				[ "$DEBUG_MANTENCE" = true ] && echo "Application dmesg doesnot exist!" >&2
 #				deleteCmdOutputFile "$dmesgOutputTempFile"
 #				exit 1
 #			fi
@@ -748,8 +863,8 @@ do
 #			"$DMESG_APP" -P > $dmesgOutputTempFile
 #			if [ "$?" -ne "0" ]
 #			then
-#				[ "$DEBUG_MANTENCE" -eq 1 ] && echo "dmesg return error." >&2
-				deleteCmdOutputFile "$dmesgOutputTempFile"
+#				[ "$DEBUG_MANTENCE" = true ] && echo "dmesg return error." >&2
+#				deleteCmdOutputFile "$dmesgOutputTempFile"
 #				exit 1
 #			fi
 
@@ -759,7 +874,7 @@ do
 #			;;
 
 		*)
-			echo "Unknow main menu option: $menu" >&2
+			echo "Unknow main menu option: [$menu]" >&2
 			;;
 	esac
 
