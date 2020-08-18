@@ -107,8 +107,8 @@ function menu_network
 			--title "ERROR" \
 			--no-collapse   \
 			--msgbox "Application ip doesnot exist!" 10 50
-			[ "$DEBUG_MANTENCE" -eq 1 ] && echo "Application ip doesnot exist!" >&2
-			exit 1
+		[ "$DEBUG_MANTENCE" -eq 1 ] && echo "Application ip doesnot exist!" >&2
+		exit 1
 	fi
 
 	while true
@@ -225,8 +225,8 @@ function menu_hd
 			--title "ERROR" \
 			--no-collapse   \
 			--msgbox "Application lsblk doesnot exist!" 10 50
-			[ "$DEBUG_MANTENCE" -eq 1 ] && echo "Application lsblk doesnot exist!" >&2
-			exit 1
+		[ "$DEBUG_MANTENCE" -eq 1 ] && echo "Application lsblk doesnot exist!" >&2
+		exit 1
 	fi
 
 	menuHDTempFile=`"$MKTEMP_APP" -p /tmp`
@@ -391,8 +391,8 @@ function menu_packages
 			--title "ERROR" \
 			--no-collapse   \
 			--msgbox "Application apt doesnot exist!" 10 50
-			[ "$DEBUG_MANTENCE" -eq 1 ] && echo "Application apt lsblk doesnot exist!" >&2
-			break
+		[ "$DEBUG_MANTENCE" -eq 1 ] && echo "Application apt lsblk doesnot exist!" >&2
+		break
 	fi
 
 	while true
