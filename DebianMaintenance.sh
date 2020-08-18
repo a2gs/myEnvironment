@@ -16,11 +16,6 @@
 
 #trap "" SIGINT
 
-if [ $(id -u) -ne 0 ]; then
-    echo 'Run as root.' >&2
-    exit 1
-fi
-
 function usageHelp
 {
 	echo -e "$0 Usage:\n"
@@ -30,29 +25,6 @@ function usageHelp
 	echo -e "$0 -s\n\tDo not delete tempfile cmd output commands (/tmp)\n"
 }
 
-DEBUG_MANTENCE=false
-SAVE_CMD_OUTPUT=false
-
-#while getopts ":s:p:" o; do
-while getopts ":ds" argvopts;
-do
-	case ${argvopts} in
-#		p)
-#			s=${OPTARG}
-#			((s == 45 || s == 90)) || usage
-#			;;
-		d)
-			DEBUG_MANTENCE=true
-			;;
-		s)
-			SAVE_CMD_OUTPUT=true
-			;;
-		*)
-			usageHelp
-			exit 1
-			;;
-	esac
-done
 
 # ---------------------------------------------
 
@@ -549,6 +521,34 @@ function menu_packages
 	done
 }
 
+function dumpOSInfo
+{
+	echo 'OPERATION SYSTEM:'
+	uname -a
+	cat /etc/debian_version
+	lsb_release -a
+}
+
+function dumpHWInfo
+{
+	echo 'HARDWARE:'
+	
+	echo '=== [ lspci ] ==================================================================================='
+	lspci
+	lspci -vv
+	echo '=== [ /proc/cpuinfo ] ==========================================================================='
+	cat /proc/cpuinfo
+	echo '=== [ lsblk ] ==================================================================================='
+	lsblk --output-all --all
+	echo '=== [ biosdecode ] =============================================================================='
+	biosdecode
+	echo '=== [ dmidecode ] ==============================================================================='
+	dmidecode
+	echo '=== [ lshw ] ===================================================================================='
+	lshw -short
+	lshw -numeric
+}
+
 function menu_utilities
 {
 	while true
@@ -723,7 +723,14 @@ function menu_utilities
 	done
 }
 
-# ---------------------------------------------
+# -------------------------------------------------------------------------------------------
+# -------------------------------------------------------------------------------------------
+# -------------------------------------------------------------------------------------------
+
+if [ $(id -u) -ne 0 ]; then
+    echo 'Run as root.' >&2
+    exit 1
+fi
 
 MKTEMP_APP=`getAppPath 'mktemp'`
 if [ "$?" -eq 1 ]
@@ -743,6 +750,30 @@ then
 	exit 1
 fi
 
+DEBUG_MANTENCE=false
+SAVE_CMD_OUTPUT=false
+
+#while getopts ":s:p:" o; do
+while getopts ":ds" argvopts;
+do
+	case ${argvopts} in
+#		p)
+#			s=${OPTARG}
+#			((s == 45 || s == 90)) || usage
+#			;;
+		d)
+			DEBUG_MANTENCE=true
+			;;
+		s)
+			SAVE_CMD_OUTPUT=true
+			;;
+		*)
+			usageHelp
+			exit 1
+			;;
+	esac
+done
+
 while true
 do
 	menuTempFile=`"$MKTEMP_APP" -p /tmp`
@@ -752,7 +783,7 @@ do
 		exit 1
 	fi
 
-	"$DIALOG_APP"                          \
+	"$DIALOG_APP"                         \
 		--clear                            \
 		--title "Main Menu"                \
 		--backtitle "Debian-like mantence" \
@@ -819,28 +850,11 @@ do
 				exit 1
 			fi
 
-			echo -e "OPERATION SYSTEM:" > $menuGetInfoTemFile
-			uname -a >> $menuGetInfoTemFile
+			dumpOSInfo > $menuGetInfoTemFile
 	
-			cat /etc/debian_version >> $menuGetInfoTemFile
-			lsb_release -a >> $menuGetInfoTemFile
-	
-			echo -e "\n\nHARDWARE:" >> $menuGetInfoTemFile
-	
-			echo '=== [ biosdecode ] ==============================================================================' >> $menuGetInfoTemFile
-			biosdecode >> $menuGetInfoTemFile
-			echo '=== [ dmidecode ] ===============================================================================' >> $menuGetInfoTemFile
-			dmidecode >> $menuGetInfoTemFile
-			echo '=== [ lspci ] ===================================================================================' >> $menuGetInfoTemFile
-			lspci >> $menuGetInfoTemFile
-			echo '=== [ /proc/cpuinfo ] ===========================================================================' >> $menuGetInfoTemFile
-			cat /proc/cpuinfo >> $menuGetInfoTemFile
-			echo '=== [ lsblk ] ===================================================================================' >> $menuGetInfoTemFile
-			lsblk --output-all --all >> $menuGetInfoTemFile
-			echo '=== [ lspci ] ===================================================================================' >> $menuGetInfoTemFile
-			lspci -vv >> $menuGetInfoTemFile
-			echo '=== [ lshw ] ====================================================================================' >> $menuGetInfoTemFile
-			lshw -numeric  >> $menuGetInfoTemFile
+			echo -e "\n" >> $menuGetInfoTemFile
+
+			dumpHWInfo >> $menuGetInfoTemFile
 
 			"$DIALOG_APP" --no-collapse --textbox "$menuGetInfoTemFile" 50 100
 
@@ -850,47 +864,6 @@ do
 		u)
 			menu_utilities
 			;;
-
-#		t)
-#			top
-#			;;
-
-#		m)
-#			mc
-#			;;
-
-#		d)
-#			dmesgOutputTempFile=`"$MKTEMP_APP" -p /tmp`
-#			if [ ! -f "$dmesgOutputTempFile" ]
-#			then
-#				[ "$DEBUG_MANTENCE" = true ] && echo "$dmesgOutputTempFile error." >&2
-#				exit 1
-#			fi
-
-#			DMESG_APP=`getAppPath 'dmesg'`
-#			if [ "$?" -eq 1 ]
-#			then
-#				"$DIALOG_APP"             \
-#					--title "ERROR" \
-#					--no-collapse   \
-#					--msgbox "Application dmesg doesnot exist!" 10 50
-#				[ "$DEBUG_MANTENCE" = true ] && echo "Application dmesg doesnot exist!" >&2
-#				deleteCmdOutputFile "$dmesgOutputTempFile"
-#				exit 1
-#			fi
-
-#			"$DMESG_APP" -P > $dmesgOutputTempFile
-#			if [ "$?" -ne "0" ]
-#			then
-#				[ "$DEBUG_MANTENCE" = true ] && echo "dmesg return error." >&2
-#				deleteCmdOutputFile "$dmesgOutputTempFile"
-#				exit 1
-#			fi
-
-#			"$DIALOG_APP" --no-collapse --textbox "$dmesgOutputTempFile" 50 100
-
-#			deleteCmdOutputFile "$dmesgOutputTempFile"
-#			;;
 
 		*)
 			echo "Unknow main menu option: [$menu]" >&2
