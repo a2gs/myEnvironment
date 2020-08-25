@@ -25,7 +25,6 @@ function usageHelp
 	echo -e "$0 -s\n\tDo not delete tempfile cmd output commands (/tmp)\n"
 }
 
-
 # ---------------------------------------------
 
 function getAppPath
@@ -521,9 +520,11 @@ function packagesList
 		"$DPKG_APP" -l "$packName" >> $menuDPkgTempFile
 	fi
 
-	"$DIALOG_APP"    \
-		--no-collapse \
-		--clear       \
+	"$DIALOG_APP"                                      \
+		--no-collapse                                   \
+		--clear                                         \
+		--title "Packages list"                         \
+		--backtitle "Debian-like maintenance: Packages" \
 		--textbox "$menuDPkgTempFile" 20 100
 	
 	deleteCmdOutputFile "$menuDPkgTempFile"
@@ -950,9 +951,11 @@ function menu_utilities
 					exit 1
 				fi
 
-				"$DIALOG_APP"    \
-					--no-collapse \
-					--clear       \
+				"$DIALOG_APP"                                       \
+					--no-collapse                                    \
+					--title "DMesg"                                  \
+					--clear                                          \
+					--backtitle "Debian-like maintenance: Utilities" \
 					--textbox "$dmesgOutputTempFile" 50 100
 
 				deleteCmdOutputFile "$dmesgOutputTempFile"
@@ -1007,9 +1010,11 @@ function menu_utilities
 
 				echo -e "\nCMD RUN AS ROOT RETURNED SHELL CODE: [$cmdRet]" >>$runAsRootOutputTempFile
 
-				"$DIALOG_APP"    \
-					--no-collapse \
-					--clear       \
+				"$DIALOG_APP"                                             \
+					--no-collapse                                          \
+					--clear                                                \
+					--title "Run as Root Output"                           \
+					--backtitle "Debian-like maintenance: Run cmd as root" \
 					--textbox "$runAsRootOutputTempFile" 50 100
 
 				[ "$DEBUG_MANTENCE" = true ] && cat "$runAsRootOutputTempFile" >&2
@@ -1173,8 +1178,8 @@ do
 		*)
 			echo "Unknow main menu option: [$menu]" >&2
 			;;
-	esac
 
+	esac
 done
 
 clear
