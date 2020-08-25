@@ -58,10 +58,11 @@ function deleteFile
 	RM_APP=`getAppPath 'rm'`
 	if [ "$?" -eq 1 ]
 	then
-		"$DIALOG_APP"      \
-			--title "ERROR" \
-			--clear         \
-			--no-collapse   \
+		"$DIALOG_APP"                            \
+			--title "ERROR"                       \
+			--clear                               \
+			--no-collapse                         \
+			--backtitle "Debian-like maintenance" \
 			--msgbox "Application rm doesnot exist!" 10 50
 		[ "$DEBUG_MANTENCE" = true ] && echo "Application rm doesnot exist!" >&2
 		exit 1
@@ -128,10 +129,11 @@ function menu_network
 	IP_APP=`getAppPath 'ip'`
 	if [ "$?" -eq 1 ]
 	then
-		"$DIALOG_APP"      \
-			--title "ERROR" \
-			--clear         \
-			--no-collapse   \
+		"$DIALOG_APP"                                     \
+			--title "ERROR"                                \
+			--clear                                        \
+			--no-collapse                                  \
+			--backtitle "Debian-like maintenance: Network" \
 			--msgbox "Application ip doesnot exist!" 10 50
 		[ "$DEBUG_MANTENCE" = true ] && echo "Application ip doesnot exist!" >&2
 		exit 1
@@ -147,11 +149,11 @@ function menu_network
 			exit 1
 		fi
 
-		"$DIALOG_APP"                                  \
-			--clear                                     \
-			--cancel-label "Exit"                       \
-			--title "Network Menu"                      \
-			--backtitle "Debian-like mantence: Network" \
+		"$DIALOG_APP"                                     \
+			--clear                                        \
+			--cancel-label "Exit"                          \
+			--title "Network Menu"                         \
+			--backtitle "Debian-like maintenance: Network" \
 			--menu "Option:" 20 50 20                   \
 			1 'List ifaces'                             \
 			2 'Up/Down iface'                           \
@@ -170,8 +172,6 @@ function menu_network
 		menu=`cat "$menuNetTempFile"`
 		deleteFile "$menuNetTempFile"
 
-		clear
-
 		case $menu in
 			1)
 				ipaddTempFile=`"$MKTEMP_APP" -p /tmp`
@@ -183,9 +183,11 @@ function menu_network
 
 				"$IP_APP" addr show > $ipaddTempFile
 
-				"$DIALOG_APP"    \
-					--no-collapse \
-					--clear       \
+				"$DIALOG_APP"                                     \
+					--no-collapse                                  \
+					--clear                                        \
+					--title "IP Address"                           \
+					--backtitle "Debian-like maintenance: Network" \
 					--textbox "$ipaddTempFile" 50 100
 
 				deleteCmdOutputFile "$ipaddTempFile"
@@ -205,9 +207,11 @@ function menu_network
 
 				dumpNetworkFilesInfos > $cfgFilesTempFile
 	
-				"$DIALOG_APP"    \
-					--no-collapse \
-					--clear       \
+				"$DIALOG_APP"                                     \
+					--no-collapse                                  \
+					--clear                                        \
+					--title "Network Files"                        \
+					--backtitle "Debian-like maintenance: Network" \
 					--textbox "$cfgFilesTempFile" 50 100
 	
 				deleteCmdOutputFile "$cfgFilesTempFile"
@@ -223,9 +227,11 @@ function menu_network
 
 				dumpRoutes > $routesTempFile
 	
-				"$DIALOG_APP"      \
-					--no-collapsexi \
-					--clear         \
+				"$DIALOG_APP"                                     \
+					--no-collapsexi                                \
+					--clear                                        \
+					--title "Network Route"                        \
+					--backtitle "Debian-like maintenance: Network" \
 					--textbox "$routesTempFile" 50 100
 
 				deleteCmdOutputFile "$routesTempFile"
@@ -257,10 +263,11 @@ function menu_hd
 	LSBLK_APP=`getAppPath 'lsblk'`
 	if [ "$?" -eq 1 ]
 	then
-		"$DIALOG_APP"      \
-			--title "ERROR" \
-			--no-collapse   \
-			--clear         \
+		"$DIALOG_APP"                                           \
+			--title "ERROR"                                      \
+			--no-collapse                                        \
+			--clear                                              \
+			--backtitle "Debian-like maintenance: Block Devices" \
 			--msgbox "Application lsblk doesnot exist!" 10 50
 		[ "$DEBUG_MANTENCE" = true ] && echo "Application lsblk doesnot exist!" >&2
 		exit 1
@@ -275,9 +282,11 @@ function menu_hd
 
 	"$LSBLK_APP" -ampfz > $menuHDTempFile
 	
-	"$DIALOG_APP"    \
-		--no-collapse \
-		--clear       \
+	"$DIALOG_APP"                                           \
+		--no-collapse                                        \
+		--clear                                              \
+		--title "Block Devices"                              \
+		--backtitle "Debian-like maintenance: Block Devices" \
 		--textbox "$menuHDTempFile" 20 100
 	
 	deleteCmdOutputFile "$menuHDTempFile"
@@ -308,16 +317,16 @@ function menu_sekurity
 			exit 1
 		fi
 
-		"$DIALOG_APP"                                   \
-			--clear                                      \
-			--cancel-label "Exit"                        \
-			--title "Sekurity Menu"                      \
-			--backtitle "Debian-like mantence: Sekutiry" \
-			--menu "Option:" 20 50 20                    \
-			1 "Update and run clamscan"                  \
-			2 "Update and run rkhunter"                  \
-			3 "Update and run lynis"                     \
-			4 "Run chkrootkit"                           \
+		"$DIALOG_APP"                                      \
+			--clear                                         \
+			--cancel-label "Exit"                           \
+			--title "Sekurity Menu"                         \
+			--backtitle "Debian-like maintenance: Security" \
+			--menu "Option:" 20 50 20                       \
+			1 "Update and run clamscan"                     \
+			2 "Update and run rkhunter"                     \
+			3 "Update and run lynis"                        \
+			4 "Run chkrootkit"                              \
 			2>$menuSekTempFile
 
 		dialogRet=$?
@@ -330,16 +339,16 @@ function menu_sekurity
 		menu=`cat "$menuSekTempFile"`
 		deleteFile "$menuSekTempFile"
 
-		clear
-
 		case $menu in
 			1)
 				FRESHCLAM_APP=`getAppPath 'freshclam'`
 				if [ "$?" -eq 1 ]
 				then
-					"$DIALOG_APP"      \
-						--title "ERROR" \
-						--no-collapse   \
+					"$DIALOG_APP"                                      \
+						--title "ERROR"                                 \
+						--no-collapse                                   \
+						--backtitle "Debian-like maintenance: Security" \
+						--clear                                         \
 						--msgbox "Application freshclam doesnot exist!" 10 50
 					[ "$DEBUG_MANTENCE" = true ] && echo "Application freshclam doesnot exist!" >&2
 					continue
@@ -348,10 +357,11 @@ function menu_sekurity
 				CLAMSCAN_APP=`getAppPath 'clamscan'`
 				if [ "$?" -eq 1 ]
 				then
-					"$DIALOG_APP"      \
-						--title "ERROR" \
-						--no-collapse   \
-						--clear         \
+					"$DIALOG_APP"                                      \
+						--title "ERROR"                                 \
+						--no-collapse                                   \
+						--clear                                         \
+						--backtitle "Debian-like maintenance: Security" \
 						--msgbox "Application clamscan doesnot exist!" 10 50
 					[ "$DEBUG_MANTENCE" = true ] && echo "Application clamscan doesnot exist!" >&2
 					continue
@@ -367,10 +377,11 @@ function menu_sekurity
 				RKHUNTER_APP=`getAppPath 'rkhunter'`
 				if [ "$?" -eq 1 ]
 				then
-					"$DIALOG_APP"      \
-						--title "ERROR" \
-						--no-collapse   \
-						--clear         \
+					"$DIALOG_APP"                                      \
+						--title "ERROR"                                 \
+						--no-collapse                                   \
+						--clear                                         \
+						--backtitle "Debian-like maintenance: Security" \
 						--msgbox "Application rkhunter doesnot exist!" 10 50
 					[ "$DEBUG_MANTENCE" = true ] && echo "Application rkhunter doesnot exist!" >&2
 					continue
@@ -386,10 +397,11 @@ function menu_sekurity
 				LYNIS_APP=`getAppPath 'lynis'`
 				if [ "$?" -eq 1 ]
 				then
-					"$DIALOG_APP"      \
-						--title "ERROR" \
-						--no-collapse   \
-						--clear         \
+					"$DIALOG_APP"                                      \
+						--title "ERROR"                                 \
+						--no-collapse                                   \
+						--clear                                         \
+						--backtitle "Debian-like maintenance: Security" \
 						--msgbox "Application lynis doesnot exist!" 10 50
 					[ "$DEBUG_MANTENCE" = true ] && echo "Application lynis doesnot exist!" >&2
 					continue
@@ -405,10 +417,11 @@ function menu_sekurity
 				CHKROOTKIT_APP=`getAppPath 'chkrootkit'`
 				if [ "$?" -eq 1 ]
 				then
-					"$DIALOG_APP"      \
-						--title "ERROR" \
-						--no-collapse   \
-						--clear         \
+					"$DIALOG_APP"                                      \
+						--title "ERROR"                                 \
+						--no-collapse                                   \
+						--clear                                         \
+						--backtitle "Debian-like maintenance: Security" \
 						--msgbox "Application chkrootkit doesnot exist!" 10 50
 					[ "$DEBUG_MANTENCE" = true ] && echo "Application chkrootkit doesnot exist!" >&2
 					break
@@ -431,10 +444,11 @@ function packagesManuallyList
 	APT_APP=`getAppPath 'apt'`
 	if [ "$?" -eq 1 ]
 	then
-		"$DIALOG_APP"      \
-			--title "ERROR" \
-			--no-collapse   \
-			--clear         \
+		"$DIALOG_APP"                                      \
+			--title "ERROR"                                 \
+			--no-collapse                                   \
+			--clear                                         \
+			--backtitle "Debian-like maintenance: Packages" \
 			--msgbox "Application apt doesnot exist!" 10 50
 		[ "$DEBUG_MANTENCE" = true ] && echo "Application apt doesnot exist!" >&2
 		exit 1
@@ -464,10 +478,11 @@ function packagesList
 	DPKG_APP=`getAppPath 'dpkg'`
 	if [ "$?" -eq 1 ]
 	then
-		"$DIALOG_APP"      \
-			--title "ERROR" \
-			--no-collapse   \
-			--clear         \
+		"$DIALOG_APP"                                      \
+			--title "ERROR"                                 \
+			--no-collapse                                   \
+			--clear                                         \
+			--backtitle "Debian-like maintenance: Packages" \
 			--msgbox "Application dpkg doesnot exist!" 10 50
 		[ "$DEBUG_MANTENCE" = true ] && echo "Application dpkg doesnot exist!" >&2
 		exit 1
@@ -475,8 +490,11 @@ function packagesList
 
 	menuDPkgPackTempFile=`"$MKTEMP_APP" -p /tmp`
 
-	"$DIALOG_APP" \
-		--clear    \
+	"$DIALOG_APP"                                      \
+		--clear                                         \
+		--no-collapse                                   \
+		--title "Packages list"                         \
+		--backtitle "Debian-like maintenance: Packages" \
 		--inputbox "Enter package name pattern to search:" 8 40 2>$menuDPkgPackTempFile
 
 	packName=`cat "$menuDPkgPackTempFile"`
@@ -525,7 +543,7 @@ function listSearchPackagesMenu
 		"$DIALOG_APP"                                         \
 			--clear                                            \
 			--title "List/search Packages"                     \
-			--backtitle "Debian-like mantence: Packages"       \
+			--backtitle "Debian-like maintenance: Packages"       \
 			--cancel-label "Exit"                              \
 			--menu "Option:"                                   \
 			20 80 20                                           \
@@ -542,8 +560,6 @@ function listSearchPackagesMenu
 	
 		menu=`cat "$menuListSearchPackTempFile"`
 		deleteFile "$menuListSearchPackTempFile"
-
-		clear
 
 		case $menu in
 			1)
@@ -567,10 +583,11 @@ function packageInstallRemovePurge
 	APTGET_APP=`getAppPath 'apt-get'`
 	if [ "$?" -eq 1 ]
 	then
-		"$DIALOG_APP"      \
-			--title "ERROR" \
-			--no-collapse   \
-			--clear         \
+		"$DIALOG_APP"                                      \
+			--title "ERROR"                                 \
+			--no-collapse                                   \
+			--clear                                         \
+			--backtitle "Debian-like maintenance: Packages" \
 			--msgbox "Application apt-get doesnot exist!" 10 50
 		[ "$DEBUG_MANTENCE" = true ] && echo "Application apt-get doesnot exist!" >&2
 		break
@@ -588,7 +605,7 @@ function packageInstallRemovePurge
 		"$DIALOG_APP"                                   \
 			--clear                                      \
 			--title "Packages Menu"                      \
-			--backtitle "Debian-like mantence: Packages" \
+			--backtitle "Debian-like maintenance: Packages" \
 			--cancel-label "Exit"                        \
 			--menu "Option:" 20 50 20                    \
 			1 'Install'                                  \
@@ -632,10 +649,11 @@ function packageInfo
 	APTCACHE_APP=`getAppPath 'apt-cache'`
 	if [ "$?" -eq 1 ]
 	then
-		"$DIALOG_APP"      \
-			--title "ERROR" \
-			--clear         \
-			--no-collapse   \
+		"$DIALOG_APP"                                      \
+			--title "ERROR"                                 \
+			--clear                                         \
+			--no-collapse                                   \
+			--backtitle "Debian-like maintenance: Packages" \
 			--msgbox "Application apt-cache doesnot exist!" 10 50
 		[ "$DEBUG_MANTENCE" = true ] && echo "Application apt-cache doesnot exist!" >&2
 		exit 1
@@ -643,8 +661,11 @@ function packageInfo
 
 	menuDPkgPackTempFile=`"$MKTEMP_APP" -p /tmp`
 
-	"$DIALOG_APP" \
-		--clear    \
+	"$DIALOG_APP"                                      \
+		--clear                                         \
+		--no-collapse                                   \
+		--title "Package Info"                          \
+		--backtitle "Debian-like maintenance: Packages" \
 		--inputbox "Enter package name pattern to search:" 8 40 2>$menuDPkgPackTempFile
 
 	packName=`cat "$menuDPkgPackTempFile"`
@@ -676,10 +697,11 @@ function menu_packages
 	APTGET_APP=`getAppPath 'apt'`
 	if [ "$?" -eq 1 ]
 	then
-		"$DIALOG_APP"      \
-			--title "ERROR" \
-			--no-collapse   \
-			--clear         \
+		"$DIALOG_APP"                                      \
+			--title "ERROR"                                 \
+			--no-collapse                                   \
+			--clear                                         \
+			--backtitle "Debian-like maintenance: Packages" \
 			--msgbox "Application apt doesnot exist!" 10 50
 		[ "$DEBUG_MANTENCE" = true ] && echo "Application apt doesnot exist!" >&2
 		break
@@ -697,7 +719,7 @@ function menu_packages
 		"$DIALOG_APP"                                   \
 			--clear                                      \
 			--title "Packages Menu"                      \
-			--backtitle "Debian-like mantence: Packages" \
+			--backtitle "Debian-like maintenance: Packages" \
 			--cancel-label "Exit"                        \
 			--menu "Option:" 20 50 20                    \
 			1 'Update'                                   \
@@ -721,10 +743,9 @@ function menu_packages
 		menu=`cat "$menuPackTempFile"`
 		deleteFile "$menuPackTempFile"
 
-		clear
-	
 		case $menu in
 			1)
+				clear
 				"$APTGET_APP" -y update
 				if [ "$?" -ne 0 ]
 				then
@@ -734,11 +755,13 @@ function menu_packages
 				;;
 	
 			2)
+				clear
 				"$APTGET_APP" --simulate upgrade
 				echo 'Pause. Press [ENTER].'; read
 				;;
 	
 			3)
+				clear
 				"$APTGET_APP" -y upgrade
 				if [ "$?" -ne 0 ]
 				then
@@ -748,6 +771,7 @@ function menu_packages
 				;;
 	
 			4)
+				clear
 				"$APTGET_APP" -y dist-upgrade
 				if [ "$?" -ne 0 ]
 				then
@@ -761,6 +785,7 @@ function menu_packages
 				;;
 	
 			6)
+				clear
 				"$APTGET_APP" -y autoremove
 				"$APTGET_APP" -y autoclean
 				"$APTGET_APP" -y clean
@@ -829,7 +854,7 @@ function menu_utilities
 		"$DIALOG_APP"                                    \
 			--clear                                       \
 			--title "Utilities"                           \
-			--backtitle "Debian-like mantence: Utilities" \
+			--backtitle "Debian-like maintenance: Utilities" \
 			--cancel-label "Exit"                         \
 			--menu "Option:"                              \
 			20 50 20                                      \
@@ -850,8 +875,6 @@ function menu_utilities
 		menu=`cat "$menuUtilTempFile"`
 		deleteFile "$menuUtilTempFile"
 
-		clear
-
 		case $menu in
 			1)
 				HTOP_APP=`getAppPath 'htop'`
@@ -863,10 +886,11 @@ function menu_utilities
 					if [ "$?" -eq 1 ]
 					then
 
-						"$DIALOG_APP"      \
-							--clear         \
-							--title "ERROR" \
-							--no-collapse   \
+						"$DIALOG_APP"                                       \
+							--clear                                          \
+							--title "ERROR"                                  \
+							--no-collapse                                    \
+							--backtitle "Debian-like maintenance: Utilities" \
 							--msgbox "Application htop or top doesnot exist!" 10 50
 						[ "$DEBUG_MANTENCE" = true ] && echo "Application htop or top doesnot exist!" >&2
 						exit 1
@@ -883,10 +907,11 @@ function menu_utilities
 				MC_APP=`getAppPath 'mc'`
 				if [ "$?" -eq 1 ]
 				then
-					"$DIALOG_APP"      \
-						--title "ERROR" \
-						--clear         \
-						--no-collapse   \
+					"$DIALOG_APP"                                       \
+						--title "ERROR"                                  \
+						--clear                                          \
+						--no-collapse                                    \
+						--backtitle "Debian-like maintenance: Utilities" \
 						--msgbox "Application mc doesnot exist!" 10 50
 					[ "$DEBUG_MANTENCE" = true ] && echo "Application mc doesnot exist!" >&2
 					exit 1
@@ -906,10 +931,11 @@ function menu_utilities
 				DMESG_APP=`getAppPath 'dmesg'`
 				if [ "$?" -eq 1 ]
 				then
-					"$DIALOG_APP"      \
-						--clear         \
-						--title "ERROR" \
-						--no-collapse   \
+					"$DIALOG_APP"                                       \
+						--clear                                          \
+						--title "ERROR"                                  \
+						--no-collapse                                    \
+						--backtitle "Debian-like maintenance: Utilities" \
 						--msgbox "Application dmesg doesnot exist!" 10 50
 					[ "$DEBUG_MANTENCE" = true ] && echo "Application dmesg doesnot exist!" >&2
 					deleteCmdOutputFile "$dmesgOutputTempFile"
@@ -936,10 +962,11 @@ function menu_utilities
 				IPTRAF_APP=`getAppPath 'iptraf-ng'`
 				if [ "$?" -eq 1 ]
 				then
-					"$DIALOG_APP"      \
-						--title "ERROR" \
-						--no-collapse   \
-						--clear         \
+					"$DIALOG_APP"                                       \
+						--title "ERROR"                                  \
+						--no-collapse                                    \
+						--clear                                          \
+						--backtitle "Debian-like maintenance: Utilities" \
 						--msgbox "Application iptraf-ng doesnot exist!" 10 50
 					[ "$DEBUG_MANTENCE" = true ] && echo "Application mc doesnot exist!" >&2
 					exit 1
@@ -956,12 +983,11 @@ function menu_utilities
 					[ "$DEBUG_MANTENCE" = true ] && echo "Cannot create [$runAsRootTempFile]" >&2
 					exit 1
 				fi
-				"$DIALOG_APP"                                          \
-					--clear                                             \
-					--no-collapse                                       \
-					--title "RUN AS ROOT!"                              \
-					--backtitle "Run as Root"                           \
-					--backtitle "Debian-like mantence: Run cmd as root" \
+				"$DIALOG_APP"                                             \
+					--clear                                                \
+					--no-collapse                                          \
+					--title "Run as Root"                                  \
+					--backtitle "Debian-like maintenance: Run cmd as root" \
 					--inputbox "Run as root..." 8 40 2>$runAsRootTempFile
 
 				CMDTORUN=`cat "$runAsRootTempFile"`
@@ -1011,10 +1037,11 @@ fi
 MKTEMP_APP=`getAppPath 'mktemp'`
 if [ "$?" -eq 1 ]
 then
-	"$DIALOG_APP"      \
-		--title "ERROR" \
-		--no-collapse   \
-		--clear         \
+	"$DIALOG_APP"                            \
+		--title "ERROR"                       \
+		--no-collapse                         \
+		--clear                               \
+		--backtitle "Debian-like maintenance" \
 		--msgbox "Application mktemp doesnot exist!" 10 50
 	[ "$DEBUG_MANTENCE" = true ] && echo "Application mktemp doesnot exist!" >&2
 	exit 1
@@ -1060,22 +1087,22 @@ do
 		exit 1
 	fi
 
-	"$DIALOG_APP"                         \
-		--clear                            \
-		--title "Main Menu"                \
-		--backtitle "Debian-like mantence" \
-		--cancel-label "Exit"              \
-		--menu "Option:"                   \
-		20 50 20                           \
-		1 'Network'                        \
-		2 'HD'                             \
-		3 'Memory'                         \
-		4 'Packages'                       \
-		5 'Services'                       \
-		6 'LKM'                            \
-		7 'Sekurity'                       \
-		9 'System info'                    \
-		u 'Utilities'                      \
+	"$DIALOG_APP"                            \
+		--clear                               \
+		--title "Main Menu"                   \
+		--backtitle "Debian-like maintenance" \
+		--cancel-label "Exit"                 \
+		--menu "Option:"                      \
+		20 50 20                              \
+		1 'Network'                           \
+		2 'HD'                                \
+		3 'Memory'                            \
+		4 'Packages'                          \
+		5 'Services'                          \
+		6 'LKM'                               \
+		7 'Sekurity'                          \
+		9 'System info'                       \
+		u 'Utilities'                         \
 		2>$menuTempFile
 
 	dialogRet=$?
@@ -1087,8 +1114,6 @@ do
 
 	menu=`cat "$menuTempFile"`
 	deleteFile "$menuTempFile"
-
-	clear
 
 	case $menu in
 		1)
