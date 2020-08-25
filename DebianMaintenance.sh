@@ -27,6 +27,13 @@ function usageHelp
 
 # ---------------------------------------------
 
+function clearPrintExit
+{
+	clear
+	[ "$DEBUG_MANTENCE" = true ] && echo "$2" >&2
+	exit "$1"
+}
+
 function getAppPath
 {
 	if [ -z "$1" ]
@@ -63,21 +70,18 @@ function deleteFile
 			--no-collapse                         \
 			--backtitle "Debian-like maintenance" \
 			--msgbox "Application rm doesnot exist!" 10 50
-		[ "$DEBUG_MANTENCE" = true ] && echo "Application rm doesnot exist!" >&2
-		exit 1
+		clearPrintExit 1 "Application rm doesnot exist!"
 	fi
 
 	if [ ! -f "$1" ] || [ -z "$1" ] || [ ! -n "$1" ]
 	then
-		[ "$DEBUG_MANTENCE" = true ] && echo "RM erro [$1] didnt delete." >&2
-		exit 1
+		clearPrintExit 1 "RM erro [$1] didnt delete."
 	fi
 
 	"$RM_APP" -rf "$1"
 	if [ "$?" -ne 0 ]
 	then
-		[ "$DEBUG_MANTENCE" = true ] && echo "RM erro [$1] couldnt delete." >&2
-		exit 1
+		clearPrintExit 1 "RM erro [$1] couldnt delete."
 	fi
 
 	[ "$DEBUG_MANTENCE" = true ] && echo "RM ok [$1] deleted." >&2
@@ -134,8 +138,7 @@ function menu_network
 			--no-collapse                                  \
 			--backtitle "Debian-like maintenance: Network" \
 			--msgbox "Application ip doesnot exist!" 10 50
-		[ "$DEBUG_MANTENCE" = true ] && echo "Application ip doesnot exist!" >&2
-		exit 1
+		clearPrintExit 1 "Application ip doesnot exist!"
 	fi
 
 	while true
@@ -144,8 +147,7 @@ function menu_network
 		menuNetTempFile=`"$MKTEMP_APP" -p /tmp`
 		if [ "$?" -ne 0 ]
 		then
-			[ "$DEBUG_MANTENCE" = true ] && echo "Cannot create [$menuNetTempFile]" >&2
-			exit 1
+			clearPrintExit 1 "Cannot create [$menuNetTempFile]"
 		fi
 
 		"$DIALOG_APP"                                     \
@@ -176,8 +178,7 @@ function menu_network
 				ipaddTempFile=`"$MKTEMP_APP" -p /tmp`
 				if [ "$?" -ne 0 ]
 				then
-					[ "$DEBUG_MANTENCE" = true ] && echo "Cannot create [$ipaddTempFile]" >&2
-					exit 1
+					clearPrintExit 1 "Cannot create [$ipaddTempFile]"
 				fi
 
 				"$IP_APP" addr show > $ipaddTempFile
@@ -200,8 +201,7 @@ function menu_network
 				cfgFilesTempFile=`"$MKTEMP_APP" -p /tmp`
 				if [ "$?" -ne 0 ]
 				then
-					[ "$DEBUG_MANTENCE" = true ] && echo "Cannot create [$cfgFilesTempFile]" >&2
-					exit 1
+					clearPrintExit 1 "Cannot create [$cfgFilesTempFile]"
 				fi
 
 				dumpNetworkFilesInfos > $cfgFilesTempFile
@@ -220,8 +220,7 @@ function menu_network
 				routesTempFile=`"$MKTEMP_APP" -p /tmp`
 				if [ "$?" -ne 0 ]
 				then
-					[ "$DEBUG_MANTENCE" = true ] && echo "Cannot create [$routesTempFile]" >&2
-					exit 1
+					clearPrintExit 1 "Cannot create [$routesTempFile]"
 				fi
 
 				dumpRoutes > $routesTempFile
@@ -268,15 +267,13 @@ function menu_hd
 			--clear                                              \
 			--backtitle "Debian-like maintenance: Block Devices" \
 			--msgbox "Application lsblk doesnot exist!" 10 50
-		[ "$DEBUG_MANTENCE" = true ] && echo "Application lsblk doesnot exist!" >&2
-		exit 1
+		clearPrintExit 1 "Application lsblk doesnot exist!"
 	fi
 
 	menuHDTempFile=`"$MKTEMP_APP" -p /tmp`
 	if [ "$?" -ne 0 ]
 	then
-		[ "$DEBUG_MANTENCE" = true ] && echo "Cannot create [$menuHDTempFile]" >&2
-		exit 1
+		clearPrintExit 1 "Cannot create [$menuHDTempFile]"
 	fi
 
 	"$LSBLK_APP" -ampfz > $menuHDTempFile
@@ -312,8 +309,7 @@ function menu_sekurity
 		menuSekTempFile=`"$MKTEMP_APP" -p /tmp`
 		if [ "$?" -ne 0 ]
 		then
-			[ "$DEBUG_MANTENCE" = true ] && echo "Cannot create [$menuSekTempFile]" >&2
-			exit 1
+			clearPrintExit 1 "Cannot create [$menuSekTempFile]"
 		fi
 
 		"$DIALOG_APP"                                      \
@@ -449,22 +445,22 @@ function packagesManuallyList
 			--clear                                         \
 			--backtitle "Debian-like maintenance: Packages" \
 			--msgbox "Application apt doesnot exist!" 10 50
-		[ "$DEBUG_MANTENCE" = true ] && echo "Application apt doesnot exist!" >&2
-		exit 1
+		clearPrintExit 1 "Application apt doesnot exist!"
 	fi
 
 	menuAptTempFile=`"$MKTEMP_APP" -p /tmp`
 	if [ "$?" -ne 0 ]
 	then
-		[ "$DEBUG_MANTENCE" = true ] && echo "Cannot create [$menuAptTempFile]" >&2
-		exit 1
+		clearPrintExit 1 "Cannot create [$menuAptTempFile]"
 	fi
 
 	"$APT_APP" list --manual-installed > $menuAptTempFile
 
-	"$DIALOG_APP"    \
-		--no-collapse \
-		--clear       \
+	"$DIALOG_APP"                                      \
+		--no-collapse                                   \
+		--clear                                         \
+		--title "Manual Installed"                      \
+		--backtitle "Debian-like maintenance: Packages" \
 		--textbox "$menuAptTempFile" 20 100
 	
 	deleteCmdOutputFile "$menuAptTempFile"
@@ -483,8 +479,7 @@ function packagesList
 			--clear                                         \
 			--backtitle "Debian-like maintenance: Packages" \
 			--msgbox "Application dpkg doesnot exist!" 10 50
-		[ "$DEBUG_MANTENCE" = true ] && echo "Application dpkg doesnot exist!" >&2
-		exit 1
+		clearPrintExit 1 "Application dpkg doesnot exist!"
 	fi
 
 	menuDPkgPackTempFile=`"$MKTEMP_APP" -p /tmp`
@@ -502,8 +497,7 @@ function packagesList
 	menuDPkgTempFile=`"$MKTEMP_APP" -p /tmp`
 	if [ "$?" -ne 0 ]
 	then
-		[ "$DEBUG_MANTENCE" = true ] && echo "Cannot create [$menuDPkgTempFile]" >&2
-		exit 1
+		clearPrintExit 1 "Cannot create [$menuDPkgTempFile]"
 	fi
 
 	if [ -z "$packName" ]
@@ -537,8 +531,7 @@ function listSearchPackagesMenu
 		menuListSearchPackTempFile=`"$MKTEMP_APP" -p /tmp`
 		if [ "$?" -ne 0 ]
 		then
-			[ "$DEBUG_MANTENCE" = true ] && echo "Cannot create [$menuListSearchPackTempFile]" >&2
-			exit 1
+			clearPrintExit 1 "Cannot create [$menuListSearchPackTempFile]"
 		fi
 
 		"$DIALOG_APP"                                         \
@@ -599,8 +592,7 @@ function packageInstallRemovePurge
 		menuPackIRPTempFile=`"$MKTEMP_APP" -p /tmp`
 		if [ "$?" -ne 0 ]
 		then
-			[ "$DEBUG_MANTENCE" = true ] && echo "Cannot create [$menuPackIRPTempFile]" >&2
-			exit 1
+			clearPrintExit 1 "Cannot create [$menuPackIRPTempFile]"
 		fi
 
 		"$DIALOG_APP"                                   \
@@ -656,8 +648,7 @@ function packageInfo
 			--no-collapse                                   \
 			--backtitle "Debian-like maintenance: Packages" \
 			--msgbox "Application apt-cache doesnot exist!" 10 50
-		[ "$DEBUG_MANTENCE" = true ] && echo "Application apt-cache doesnot exist!" >&2
-		exit 1
+		clearPrintExit 1 "Application apt-cache doesnot exist!"
 	fi
 
 	menuDPkgPackTempFile=`"$MKTEMP_APP" -p /tmp`
@@ -675,8 +666,7 @@ function packageInfo
 	menuDPkgTempFile=`"$MKTEMP_APP" -p /tmp`
 	if [ "$?" -ne 0 ]
 	then
-		[ "$DEBUG_MANTENCE" = true ] && echo "Cannot create [$menuDPkgTempFile]" >&2
-		exit 1
+		clearPrintExit 1 "Cannot create [$menuDPkgTempFile]"
 	fi
 
 	"$APTCACHE_APP" show "$packName" > $menuDPkgTempFile
@@ -685,9 +675,11 @@ function packageInfo
 		echo "Package \"$packName\" not found." > $menuDPkgTempFile
 	fi
 
-	"$DIALOG_APP"    \
-		--clear       \
-		--no-collapse \
+	"$DIALOG_APP"                                      \
+		--clear                                         \
+		--no-collapse                                   \
+		--title "Packages Info"                         \
+		--backtitle "Debian-like maintenance: Packages" \
 		--textbox "$menuDPkgTempFile" 20 100
 	
 	deleteCmdOutputFile "$menuDPkgTempFile"
@@ -704,8 +696,7 @@ function menu_packages
 			--clear                                         \
 			--backtitle "Debian-like maintenance: Packages" \
 			--msgbox "Application apt doesnot exist!" 10 50
-		[ "$DEBUG_MANTENCE" = true ] && echo "Application apt doesnot exist!" >&2
-		break
+		clearPrintExit 1 "Application apt doesnot exist!"
 	fi
 
 	while true
@@ -713,8 +704,7 @@ function menu_packages
 		menuPackTempFile=`"$MKTEMP_APP" -p /tmp`
 		if [ "$?" -ne 0 ]
 		then
-			[ "$DEBUG_MANTENCE" = true ] && echo "Cannot create [$menuPackTempFile]" >&2
-			exit 1
+			clearPrintExit 1 "Cannot create [$menuPackTempFile]"
 		fi
 
 		"$DIALOG_APP"                                   \
@@ -750,7 +740,8 @@ function menu_packages
 				"$APTGET_APP" -y update
 				if [ "$?" -ne 0 ]
 				then
-					echo "apt-get update error."
+					echo 'apt-get update error. Pause. Press [ENTER].'; read
+					clear
 					exit 1
 				fi
 				;;
@@ -766,7 +757,8 @@ function menu_packages
 				"$APTGET_APP" -y upgrade
 				if [ "$?" -ne 0 ]
 				then
-					echo "apt-get upgrade error."
+					echo 'apt-get update error. Pause. Press [ENTER].'; read
+					clear
 					exit 1
 				fi
 				;;
@@ -776,7 +768,8 @@ function menu_packages
 				"$APTGET_APP" -y dist-upgrade
 				if [ "$?" -ne 0 ]
 				then
-					echo "apt-get dist-upgrade error."
+					echo 'apt-get update error. Pause. Press [ENTER].'; read
+					clear
 					exit 1
 				fi
 				;;
@@ -848,8 +841,7 @@ function menu_utilities
 		menuUtilTempFile=`"$MKTEMP_APP" -p /tmp`
 		if [ "$?" -ne 0 ]
 		then
-			[ "$DEBUG_MANTENCE" = true ] && echo "Cannot create [$menuUtilTempFile]" >&2
-			exit 1
+			clearPrintExit 1 "Cannot create [$menuUtilTempFile]"
 		fi
 
 		"$DIALOG_APP"                                    \
@@ -893,8 +885,7 @@ function menu_utilities
 							--no-collapse                                    \
 							--backtitle "Debian-like maintenance: Utilities" \
 							--msgbox "Application htop or top doesnot exist!" 10 50
-						[ "$DEBUG_MANTENCE" = true ] && echo "Application htop or top doesnot exist!" >&2
-						exit 1
+						clearPrintExit 1 "Application htop or top doesnot exist!"
 					fi
 
 					"$(TOP_APP)"
@@ -914,8 +905,7 @@ function menu_utilities
 						--no-collapse                                    \
 						--backtitle "Debian-like maintenance: Utilities" \
 						--msgbox "Application mc doesnot exist!" 10 50
-					[ "$DEBUG_MANTENCE" = true ] && echo "Application mc doesnot exist!" >&2
-					exit 1
+					clearPrintExit 1 "Application mc doesnot exist!"
 				fi
 
 				"$MC_APP"
@@ -925,8 +915,7 @@ function menu_utilities
 				dmesgOutputTempFile=`"$MKTEMP_APP" -p /tmp`
 				if [ ! -f "$dmesgOutputTempFile" ]
 				then
-					[ "$DEBUG_MANTENCE" = true ] && echo "$dmesgOutputTempFile error." >&2
-					exit 1
+					clearPrintExit 1 "$dmesgOutputTempFile error."
 				fi
 
 				DMESG_APP=`getAppPath 'dmesg'`
@@ -938,17 +927,15 @@ function menu_utilities
 						--no-collapse                                    \
 						--backtitle "Debian-like maintenance: Utilities" \
 						--msgbox "Application dmesg doesnot exist!" 10 50
-					[ "$DEBUG_MANTENCE" = true ] && echo "Application dmesg doesnot exist!" >&2
 					deleteCmdOutputFile "$dmesgOutputTempFile"
-					exit 1
+					clearPrintExit 1 "Application dmesg doesnot exist!"
 				fi
 
 				"$DMESG_APP" -P > $dmesgOutputTempFile
 				if [ "$?" -ne "0" ]
 				then
-					[ "$DEBUG_MANTENCE" = true ] && echo "dmesg return error." >&2
 					deleteCmdOutputFile "$dmesgOutputTempFile"
-					exit 1
+					clearPrintExit 1 "dmesg return error."
 				fi
 
 				"$DIALOG_APP"                                       \
@@ -971,8 +958,7 @@ function menu_utilities
 						--clear                                          \
 						--backtitle "Debian-like maintenance: Utilities" \
 						--msgbox "Application iptraf-ng doesnot exist!" 10 50
-					[ "$DEBUG_MANTENCE" = true ] && echo "Application mc doesnot exist!" >&2
-					exit 1
+					clearPrintExit 1 "Application mc doesnot exist!"
 				fi
 
 				"$IPTRAF_APP"
@@ -983,8 +969,7 @@ function menu_utilities
 				runAsRootTempFile=`"$MKTEMP_APP" -p /tmp`
 				if [ "$?" -ne 0 ]
 				then
-					[ "$DEBUG_MANTENCE" = true ] && echo "Cannot create [$runAsRootTempFile]" >&2
-					exit 1
+					clearPrintExit 1 "Cannot create [$runAsRootTempFile]"
 				fi
 				"$DIALOG_APP"                                             \
 					--clear                                                \
@@ -1001,8 +986,7 @@ function menu_utilities
 				runAsRootOutputTempFile=`"$MKTEMP_APP" -p /tmp`
 				if [ "$?" -ne 0 ]
 				then
-					[ "$DEBUG_MANTENCE" = true ] && echo "Cannot create [$runAsRootOutputTempFile]" >&2
-					exit 1
+					clearPrintExit 1 "Cannot create [$runAsRootOutputTempFile]"
 				fi
 
 				$CMDTORUN > $runAsRootOutputTempFile 2>&1
@@ -1048,15 +1032,13 @@ then
 		--clear                               \
 		--backtitle "Debian-like maintenance" \
 		--msgbox "Application mktemp doesnot exist!" 10 50
-	[ "$DEBUG_MANTENCE" = true ] && echo "Application mktemp doesnot exist!" >&2
-	exit 1
+	clearPrintExit 1 "Application mktemp doesnot exist!"
 fi
 
 DIALOG_APP=`getAppPath 'dialog'`
 if [ "$?" -eq 1 ]
 then
-	echo "Application dialog doesnot exist!" >&2
-	exit 1
+	clearPrintExit 1 "Application dialog doesnot exist!"
 fi
 
 DEBUG_MANTENCE=false
@@ -1153,8 +1135,7 @@ do
 			menuGetInfoTemFile=`"$MKTEMP_APP" -p /tmp`
 			if [ "$?" -ne 0 ]
 			then
-				[ "$DEBUG_MANTENCE" = true ] && echo "Cannot create [$menuGetInfoTemFile]" >&2
-				exit 1
+				clearPrintExit 1 "Cannot create [$menuGetInfoTemFile]"
 			fi
 
 			dumpOSInfo > $menuGetInfoTemFile
@@ -1163,9 +1144,11 @@ do
 
 			dumpHWInfo >> $menuGetInfoTemFile
 
-			"$DIALOG_APP"    \
-				--no-collapse \
-				--clear       \
+			"$DIALOG_APP"                                    \
+				--no-collapse                                 \
+				--clear                                       \
+				--title "System Info"                         \
+				--backtitle "Debian-like maintenance: System" \
 				--textbox "$menuGetInfoTemFile" 50 100
 
 			deleteCmdOutputFile "$menuGetInfoTemFile"
