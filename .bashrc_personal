@@ -75,6 +75,7 @@ alias nm='nm -A -a --demangle -l'
 alias ltrace='ltrace -S --demangle -f -i'
 alias strace='strace -i -y'              
 
+alias pyexec='python3 -m'
 alias gdbpy='python3 -m pdb'
 alias pip='pip3'
 alias actenv='source venv/bin/activate'
