@@ -1,8 +1,6 @@
-ipython3
 litecli
 http-prompt
 ecdsa
-numpy
-scipy
-matplotlib
 pudb
+
+numpy scipy matplotlib ipython jupyter pandas sympy nose
