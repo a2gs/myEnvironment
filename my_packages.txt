@@ -87,6 +87,7 @@ kompare
 linux-tools-common
 linux-tools-generic
 linux-cloud-tools-generic
+linux-headers-generic
 lshw
 lsof
 ltrace
