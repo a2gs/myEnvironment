@@ -195,6 +195,7 @@ libgmp-dev
 libgmp3-dev
 libgpgme-dev
 libgpg-error-dev
+libgpiod-dev
 libstdc++
 libmagic-dev
 libncurses5
