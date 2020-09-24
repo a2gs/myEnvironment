@@ -53,7 +53,7 @@ map ww :w<CR>
 map qa :qa<CR>
 map wa :wa<CR>
 map Q :qa!<CR>
-map wq :wa<CR>:qa<CR>
+map waq :wa<CR>:qa<CR>
 map hl :nohl<CR>
 
 map <F2> zfat
