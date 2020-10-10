@@ -59,6 +59,8 @@ map hl :nohl<CR>
 map <F2> zfat
 map <F3> zo
 
+command! CargoPlay !cargo play %
+
 " http://cscope.sourceforge.net/cscope_vim_tutorial.html
 if has('cscope')
 	set cscopetag cscopeverbose
