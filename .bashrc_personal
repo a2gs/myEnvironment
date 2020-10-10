@@ -85,6 +85,14 @@ alias updatePacks1='pip3 install -U $(pip3 freeze | cut -d '=' -f 1)'
 alias updatePacks2='pip3 install --upgrade -r requirements.txt'
 alias requirementsPacks='pip3 freeze > requirements.txt'
 
+alias crun='cargo run'
+alias cbuild='cargo build'
+alias crelease='cargo build release'
+alias cnew='cargo new -vcs git'
+alias cplay='cargo play'
+alias ccheck='cargo check'
+alias cdoc='cargo doc'
+
 alias cryptPKey="gpg --encrypt --sign --armor"
 alias decryptPKey="gpg --decrypt"
 
