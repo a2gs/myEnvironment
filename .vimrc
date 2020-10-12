@@ -46,6 +46,7 @@ set cursorline
 set tabpagemax=100
 set fileformats=unix,dos,mac
 set shell=/bin/bash
+set timeoutlen=500
 
 "map <C-c> :below terminal<CR>
 map qq :quit<CR>
