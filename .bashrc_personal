@@ -266,7 +266,7 @@ function createRs()
 		echo -e '' >> "$1".rs
 		echo -e '#[allow(non_snake_case)]' >> "$1".rs
 		echo -e '#[allow(non_camel_case_types)]' >> "$1".rs
-		echo -e '#[allow(unused_variables)]' >> "$1".rs
+		echo -e '//#[allow(unused_variables)]' >> "$1".rs
 		echo -e '' >> "$1".rs
 		echo -e '/// main' >> "$1".rs
 		echo -e '/// # Examples' >> "$1".rs
