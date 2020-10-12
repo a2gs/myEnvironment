@@ -254,7 +254,48 @@ function createCPP()
 	fi
 }
 
-function thermal(){
+function createRs()
+{
+	if [ -n "$1" ]; then
+		echo -e '//! André Augusto Giannotti Scotá' >> "$1".rs
+		echo -e '//!' >> "$1".rs
+		echo -e '//! https://sites.google.com/view/a2gs/' >> "$1".rs
+		echo -e '' >> "$1".rs
+		echo -e '//use std::env;' >> "$1".rs
+		echo -e 'use std::process;' >> "$1".rs
+		echo -e '' >> "$1".rs
+		echo -e '#[allow(non_snake_case)]' >> "$1".rs
+		echo -e '#[allow(non_camel_case_types)]' >> "$1".rs
+		echo -e '#[allow(unused_variables)]' >> "$1".rs
+		echo -e '' >> "$1".rs
+		echo -e '/// main' >> "$1".rs
+		echo -e '/// # Examples' >> "$1".rs
+		echo -e '/// ```' >> "$1".rs
+		echo -e '/// programName [param1] [param2]' >> "$1".rs
+		echo -e '///' >> "$1".rs
+		echo -e '/// Return code 0.' >> "$1".rs
+		echo -e '/// ```' >> "$1".rs
+		echo -e 'fn main()' >> "$1".rs
+		echo -e '{' >> "$1".rs
+		echo -e '\t/*' >> "$1".rs
+		echo -e '\tlet args: Vec<String> = env::args().collect();' >> "$1".rs
+		echo -e '' >> "$1".rs
+		echo -e '\tlet execName = &args[0];' >> "$1".rs
+		echo -e '\tlet param1   = &args[1];' >> "$1".rs
+		echo -e '\tlet param2   = &args[1];' >> "$1".rs
+		echo -e '' >> "$1".rs
+		echo -e '\tprintln!("Hello, world! {} {} {}", execName, param1, param2);' >> "$1".rs
+		echo -e '\t*/' >> "$1".rs
+		echo -e '' >> "$1".rs
+		echo -e '\tprocess::exit(0);' >> "$1".rs
+		echo -e '}' >> "$1".rs
+	else
+		echo -e "Usage:\n\t${FUNCNAME[0]} rust_source_to_create"
+	fi
+}
+
+function thermal()
+{
 	for (( III=0; III<`ll -d /sys/devices/platform/coretemp.? | wc -l`; III++ ))
 	do
 		echo "---[THERMAL ZONE $III]--------------------------------------"
