@@ -50,7 +50,7 @@
 		<td><a href="#django">Django</a></td>
 		<td><a href="#HTMLCharacter">HTML Character</a></td>
 		<td><a href="#CRON">Cron</a></td>
-		<td><a href="#...">...</a></td>
+		<td><a href="#OPENSSL">OpenSSL</a></td>
 	</tr>
 	<tr>
 		<td><a href="#...">...</a></td>
@@ -1582,6 +1582,7 @@ $ <i>nc -L -p <b>3001</b> -d -e <b>/bin/bash</b></i> #or <b>cmd.exe</b><br>
 
 <!-- ------------------------------------------------------------------------------------------------------------- -->
 <center><h1 id="ipifconfig"><u>ip / ifconfig</u></h1></center>
+
 <ul><li><h3>Debian</h3></li></ul><br>
 <i>/etc/network/interfaces</i><br>
 <i>auto eth0</i><br>
@@ -1692,8 +1693,6 @@ $ <i>pip3 install -r requirements.text</i><br>
 
 <!-- ------------------------------------------------------------------------------------------------------------- -->
 <center><h1 id="HTMLCharacter"><u>HTML Character</u></h1></center>
-
-<br>
 
 <table style="width:100%">
 	<tr>
@@ -1879,7 +1878,66 @@ $ <i>pip3 install -r requirements.text</i><br>
 <hr>
 
 <!-- ------------------------------------------------------------------------------------------------------------- -->
-<center><h1 id="..."><u>...</u></h1></center>
+<center><h1 id="OPENSSL"><u>OpenSSL</u></h1></center>
+
+<ul><li><h3>OpenSSL, engine and cipher information</h3></li></ul><br>
+$ <i>openssl version -a</i><br>
+$ <i>openssl ciphers -v</i><br>
+$ <i>openssl list -cipher-algorithms</i><br>
+$ <i>openssl enc -ciphers</i><br>
+$ <i>openssl engine</i><br>
+
+<br>
+
+<ul><li><h3>Symmetric</h3></li></ul><br>
+
+Encryption:<br>
+$ <i>openssl enc -e <b>-aes-256-cbc</b> -md <b>sha512</b> -pbkdf2 -iter <b>100000</b> -salt <b>-S 00AABBCCDDEEFF99</b> -base64 -in <b>text_plain.txt</b> -out <b>text_encripted.enc</b></i><br>
+
+<br>
+
+Decryption:<br>
+$ <i>openssl enc -d <b>-aes-256-cbc</b> -md <b>sha512</b> -pbkdf2 -iter <b>100000</b> -salt -base64 -in <b>text_encripted.enc</b> -out <b>text_decripted.txt</b></i><br>
+
+<br>
+
+<ul><li><h3>Hashing</h3></li></ul><br>
+
+Calculating:<br>
+$ <i>openssl dgst <b>-sha256</b> <b>text.txt</b></i><br>
+
+<br>
+
+
+<ul><li><h3>Asymmetric</h3></li></ul><br>
+
+Creating RSA Private key:<br>
+$ <i>openssl genrsa -out <b>privateKey.pem</b> <b>-aes256</b> <b>2048</b></i><br>
+
+<br>
+
+Creating Public Key from a Private Key:<br>
+$ <i>openssl rsa -in <b>privateKey.pem</b> -outform PEM -pubout -out <b>publicKey.pem</b></i><br>
+
+<br>
+
+Encryption:<br>
+$ <i>openssl rsautl -encrypt -pubin -inkey <b>publicKey.pem</b> -in <b>text_plain.txt</b> -out <b>text_encripted.enc</b></i><br>
+
+<br>
+
+Decryption:<br>
+$ <i>openssl rsautl -decrypt -inkey <b>privateKey.pem</b> -in <b>text_encripted.enc</b> -out <b>text_decripted.txt</b></i><br>
+
+<br>
+
+Signing:<br>
+$ <i>openssl rsautl -sign -inkey <b>privateKey.pem</b> -in <b>text.txt</b> -out <b>text_signed.out</b></i><br>
+
+<br>
+
+Check signed file:<br>
+$ <i>openssl rsautl -verify -pubin -inkey <b>publicKey.pem</b> -in <b>text_signed.out</b></i><br>
 
 <br>
 
