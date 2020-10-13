@@ -34,6 +34,7 @@ set shiftwidth=3
 set title
 set mouse=a
 set incsearch
+set nofoldenable
 set wildmenu
 set confirm
 set noexpandtab
