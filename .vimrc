@@ -49,13 +49,12 @@ set shell=/bin/bash
 set timeoutlen=500
 
 "map <C-c> :below terminal<CR>
-map qq :quit<CR>
-map ww :w<CR>
-map qa :qa<CR>
-map wa :wa<CR>
-map Q :qa!<CR>
-map waq :wa<CR>:qa<CR>
-map hl :nohl<CR>
+map <C-q>q :qa!<CR>
+map <C-w>w :w<CR>
+map <C-q>a :qa<CR>
+map <C-w>a :wa<CR>
+map <C-w>aq :wa<CR>:qa<CR>
+map <C-h>l :nohl<CR>
 
 map <F2> zfat
 map <F3> zo
