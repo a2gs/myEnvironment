@@ -30,11 +30,13 @@ set number
 set showcmd
 set laststatus=2
 set tabstop=3
+set shiftwidth=3
 set title
 set mouse=a
 set incsearch
 set wildmenu
 set confirm
+set noexpandtab
 "set autoindent
 set cindent
 set cino=)3;>3;<3
