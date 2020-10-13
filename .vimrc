@@ -46,6 +46,7 @@ set guifont=Courier\ 18
 set hlsearch
 set cursorline
 set tabpagemax=100
+set foldmethod=syntax
 set fileformats=unix,dos,mac
 set shell=/bin/bash
 set timeoutlen=500
