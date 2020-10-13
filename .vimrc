@@ -35,7 +35,7 @@ set mouse=a
 set incsearch
 set wildmenu
 set confirm
-set autoindent
+"set autoindent
 set cindent
 set cino=)3;>3;<3
 set comments=sr:/*,mb:*,el:*/,://
