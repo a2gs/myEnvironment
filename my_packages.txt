@@ -122,6 +122,13 @@ openssh-client
 openssh-server
 openssh-sftp-server
 openssl
+
+# for VMWare virtual machines
+# Problem with shared folder between host and virtual machines (https://kb.vmware.com/s/article/60262)
+# /etc/fstab:
+# .host:/ /mnt/hgfs fuse.vmhgfs-fuse allow_other 0 0
+#open-vm-tools
+
 pciutils
 pcmciautils
 postgresql-client
