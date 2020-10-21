@@ -133,14 +133,29 @@ $ <i>sudo systemctl enable myservice</i><br>
 <center><h1 id="SSHSSHKeys"><u>SSH / SSH Keys</u></h1></center>
 
 <ul><li><h3>Creating Asymmetric Pub/Priv keys</h3></li></ul><br>
-$ <i>ssh-keygen -o -a 200 -t <b>ed25519</b> -f <b>~/.ssh/id_ed25519_a2gs</b> -C '<b>andre.scota@gmail.com</b>'</i><br>
-$ <i>ssh-keygen -t <b>rsa</b> -b <b>4096</b> -f <b>~/.ssh/id_rsa_a2gs</b> -C '<b>andre.scota@gmail.com</b>'</i><br>
+$ <i>ssh-keygen -o -a 200 -t <b>ed25519</b> -f <b>~/.ssh/id_ed25519_a2gs</b> -C '<b>Key comment, like an email andre.scota@gmail.com</b>'</i><br>
+$ <i>ssh-keygen -t <b>rsa</b> -b <b>4096</b> -f <b>~/.ssh/id_rsa_a2gs</b> -C '<b>Key comment, like an email andre.scota@gmail.com</b>'</i><br>
+<br>
+[<i>-t <b>dsa</b></i>]<br>
+[<i>-t <b>ecdsa</b> -b <b>521</b></i>]<br>
+[<i>-t <b>ed25519</b></i>]<br>
+[<i>-l -f <b>~/.ssh/user-key-output</b></i>&nbsp;&nbsp;&nbsp;&nbsp;Printing fingerprint]<br>
+
+<br>
+
+<ul><li><h3>Copying the Public Key to the Server (to an 'user' from a 'host'):</h3></li></ul><br>
+<i>ssh-copy-id -i <b>~/.ssh/user-key-output user@host</b></i><br>
 
 <br>
 
 <ul><li><h3>Adding key to agent</h3></li></ul><br>
 $ <i>ssh-add <b>~/.ssh/id_rsa_a2gs</b></i><br>
 $ <i>ssh-add <b>~/.ssh/id_ed25519_a2gs</b></i><br>
+<br>
+[<i>-l </i>/ <i>-L</i>&nbsp;&nbsp;&nbsp;&nbsp;List privete keys fingerprints / List public keys]<br>
+[<i>-d</i> / <i>-D</i>&nbsp;&nbsp;&nbsp;&nbsp;Delete]<br>
+[<i>-t <b>life</b></i>&nbsp;&nbsp;&nbsp;&nbsp;Sets the maximum time the agent will keep the given key]<br>
+[<i>-x</i> / <i>-X</i>&nbsp;&nbsp;&nbsp;&nbsp;Lock/Unlock agent]<br>
 
 <br>
 
