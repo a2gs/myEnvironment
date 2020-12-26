@@ -2,5 +2,6 @@ litecli
 http-prompt
 ecdsa
 pudb
+pyqt5
 
 numpy scipy matplotlib ipython jupyter pandas sympy nose
