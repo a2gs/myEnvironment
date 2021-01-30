@@ -306,6 +306,24 @@ function createRs()
 	fi
 }
 
+function createHTML()
+{
+	if [ -n "$1" ]; then
+		echo -e '<!-- Andre Augusto Giannotti Scota - andre.scota@gmail.com -->' >> "$1".html
+		echo -e '<!DOCTYPE html>' >> "$1".html
+		echo -e '<html>' >> "$1".html
+		echo -e '<head>' >> "$1".html
+		echo -e '<meta charset="utf-8">' >> "$1".html
+		echo -e '<title></title>' >> "$1".html
+		echo -e '</head>' >> "$1".html
+		echo -e '<body>' >> "$1".html
+		echo -e '</body>' >> "$1".html
+		echo -e '</html>' >> "$1".html
+	else
+		echo -e "Usage:\n\t${FUNCNAME[0]} html_file_to_create"
+	fi
+}
+
 function thermal()
 {
 	for (( III=0; III<`ll -d /sys/devices/platform/coretemp.? | wc -l`; III++ ))
