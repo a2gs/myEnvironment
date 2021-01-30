@@ -309,7 +309,7 @@ function createRs()
 function createHTML()
 {
 	if [ -n "$1" ]; then
-		echo -e '<!-- Andre Augusto Giannotti Scota - andre.scota@gmail.com -->' >> "$1".html
+		echo -e '<!-- Andre Augusto Giannotti Scota (https://sites.google.com/view/a2gs/) -->' >> "$1".html
 		echo -e '<!DOCTYPE html>' >> "$1".html
 		echo -e '<html>' >> "$1".html
 		echo -e '<head>' >> "$1".html
