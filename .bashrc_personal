@@ -76,7 +76,7 @@ alias nm='nm -A -a --demangle -l'
 alias ltrace='ltrace -S --demangle -f -i'
 alias strace='strace -i -y'
 
-alias gitlog='git log --decorate=full --graph --all'
+alias gitlog='git log --decorate=full --graph --all --raw'
 
 alias pyexec='python3 -m'
 alias gdbpy='python3 -m pdb'
