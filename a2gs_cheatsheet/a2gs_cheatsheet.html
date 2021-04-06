@@ -159,6 +159,13 @@ $ <i>ssh-add <b>~/.ssh/id_ed25519_a2gs</b></i><br>
 
 <br>
 
+<ul><li><h3>Agent</h3></li></ul><br>
+
+Starting gpg-agent (can be placed into .bashrc):<br>
+$ <i>eval $(ssh-agent)</i><br>
+
+<br>
+
 <ul><li><h3>SSH Tunneling / Forwarding</h3></li></ul><br>
 
 <hr>
@@ -239,6 +246,14 @@ Encrypts to a key stored in the given file: <i>--recipient-file <b>public_key_fi
 
 Decrypt data:<br>
 $ <i>gpg --decrypt <b>file_to_decrypt.txt.gpg</b></i><br>
+
+<br>
+
+Agent:<br>
+
+Starting gpg-agent (can be placed into .bashrc):<br>
+$ <i>eval $(gpg-agent --daemon --enable-ssh-support)<br>
+
 <br>
 
 <hr>
