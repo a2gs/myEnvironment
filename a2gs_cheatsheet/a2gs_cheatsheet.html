@@ -252,7 +252,7 @@ $ <i>gpg --decrypt <b>file_to_decrypt.txt.gpg</b></i><br>
 Agent:<br>
 
 Starting gpg-agent (can be placed into .bashrc):<br>
-$ <i>eval $(gpg-agent --daemon --enable-ssh-support)<br>
+$ <i>eval $(gpg-agent --daemon --enable-ssh-support)</i><br>
 
 <br>
 
@@ -1412,8 +1412,10 @@ $ <i>git revert <b>hash_to_revert</b></i><br>
 <br>
 
 <ul><li><h3>Local Undo changes</h3></li></ul><br>
-$ <i>git reset <b>hash_to_revert</b></i><br>
-$ <i>git reset --hard <b>hash_to_revert</b></i><br>
+$ <i>git reset [--hard] <b>hash_to_revert</b></i><br>
+<i>--hard</i> will remove the commited alterations from source file. To keep them but revert the commit, do not use --hard.<br>
+Ex1: $ <i>git reset --hard HEAD^</i><br>(To revert the last commit deleting alterations)<br>
+Ex2: $ <i>git reset HEAD~2</i><br>(To revert the TWO last commit keeping alterations)<br>
 
 <br>
 
