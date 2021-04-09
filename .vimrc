@@ -63,6 +63,11 @@ map <C-h>l :nohl<CR>
 map <F2> zfat
 map <F3> zo
 
+augroup python
+    autocmd!
+    autocmd FileType python setlocal noexpandtab tabstop=3 shiftwidth=3 softtabstop=3
+augroup end
+
 command! CargoPlay !cargo play %
 
 " http://cscope.sourceforge.net/cscope_vim_tutorial.html
