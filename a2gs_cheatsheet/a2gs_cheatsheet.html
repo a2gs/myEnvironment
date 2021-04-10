@@ -32,7 +32,7 @@
 		<td><a href="#GDB">GDB</a></td>
 	</tr>
 	<tr>
-		<td><a href="#VIm">VIm</a></td>
+		<td><a href="#VIm">VIm</a> / <a href="#VImDiff">VImDiff</a></td>
 		<td><a href="#Docker">Docker</a></td>
 		<td><a href="#Tmux">Tmux</a></td>
 		<td><a href="#GRUB">GRUB</a></td>
@@ -264,7 +264,7 @@ $ <i>eval $(gpg-agent --daemon --enable-ssh-support)</i><br>
 
 <hr>
 <!-- ------------------------------------------------------------------------------------------------------------- -->
-<center><h1 id="VIm"><u>VIm</u></h1></center>
+<center><h1 id="VIm"><u>VIm / VImDiff</u></h1></center>
 
 <ul><li><h3>Global</h3></li></ul><br>
 <table style="width:100%" >
@@ -985,6 +985,36 @@ class MappingSubclass(Mapping):             # ]] or ]m]m
 	<tr>
 		<td>:tabdo command</td>
 		<td>run the command on all tabs (e.g. :tabdo q - closes all opened tabs)</td>
+	</tr>
+</table>
+
+<br>
+
+<ul><li><h3 id="VImDiff">VImDiff</h3></li></ul><br>
+<table style="width:100%">
+	<tr>
+		<td>dp or :diffput</td>
+		<td>puts changes under the cursor into the other file</td>
+	</tr>
+	<tr>
+		<td>do or :diffget</td>
+		<td>the change under the cursor is replaced by the content of the other file</td>
+	</tr>
+	<tr>
+		<td>]c</td>
+		<td>jump to the next diff</td>
+	</tr>
+	<tr>
+		<td>[c</td>
+		<td>jump to the previous diff</td>
+	</tr>
+	<tr>
+		<td>:diffoff</td>
+		<td>to turn off diff mode</td>
+	</tr>
+	<tr>
+		<td>:diffthis</td>
+		<td>to turn on diff mode</td>
 	</tr>
 </table>
 
