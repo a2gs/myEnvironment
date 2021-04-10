@@ -2,6 +2,9 @@
 " a2gs .vimrc
 """"""""""""""""""""""
 
+set encoding=utf-8
+set nocompatible
+
 function! GitBranch()
 	return system("git rev-parse --abbrev-ref HEAD 2>/dev/null | tr -d '\n'")
 endfunction
@@ -12,7 +15,7 @@ function! StatuslineGit()
 endfunction
 
 set statusline=
-set statusline+=%{StatuslineGit()}
+"set statusline+=%{StatuslineGit()}
 set statusline+=\ %f
 set statusline+=%m
 set statusline+=%=
@@ -27,10 +30,13 @@ syntax enable
 color torte
 set nowrap
 set number
+set noerrorbells
+set showmatch
 set showcmd
 set laststatus=2
 set tabstop=3
 set shiftwidth=3
+set softtabstop=3
 set title
 set mouse=a
 set incsearch
@@ -39,6 +45,7 @@ set wildmenu
 set confirm
 set noexpandtab
 "set autoindent
+set nosmartindent
 set cindent
 set cino=)3;>3;<3
 set comments=sr:/*,mb:*,el:*/,://
@@ -46,6 +53,7 @@ set formatoptions=croql
 set guifont=Courier\ 18
 set hlsearch
 set cursorline
+set backspace=indent,eol,start
 set tabpagemax=100
 set foldmethod=syntax
 set fileformats=unix,dos,mac
@@ -64,7 +72,6 @@ map <F2> zfat
 map <F3> zo
 
 augroup python
-    autocmd!
     autocmd FileType python setlocal noexpandtab tabstop=3 shiftwidth=3 softtabstop=3
 augroup end
 
