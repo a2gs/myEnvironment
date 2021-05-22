@@ -37,6 +37,8 @@ set laststatus=2
 set tabstop=3
 set shiftwidth=3
 set softtabstop=3
+set cindent
+set cino=)3;>3;<3
 set title
 set mouse=a
 set incsearch
@@ -46,8 +48,6 @@ set confirm
 set noexpandtab
 "set autoindent
 set nosmartindent
-set cindent
-set cino=)3;>3;<3
 set comments=sr:/*,mb:*,el:*/,://
 set formatoptions=croql
 set guifont=Courier\ 18
