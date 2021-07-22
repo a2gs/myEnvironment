@@ -26,8 +26,7 @@ export HISTCONTROL=$HISTCONTROL:ignoreboth
 
 export PYTHONSTARTUP="$HOME/.pystartup"
 
-#export PS1="\e[01;34m--- [\e[01;32m\u\e[00m@\e[01;31m\h\e[00m \t \D{%d/%m/%Y}\e[01;34m] ---------------------\e[00m\n\w \$ "
-export PS1="\e[01;34m--- [\e[01;32m\u\e[00m@\e[01;31m\h\e[01;34m] - [\e[01;33m\w\e[01;34m] ---\e[00m\n\$ "
+export PS1="\e[01;34m--- [\e[01;32m\u\e[01;34m@\e[01;31m\h\e[01;34m:\e[01;33m\w\e[01;34m] ---\e[00m\n\$ "
 export PS2="block $PS2"
 export PS4="sh debug> "
 
