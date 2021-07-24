@@ -141,7 +141,7 @@ function createSh()
 {
 	if [ -n "$1" ]; then
 		echo -e "#!/usr/bin/env bash\n" >> "$1".sh
-		echo -e "# Andre Augusto Giannotti Scota (https://sites.google.com/view/a2gs/)\n" >> "$1".sh
+		echo -e "# Andre Augusto Giannotti Scota (https://sites.google.com/view/a2gs/  andre.scota@gmail.com)\n" >> "$1".sh
 		echo -e "# Script exit if a command fails:" >> "$1".sh
 		echo -e "#set -e" >> "$1".sh
 		echo -e "#OR set -o errexit\n" >> "$1".sh
@@ -161,7 +161,7 @@ function createSh()
 function createC()
 {
 	if [ -n "$1" ]; then
-		echo -e '# Andre Augusto Giannotti Scota (https://sites.google.com/view/a2gs/)' >> makefile
+		echo -e '# Andre Augusto Giannotti Scota (https://sites.google.com/view/a2gs/  andre.scota@gmail.com)' >> makefile
 		echo -e '# C flags:' >> makefile
 		echo -e 'CFLAGS_OPTIMIZATION = -g' >> makefile
 		echo -e '#CFLAGS_OPTIMIZATION = -O3' >> makefile
@@ -194,7 +194,7 @@ function createC()
 		echo -e '\t@echo "=== clean_data =============="' >> makefile
 		echo -e '\t-$(RM) '$1' core' >> makefile
 
-		echo -e '/* Andre Augusto Giannotti Scota (https://sites.google.com/view/a2gs/) */' >> "$1".c
+		echo -e '/* Andre Augusto Giannotti Scota (https://sites.google.com/view/a2gs/  andre.scota@gmail.com) */' >> "$1".c
 		echo -e '#include <stdio.h>' >> "$1".c
 		echo -e '#include <stdlib.h>' >> "$1".c
 		echo -e '#include <unistd.h>' >> "$1".c
@@ -219,7 +219,7 @@ function createC()
 function createCPP()
 {
 	if [ -n "$1" ]; then
-		echo -e '# Andre Augusto Giannotti Scota (https://sites.google.com/view/a2gs/)' >> makefile
+		echo -e '# Andre Augusto Giannotti Scota (https://sites.google.com/view/a2gs/  andre.scota@gmail.com)' >> makefile
 		echo -e '# CPP flags:' >> makefile
 		echo -e 'CPP = g++' >> makefile
 		echo -e '#CPPFLAGS_VERSION = -std=c++11' >> makefile
@@ -243,7 +243,7 @@ function createCPP()
 		echo -e '\t@echo "=== clean_data =============="' >> makefile
 		echo -e '\t-$(RM) '$1' core' >> makefile
 
-		echo -e '/* Andre Augusto Giannotti Scota (https://sites.google.com/view/a2gs/) */' >> "$1".cpp
+		echo -e '/* Andre Augusto Giannotti Scota (https://sites.google.com/view/a2gs/  andre.scota@gmail.com) */' >> "$1".cpp
 		echo -e '#include <iostream>' >> "$1".cpp
 		echo -e '#include <iomanip>' >> "$1".cpp
 		echo -e '#include <vector>' >> "$1".cpp
@@ -272,7 +272,7 @@ function createRs()
 	if [ -n "$1" ]; then
 		echo -e '//! André Augusto Giannotti Scotá' >> "$1".rs
 		echo -e '//!' >> "$1".rs
-		echo -e '//! https://sites.google.com/view/a2gs/' >> "$1".rs
+		echo -e '//! https://sites.google.com/view/a2gs/  andre.scota@gmail.com' >> "$1".rs
 		echo -e '' >> "$1".rs
 		echo -e '//use std::env;' >> "$1".rs
 		echo -e 'use std::process;' >> "$1".rs
@@ -311,7 +311,7 @@ function createRs()
 function createHTML()
 {
 	if [ -n "$1" ]; then
-		echo -e '<!-- Andre Augusto Giannotti Scota (https://sites.google.com/view/a2gs/) -->' >> "$1".html
+		echo -e '<!-- Andre Augusto Giannotti Scota (https://sites.google.com/view/a2gs/  andre.scota@gmail.com) -->' >> "$1".html
 		echo -e '<!DOCTYPE html>' >> "$1".html
 		echo -e '<html>' >> "$1".html
 		echo -e '<head>' >> "$1".html
