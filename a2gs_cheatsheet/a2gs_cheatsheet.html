@@ -15,6 +15,9 @@
 			text-align: left;
 			padding: 8px;
 		}
+		td {
+			white-space:nowrap;
+		}
 	</style>
 
 </head>
@@ -23,7 +26,7 @@
 
 <center><h1><a href="https://sites.google.com/view/a2gs/">A2GS CheatSheet</a></h1></center>
 
-<table style="width:100%" >
+<table style="width:100%">
 	<tr>
 		<td><a href="#DPKG">DPKG</a></td>
 		<td><a href="#SystemD">SystemD</a></td>
@@ -260,6 +263,162 @@ $ <i>eval $(gpg-agent --daemon --enable-ssh-support)</i><br>
 <!-- ------------------------------------------------------------------------------------------------------------- -->
 <center><h1 id="GDB"><u>GDB</u></h1></center>
 
+<ul><li><h3>Infos</h3></li></ul><br>
+<table style="width:100%">
+	<tr>
+		<td>(gdb) pwd</td>
+		<td></td>
+	</tr>
+	<tr>
+		<td>(gdb) show directories</td>
+		<td></td>
+	</tr>
+	<tr>
+		<td>(gdb) info source</td>
+		<td></td>
+	</tr>
+</table>
+
+<br>
+
+<ul><li><h3>Environment</h3></li></ul><br>
+<table style="width:100%">
+	<tr>
+		<td>show paths</td>
+		<td>Display the list of search paths for executables (the PATH environment variable)</td>
+	</tr>
+	<tr>
+		<td>show environment [varname]<br>set environment varname [=value]<br>unset environment varname</td>
+		<td>Print the value of environment variable varname to be given to your program when it starts. If you do not supply varname, print the names and values of all environment variables to be given to your program. You can abbreviate environment as env.<br>Set environment variable varname to value. The value changes for your program only, not for GDB itself. value may be any string; the values of environment variables are just strings, and any interpretation is supplied by your program itself. The value parameter is optional; if it is eliminated, the variable is set to a null value.</td>
+	</tr>
+</table>
+
+<br>
+
+<ul><li><h3>Parameters</h3></li></ul><br>
+<table style="width:100%">
+	<tr>
+		<td>./gdb -d [PATH]</td>
+		<td>To load source</td>
+	</tr>
+	<tr>
+		<td>./gdb -p [XXX]<br>(gdb) attach  [PIDnum]<br>detach</td>
+		<td>Attach a process</td>
+	</tr>
+	<tr>
+		<td>./gdb -c coredump</td>
+		<td></td>
+	</tr>
+</table>
+
+<br>
+
+<ul><li><h3>Breakpoints And Watchpoints</h3></li></ul><br>
+<table style="width:100%">
+	<tr>
+		<td>break [function|linenum|filename:linenum]</td>
+		<td>Set a breakpoint at entry to function function/linenum/filename:linenum</td>
+	</tr>
+	<tr>
+		<td>watch [var]<br>rwatch [var]<br>awatch [var]</td>
+		<td>Will break when var is written into by the program and its value changes.<br>Will break when the value of var is read by the program.<br>Will break when var is either read from or written into by the program.</td>
+	</tr>
+	<tr>
+		<td>info break<br>info watchpoints</td>
+		<td>Print a table of all breakpoints and watchpoints</td>
+	</tr>
+	<tr>
+		<td>delete [n]</td>
+		<td>Delete the breakpoints and watchpoints</td>
+	</tr>
+	<tr>
+		<td>enable [n]<br>disable [n]</td>
+		<td>Enable/Disable the specified breakpoints</td>
+	</tr>
+	<tr>
+		<td>conditional [n] [expression]</td>
+		<td>Specify expression as the break condition for breakpoint and watchpoint</td>
+	</tr>
+</table>
+
+<br>
+
+<ul><li><h3>TUI</h3></li></ul><br>
+<table style="width:100%">
+	<tr>
+		<td></td>
+		<td></td>
+	</tr>
+	<tr>
+		<td></td>
+		<td></td>
+	</tr>
+</table>
+
+<br>
+
+<ul><li><h3>C++</h3></li></ul><br>
+<table style="width:100%">
+	<tr>
+		<td>set print vtbl on</td>
+		<td></td>
+	</tr>
+	<tr>
+		<td>info vtbl</td>
+		<td>Useful for inheritance or polymorfism</td>
+	</tr>
+</table>
+
+<br>
+
+<ul><li><h3>Fork</h3></li></ul><br>
+<table style="width:100%">
+	<tr>
+		<td>set follow-fork-mode [parent | child]</td>
+		<td></td>
+	</tr>
+	<tr>
+		<td>show follow-fork-mode</td>
+		<td></td>
+	</tr>
+	<tr>
+		<td>(gdb) attach  PIDnum</td>
+		<td></td>
+	</tr>
+	<tr>
+		<td>detach</td>
+		<td></td>
+	</tr>
+</table>
+
+<br>
+
+<ul><li><h3>Signal</h3></li></ul><br>
+<table style="width:100%">
+	<tr>
+		<td></td>
+		<td></td>
+	</tr>
+	<tr>
+		<td></td>
+		<td></td>
+	</tr>
+</table>
+
+<br>
+
+<ul><li><h3>Threads</h3></li></ul><br>
+<table style="width:100%">
+	<tr>
+		<td>info threads</td>
+		<td></td>
+	</tr>
+	<tr>
+		<td>thread [n]</td>
+		<td></td>
+	</tr>
+</table>
+
 <br>
 
 <hr>
@@ -267,7 +426,7 @@ $ <i>eval $(gpg-agent --daemon --enable-ssh-support)</i><br>
 <center><h1 id="VIm"><u>VIm / VImDiff</u></h1></center>
 
 <ul><li><h3>Global</h3></li></ul><br>
-<table style="width:100%" >
+<table style="width:100%">
 	<tr>
 		<td>:help keyword</td>
 		<td>open help for keyword</td>
@@ -967,8 +1126,8 @@ class MappingSubclass(Mapping):             # ]] or ]m]m
 		<td>move the current split window into its own tab</td>
 	</tr>
 	<tr>
-		<td>gt or :tabnext or :tabn // gT or :tabprev or :tabp</td>
-		<td>move to the next tab // move to the previous tab</td>
+		<td>gt or :tabnext or :tabn<br>gT or :tabprev or :tabp</td>
+		<td>move to the next tab<br>move to the previous tab</td>
 	</tr>
 	<tr>
 		<td>:tabmove</td>
@@ -1169,11 +1328,11 @@ $ <i>docker service ps <b>web</b></i><br>
 <table style="width:100%">
 	<tr>
 		<td><i>%</i></td>
-		<td>Create a new horizontal pane</td>
+		<td>Create a new vertical pane</td>
 	</tr>
 	<tr>
 		<td><i>&quot;</i></td>
-		<td>Create a new vertical pane</td>
+		<td>Create a new horizontal pane</td>
 	</tr>
 	<tr>
 		<td><i>x</i></td>
