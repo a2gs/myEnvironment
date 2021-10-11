@@ -67,6 +67,8 @@ map <C-q>a :qa<CR>
 map <C-w>a :wa<CR>
 map <C-w>aq :wa<CR>:qa<CR>
 map <C-h>l :nohl<CR>
+map <C-o>o :tabnew<CR>:e .<CR>
+map <C-o>n :tabnew<CR>
 
 map <F2> zfat
 map <F3> zo
