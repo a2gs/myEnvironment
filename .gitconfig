@@ -3,6 +3,7 @@
 	username = a2gs
 	email = andre.scota@gmail.com
 	signingkey = 00A3DC0AB4844BF1
+#	signingkey = ssh-ed25519 andre.scota@gmail.com
 [core]
 	editor = vim
 [commit]
@@ -14,3 +15,6 @@
 	prompt = false
 [help]
 	autocorrect = 1
+[gpg]
+	format = x509
+#	format = ssh
