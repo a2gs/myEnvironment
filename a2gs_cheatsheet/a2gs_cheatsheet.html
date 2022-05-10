@@ -2175,19 +2175,40 @@ $ <i>openssl rsautl -verify -pubin -inkey <b>publicKey.pem</b> -in <b>text_signe
 <br>
 
 Ctags:<br>
-(To search for a specific tag and open Vim to its definition, run the following command in your shell: vim -t &lt;tag&gt;)<br>
+PS1: To search for a specific tag and open Vim to its definition, run the following command in your shell: vim -t <i>&lt;tag&gt;</i><br>
+PS2: Ctrl+rw pastes the word under cursor in command mode.<br>
 <table style="width:100%">
 	<tr>
-		<td>Ctrl + ]<br>g]<br>:ta[g] Ctrl+rw</td>
+		<td>Ctrl + ]<br>g]<br>:ta[g] Ctrl+rw<br>:ta[g] <i>&lt;tag_name&gt;</i></td>
 		<td>Jump to the tag</td>
 	</tr>
 	<tr>
-		<td>:ts[elect] &lt;tag_name&gt;</td>
+		<td>Ctrl+w ]</td>
+		<td>Open the definition in a horizontal split, moving the cursor</td>
+	</tr>
+	<tr>
+		<td>:ts[elect] Ctrl+rw<br>:ts[elect] <i>&lt;tag_name&gt;</i></td>
 		<td>List the tags that match &lt;tag_name&gt;. When &lt;tag_name&gt; is not given, the last tag name from the tag stack is used</td>
 	</tr>
 	<tr>
-		<td>:pts[elect] &lt;tag_name&gt;</td>
+		<td>:pts[elect] Ctrl+rw<br>:pts[elect] <i>&lt;tag_name&gt;</i></td>
 		<td>Does :tselect and shows the new tag in a "Preview" window (horizontal split) without moving the cursor</td>
+	</tr>
+	<tr>
+		<td>:tn</td>
+		<td>Jump to next matching tag (If there are multiple matches)</td>
+	</tr>
+	<tr>
+		<td>:tp</td>
+		<td>Jump to previous matching tag (If there are multiple matches)</td>
+	</tr>
+	<tr>
+		<td>Ctrl+t</td>
+		<td>Jump back up in the tag stack</td>
+	</tr>
+	<tr>
+		<td>:tags</td>
+		<td>Show the contents of the tag stack</td>
 	</tr>
 </table>
 
