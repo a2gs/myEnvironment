@@ -56,7 +56,7 @@
 		<td><a href="#OPENSSL">OpenSSL</a></td>
 	</tr>
 	<tr>
-		<td><a href="#...">...</a></td>
+		<td><a href="#ctagscscope">CTags / CScope</a></td>
 		<td><a href="#...">...</a></td>
 		<td><a href="#...">...</a></td>
 		<td><a href="#...">...</a></td>
@@ -2170,7 +2170,31 @@ $ <i>openssl rsautl -verify -pubin -inkey <b>publicKey.pem</b> -in <b>text_signe
 <hr>
 
 <!-- ------------------------------------------------------------------------------------------------------------- -->
-<center><h1 id="..."><u>...</u></h1></center>
+<center><h1 id="ctagscscope"><u>Ctags / CScope</u></h1></center>
+
+<br>
+
+Ctags:<br>
+(To search for a specific tag and open Vim to its definition, run the following command in your shell: vim -t &lt;tag&gt;)<br>
+<table style="width:100%">
+	<tr>
+		<td>Ctrl + ]<br>g]<br>:ta[g] Ctrl+rw</td>
+		<td>Jump to the tag</td>
+	</tr>
+	<tr>
+		<td>:ts[elect] &lt;tag_name&gt;</td>
+		<td>List the tags that match &lt;tag_name&gt;. When &lt;tag_name&gt; is not given, the last tag name from the tag stack is used</td>
+	</tr>
+	<tr>
+		<td>:pts[elect] &lt;tag_name&gt;</td>
+		<td>Does :tselect and shows the new tag in a "Preview" window (horizontal split) without moving the cursor</td>
+	</tr>
+</table>
+
+<br>
+
+CScope:<br>
+abc<p>
 
 <br>
 
