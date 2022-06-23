@@ -25,6 +25,7 @@ export EDITOR=vim
 export BC_ENV_ARGS=~/.bcrc
 export MINICOM='-con'
 export HISTCONTROL=$HISTCONTROL:ignoreboth
+export HISTTIMEFORMAT='%F %T  '
 
 export PYTHONSTARTUP="$HOME/.pystartup"
 
