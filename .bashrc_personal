@@ -22,6 +22,7 @@ setxkbmap -model abnt2 -layout br
 set -o vi
 
 export EDITOR=vim
+export VISUAL=vim
 export BC_ENV_ARGS=~/.bcrc
 export MINICOM='-con'
 export HISTCONTROL=$HISTCONTROL:ignoreboth
