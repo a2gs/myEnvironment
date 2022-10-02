@@ -39,6 +39,7 @@ alias lt='ls -laFtr'
 alias la='ls -A'
 alias l='ls -aF'
 alias lsz='ls --human-readable --size -1 -S -laF --classify'
+alias dirsize='du -shkc'
 
 alias vi='vim -p'
 alias me="ps -Ho pid,ppid,uid,lstart,stat,ni,vsz,cmd --forest -U $USER"
