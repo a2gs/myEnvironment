@@ -58,12 +58,6 @@ alias updateOS='sudo apt-get -y update && sudo apt-get -y dist-upgrade && sudo a
 alias updateList1='sudo apt-get -u upgrade --assume-no'
 alias updateList2='apt --simulate upgrade'
 
-alias myGlobalIPAddress1='dig +short myip.opendns.com @resolver1.opendns.com'
-alias myGlobalIPAddress2='host myip.opendns.com resolver1.opendns.com | grep "myip.opendns.com has" | awk "{print $4}"'
-alias myGlobalIPAddress3='wget -qO - icanhazip.com'
-alias myGlobalIPAddress4='curl ifconfig.me'
-alias myGlobalIPAddress5='curl ifconfig.co'
-alias myGlobalIPAddress6='curl icanhazip.com'
 alias connections1='lsof -iTCP -sTCP:ESTABLISHED'
 alias connections2='ss -tulpn'
 alias connections3='netstat -tupn'
