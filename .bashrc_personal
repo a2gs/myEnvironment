@@ -342,6 +342,27 @@ function createHTML()
 	fi
 }
 
+function getMyGlobalIp()
+{
+	ipv4srv='ifconfig.me
+ipinfo.io/ip
+api.ipify.org
+ipecho.net/plain
+wtfismyip.com/json'
+
+	echo 'IP4:'
+	for i in $ipv4srv;
+	do
+		curl $i
+		echo
+	done
+
+	echo 'IP6:'
+		host myip.opendns.com resolver1.opendns.com | grep "myip.opendns.com has" | awk "{print $4}"
+		wget -qO - icanhazip.com
+		curl icanhazip.com
+}
+
 function thermal()
 {
 	for (( III=0; III<`ll -d /sys/devices/platform/coretemp.? | wc -l`; III++ ))
