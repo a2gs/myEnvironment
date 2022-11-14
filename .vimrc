@@ -60,6 +60,10 @@ set fileformats=unix,dos,mac
 set shell=/bin/bash
 set timeoutlen=500
 
+nnoremap <F4> :set invpaste paste?<CR>
+set pastetoggle=<F4>
+set showmode
+
 "map <C-c> :below terminal<CR>
 map <C-q>q :qa!<CR>
 map <C-w>w :w<CR>
