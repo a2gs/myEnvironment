@@ -100,6 +100,11 @@ alias decryptPKey="gpg --decrypt"
 
 export PYTHONBREAKPOINT=pudb.set_trace
 
+function pause()
+{
+	read -p "$*"
+}
+
 function cryptAES256()
 {
 	if [ -n "$1" ]; then
