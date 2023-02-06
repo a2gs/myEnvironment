@@ -34,6 +34,8 @@ export PS1="\e[01;34m--- [\e[01;32m\u\e[01;34m@\e[01;31m\h\e[01;34m:\e[01;33m\w\
 export PS2="block $PS2"
 export PS4="sh debug> "
 
+alias 0='printf "\ec"'
+
 alias ll='ls -laF'
 alias lt='ls -laFtr'
 alias la='ls -A'
