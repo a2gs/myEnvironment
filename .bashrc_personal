@@ -343,6 +343,56 @@ function createHTML()
 	fi
 }
 
+function dump_cvs()
+{
+	function dump_cvs_help()
+	{
+		echo -e "Usage:\n"
+		echo -e "$1 -f<FILE> -w<N> -c 's' -n -h"
+		echo -e "\t-f\tFile"
+		echo -e "\t-w\tColumn size"
+		echo -e "\t-c\tSeparator"
+		echo -e "\t-n\tPrint line number"
+		echo -e "\t-h\tHelp"
+	}
+
+	file=''
+	sepchar=';'
+	linenum=0
+	colSz=20
+
+	OPTIND=1
+	while getopts ":f:c:nw:h" opt
+	do
+		case "$opt" in
+			f) file="$OPTARG" ;;
+			c) sepchar="$OPTARG" ;;
+			n) linenum=1 ;;
+			w) colSz="$OPTARG" ;;
+			h) dump_cvs_help "$FUNCNAME"
+				return 0 ;;
+			:)
+				echo -e "Error: -${OPTARG} requires an argument.\n-h to see help."
+				return 1 ;;
+			*)
+				echo -e "Unknow option: -${OPTARG}\n-h to see help."
+				return 1 ;;
+		esac
+	done
+
+	awk -F "$sepchar" -v cs="$colSz" -v ln="$linenum" -v sp="$sepchar" '
+		BEGIN{
+			FS = sp
+		}
+		{
+			if(ln == 1)
+				printf("%07d: ", NR)
+
+			for(i = 1; i <= NF; i++)
+				printf("%-" cs "s%s", substr($i, 1, cs), ((i==NF) ? "\n" : "|"))
+		}' "$file"
+}
+
 function getMyGlobalIp()
 {
 	ipv4srv='ifconfig.me
