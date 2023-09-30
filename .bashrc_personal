@@ -46,7 +46,6 @@ alias less='less -SNKIM'
 alias vi='vim -p'
 alias me="ps -Ho pid,ppid,uid,lstart,stat,ni,vsz,cmd --forest -U $USER"
 alias top='htop -d1'
-alias dmesg='dmesg; cut -d " " -f 1 /proc/uptime'
 alias topMemUsage='ps -eo pid,ppid,cmd,%mem,%cpu --sort=-%mem | head -20'
 alias displayoff='xset dpms force off'
 alias bc='bc -lq'
