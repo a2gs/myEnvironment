@@ -60,8 +60,8 @@ set fileformats=unix,dos,mac
 set shell=/bin/bash
 set timeoutlen=500
 
-nnoremap <F4> :set invpaste paste?<CR>
-set pastetoggle=<F4>
+nnoremap <F5> :set invpaste paste?<CR>
+set pastetoggle=<F5>
 set showmode
 
 "map <C-c> :below terminal<CR>
@@ -76,6 +76,7 @@ map <C-o>n :tabnew<CR>
 
 map <F2> zfat
 map <F3> zo
+map <F4> zc
 
 augroup python
     autocmd FileType python setlocal noexpandtab tabstop=3 shiftwidth=3 softtabstop=3
