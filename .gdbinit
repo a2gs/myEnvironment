@@ -10,4 +10,4 @@ set print demangle on
 set follow-fork-mode child
 
 tui enable
-winheight SRC -15
+winheight src -15
