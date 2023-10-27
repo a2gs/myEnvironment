@@ -7,5 +7,7 @@ set print null-stop
 set print union on
 set print demangle on
 
+set follow-fork-mode child
+
 tui enable
 winheight SRC -15
