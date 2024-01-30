@@ -58,6 +58,7 @@ set foldmethod=syntax
 set fileformats=unix,dos,mac
 set shell=/bin/bash
 set timeoutlen=500
+set sidescroll=1
 hi Search ctermbg=Red ctermfg=Black
 
 " Copy/Paste
