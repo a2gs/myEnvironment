@@ -1,6 +1,4 @@
-""""""""""""""""""""""
 " a2gs .vimrc
-""""""""""""""""""""""
 
 set encoding=utf-8
 set nocompatible
@@ -57,9 +55,21 @@ set tabpagemax=100
 set foldmethod=syntax
 set fileformats=unix,dos,mac
 set shell=/bin/bash
+set nospell
 set timeoutlen=500
 set sidescroll=1
 hi Search ctermbg=Red ctermfg=Black
+
+" Vertical line
+set colorcolumn=120
+highlight colorcolumn ctermbg=238
+map <silent> <C-c>c :execute "set colorcolumn=" . (&colorcolumn == "" ? "120" : "")<cr>
+
+" Up/Down between visual lines when 'wrap on'
+map <up> gk
+map <down> gj
+inoremap <up> <c-o>gk
+inoremap <down> <c-o>gj
 
 " Copy/Paste
 nnoremap <F5> :set invpaste paste?<CR>
@@ -80,6 +90,11 @@ map <C-o>n :tabnew<CR>
 map <F2> zfat
 map <F3> zo
 map <F4> zc
+
+map <F9> :set nolist!<CR>
+map <F10> :set wrap!<CR>
+map <F11> :term<CR>
+map <F12> :Texplore<CR>
 
 " Python
 "augroup python
