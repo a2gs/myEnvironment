@@ -93,7 +93,7 @@ map <F4> zc
 
 map <F9> :set nolist!<CR>
 map <F10> :set wrap!<CR>
-map <F11> :term<CR>
+map <F11> :below term<CR>
 map <F12> :Texplore<CR>
 
 " Python
